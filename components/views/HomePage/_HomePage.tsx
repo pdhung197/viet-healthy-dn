@@ -1,6 +1,6 @@
 import {Form, Select, InputNumber, Switch, Slider, Button} from "antd";
 
-import DatePicker from "../../blocks/DatePicker";
+import DatePicker from "../../blocks/DatePicker/DatePicker";
 
 import {SmileFilled} from "@ant-design/icons";
 

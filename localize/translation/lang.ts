@@ -1,5 +1,5 @@
-import { vi } from './vi/index';
-import { en } from './en/index';
+import {vi} from "./vi/index";
+import {en} from "./en/index";
 
 export type Lang = {
   [key: string]: any;
@@ -15,10 +15,10 @@ export const lang: Lang = {
 };
 
 export const langOptions: LangOption = {
-  en: 'English',
-  vi: 'Tiếng Việt',
+  en: "English",
+  vi: "Tiếng Việt",
 };
 
-export const fallBackLanguage = 'en';
+export const fallBackLanguage = "en";
 
-export const defaultLanguage = 'en';
+export const defaultLanguage = "en";

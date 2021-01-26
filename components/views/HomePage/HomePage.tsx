@@ -1,4 +1,3 @@
-import {Button} from "antd";
 import Link from "next/link";
 
 export const HomePage = () => {
@@ -10,7 +9,6 @@ export const HomePage = () => {
         <a>Admin</a>
       </Link>
       <br />
-      <Button type="primary">Primary Button</Button>
     </div>
   );
 };

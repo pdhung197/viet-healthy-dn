@@ -1,0 +1,19 @@
+@import "./../../../assets/styles/variables.scss";
+.searchbar {
+  &.ant-input-search .ant-input-group {
+    > span {
+      height: $inputHeight;
+    }
+    .ant-input-affix-wrapper:not(:last-child) {
+      border-radius: 0;
+    }
+    .ant-input-group-addon:last-child {
+      .ant-input-search-button {
+        height: $inputHeight;
+        border-radius: 0;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

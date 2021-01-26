@@ -1,0 +1,107 @@
+.menu-item-content {
+  height: 100%;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submenu-item-content {
+  text-transform: unset;
+  font-weight: 400;
+  padding-left: 0;
+}
+
+.main-menu.ant-menu {
+  width: 100%;
+  line-height: unset;
+  height: 100%;
+  background: none;
+  border-bottom-color: transparent;
+
+  &.ant-menu-horizontal {
+    text-align: center;
+  }
+
+  > * {
+    background: none;
+    color: #000;
+  }
+
+  .ant-menu-submenu {
+    > div {
+      height: 100%;
+    }
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu {
+    margin: 0 10px !important;
+    padding: 0 !important;
+    height: 100%;
+
+    &.ant-menu-submenu-inline,
+    &.ant-menu-submenu-vertical {
+      margin: 0 !important;
+      height: auto;
+
+      .ant-menu-submenu-title {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  &.ant-menu-inline-collapsed
+    > .ant-menu-submenu
+    > .ant-menu-submenu-title
+    .ant-menu-submenu-arrow {
+    display: block;
+    padding: 20px;
+    transform: translate(12px, -22px);
+  }
+
+  &.ant-menu-vertical,
+  &.ant-menu-inline {
+    border-right: none;
+    height: auto;
+    .ant-menu-item,
+    .ant-menu-submenu {
+      margin: 0 !important;
+      padding: 0 !important;
+
+      > button,
+      > div > button {
+        padding: 0 10px;
+        text-align: left;
+      }
+    }
+
+    .ant-menu-item,
+    .ant-menu-submenu > div {
+      display: flex;
+      button {
+        flex: 1;
+      }
+    }
+
+    button.submenu-item-content {
+      padding-left: 20px;
+    }
+
+    .ant-menu-item-selected {
+      background-color: transparent;
+      > div {
+        background-color: #eaeddf;
+      }
+    }
+
+    .ant-menu-submenu-open {
+      .ant-menu-sub {
+        height: auto !important;
+      }
+    }
+  }
+}

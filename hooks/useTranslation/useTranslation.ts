@@ -25,5 +25,6 @@ export const useTranslation = (nameSpace?: string) => {
     t,
     setLanguage,
     getLanguage,
+    currentLang: getLanguage(),
   };
 };

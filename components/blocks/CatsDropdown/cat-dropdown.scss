@@ -1,0 +1,80 @@
+@import "./../../../assets/styles/variables.scss";
+
+.cats-dropdown {
+  border: none;
+
+  &__topbtn {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: $white;
+    font-weight: 600;
+    font-size: medium;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: none;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      color: $lightest-gray;
+    }
+
+    .anticon {
+      margin-right: 5px;
+    }
+  }
+
+  &.ant-menu.ant-menu-inline {
+    .ant-menu-submenu {
+      position: relative;
+    }
+
+    li,
+    .ant-menu-sub,
+    .ant-menu-submenu,
+    .ant-menu-submenu-title {
+      padding-left: 0 !important;
+      height: unset;
+      line-height: unset;
+
+      button {
+        padding-left: 25px;
+      }
+    }
+
+    .ant-menu-submenu-title {
+      height: $inputHeight;
+      line-height: $inputHeight;
+    }
+
+    li.ant-menu-item {
+      height: $inputHeight;
+      line-height: $inputHeight;
+      padding-left: 25px !important;
+      margin: 0;
+      color: $black;
+    }
+
+    .ant-menu-sub {
+      border: 1px solid $light-gray;
+      border-top: none;
+      box-sizing: border-box;
+      padding: 8px 0;
+    }
+
+    .ant-menu-submenu-title {
+      margin: 0;
+      width: 100%;
+      background-color: $primary-color;
+    }
+
+    &.relative-dropdown {
+      .ant-menu-sub {
+        position: absolute;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@import "./../../../assets/styles/variables.scss";
+
+.cart-btn {
+  background-color: $secondary-color;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  height: auto !important;
+  padding: 2px 15px !important;
+  min-height: 40px;
+
+  > span {
+    padding-right: 10px;
+    border-right: 1px solid $lightest-gray;
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cart-btn-content {
+    margin-left: 10px;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    &__title {
+      font-weight: 600;
+      color: $lightest-gray;
+      font-size: small;
+    }
+
+    &__price {
+      font-size: smaller;
+      font-weight: 700;
+    }
+  }
+}

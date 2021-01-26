@@ -57,3 +57,14 @@ export const getObjectWithKey = (
     return getResultFormatted(result, resultTormat);
   return result;
 };
+
+export const removeLatinCharAndSpecialChar = (str: string) =>
+  str
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^A-Z0-9]/gi, "")
+    .toLowerCase();
+
+export const timeout = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};

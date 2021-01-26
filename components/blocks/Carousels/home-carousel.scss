@@ -1,0 +1,47 @@
+.ant-carousel {
+  .home-carousel {
+    &.slick-slider {
+      .slick-list {
+        height: 100% !important;
+      }
+
+      .slick-track {
+        position: relative;
+        height: 53vw;
+
+        .home-carousel__item {
+          display: flex;
+        }
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ant-carousel {
+    .home-carousel {
+      &.slick-slider {
+        .slick-track {
+          height: 32vw;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .ant-carousel {
+    .home-carousel {
+      &.slick-slider {
+        .slick-track {
+          height: 400px;
+        }
+      }
+    }
+  }
+}

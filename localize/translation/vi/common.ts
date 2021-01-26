@@ -6,7 +6,12 @@ export const common = {
     signUp: "Đăng ký",
     authGroup: "Biểu mẫu xác thực",
     adminGroup: "Quản trị",
+    cart: "Giỏ hàng",
   },
   adminView:
     "Đây là view admin {{text, lowercase}} and {{num}} and {{date, dd/MM/yyyy HH:mm}}",
+  form: {
+    search: "Tìm kiếm trong website",
+    searchBtn: "Tìm kiếm",
+  },
 };

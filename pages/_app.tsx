@@ -30,4 +30,8 @@ const MyApp = ({Component, pageProps}: AppProps) => {
   );
 };
 
+/* MyApp.getInitialProps = async () => {
+  return {pageProps: {ser: "Server side fetch"}};
+}; */
+
 export default MyApp;

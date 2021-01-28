@@ -74,6 +74,7 @@
     &.relative-dropdown {
       .ant-menu-sub {
         position: absolute;
+        z-index: 999;
       }
     }
   }

@@ -6,6 +6,8 @@ import {CommonProvider} from "../../../contexts/commonContext/CommonProvider";
 import {Sidebar} from "../../blocks/Sidebar/Sidebar";
 import Layout from "antd/lib/layout/layout";
 import styled from "styled-components";
+import AdminWrapper from "./AdminWrapper";
+import UserWrapper from "./UserWrapper";
 
 export const CustomLayout = styled(Layout)`
   background: none;
@@ -21,16 +23,16 @@ export const Wrapper = ({children}: WrapperProps) => {
 
   const isAdmin = pathname.includes("/admin");
 
-  const DynamicWrapper = dynamic(() =>
-    isAdmin ? import("./AdminWrapper") : import("./UserWrapper")
-  );
-
   return (
     <CommonProvider>
       <TranslationProvider>
         <>
           <Sidebar />
-          <DynamicWrapper>{children}</DynamicWrapper>
+          {isAdmin ? (
+            <AdminWrapper>{children}</AdminWrapper>
+          ) : (
+            <UserWrapper>{children}</UserWrapper>
+          )}
         </>
       </TranslationProvider>
     </CommonProvider>

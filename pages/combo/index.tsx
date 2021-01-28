@@ -1,6 +1,11 @@
 import Link from "next/link";
+import {ComboProps} from "../../models/PageProps";
+import {getCombos} from "../../services/mocks/getCombos";
 
-const Combo = () => {
+const Combo = (props: ComboProps) => {
+  const {combos} = props;
+  console.log({combos});
+
   return (
     <div>
       Here is Combo Page content <br />
@@ -14,5 +19,10 @@ const Combo = () => {
     </div>
   );
 };
+
+export async function getStaticProps() {
+  const combos = await getCombos();
+  return {props: {combos}};
+}
 
 export default Combo;

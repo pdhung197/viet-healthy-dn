@@ -4,9 +4,13 @@ import {ProductBase} from "../models/Product";
 
 export const product = (cat?: string): ProductBase => {
   faker.locale = "vi";
+  const fakeName = faker.commerce.productName();
   const prod = {
     id: faker.random.uuid(),
-    name: faker.commerce.productName(),
+    name:
+      fakeName +
+      " " +
+      faker.lorem.words(faker.random.number({min: 1, max: 10})),
     images: Array.from(
       {length: faker.random.number({min: 1, max: 10})},
       () =>

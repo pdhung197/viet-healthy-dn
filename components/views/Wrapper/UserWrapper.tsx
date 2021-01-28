@@ -2,6 +2,7 @@ import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 import Layout from "antd/lib/layout/layout";
 import {ReactNode, useContext, useEffect} from "react";
 import {CommonContext} from "../../../contexts/commonContext/commonContext";
+import {UserProvider} from "../../../contexts/userContext/UserProvider";
 import {Footer} from "../../blocks/Footer/Footer";
 import {Header} from "../../blocks/Header/Header";
 import {Nav} from "../../blocks/Nav/Nav";
@@ -25,15 +26,17 @@ const UserWrapper = ({children}: UserWrapperProps) => {
   }, [isMobile]);
 
   return (
-    <CustomLayout>
-      <Header />
-      <Nav />
-      <main style={{marginTop: 30}}>
-        <SearchAndBanner />
-        {children}
-      </main>
-      <Footer />
-    </CustomLayout>
+    <UserProvider>
+      <CustomLayout>
+        <Header />
+        <Nav />
+        <main style={{marginTop: 30}}>
+          <SearchAndBanner />
+          {children}
+        </main>
+        <Footer />
+      </CustomLayout>
+    </UserProvider>
   );
 };
 

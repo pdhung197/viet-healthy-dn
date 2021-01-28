@@ -19,6 +19,6 @@ export const langOptions: LangOption = {
   vi: "Tiếng Việt",
 };
 
-export const fallBackLanguage = "en";
+export const fallBackLanguage = "vi";
 
-export const defaultLanguage = "en";
+export const defaultLanguage = "vi";

@@ -1,18 +1,41 @@
+import {Params} from "next/dist/next-server/server/router";
 import Link from "next/link";
+import {ProductsView} from "../../components/views/ProductView/ProductsView";
+import {prodCats, ProdCatType} from "../../mocks/prodCats";
+import {CatProdListProps} from "../../models/PageProps";
+import {getProducts} from "../../services/mocks/getProducts";
 
-const CatProdList = () => {
+const CatProdList = (props: CatProdListProps) => {
+  console.log({props});
+
   return (
-    <div>
-      Here is Category Product list Page content <br />
-      <Link href="/">
-        <a>Home</a>
-      </Link>
+    <>
+      <ProductsView {...props} />
       <br />
       <Link href="/admin">
         <a>Admin page</a>
       </Link>
-    </div>
+    </>
   );
 };
+
+export async function getStaticPaths() {
+  const paths = prodCats.map((prodCat: ProdCatType) => ({
+    params: {catkey: prodCat.key},
+  }));
+  paths.push({params: {catkey: "all"}});
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({params}: Params) {
+  const products = await getProducts(
+    params.catkey === "all" ? undefined : params.catkey
+  );
+  return {props: {products}};
+}
 
 export default CatProdList;

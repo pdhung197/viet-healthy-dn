@@ -16,8 +16,8 @@ export const Container = ({children}: ContainerProps) => {
   return (
     <FixedRow justify="center" align="middle">
       <Col
-        xs={{span: 23}}
-        sm={{span: 23}}
+        xs={{span: 22}}
+        sm={{span: 22}}
         md={{span: 22}}
         lg={{span: 22}}
         xl={{span: 19}}

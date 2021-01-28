@@ -51,8 +51,8 @@ export const CatsDropdown = () => {
         title={<DropDownBtn />}
         onTitleClick={onTitleClick}
       >
-        <Menu.Item key="products">
-          <Link href="/products">
+        <Menu.Item key="products:all">
+          <Link href="/products/all">
             <a>{t("menu.allCats")}</a>
           </Link>
         </Menu.Item>

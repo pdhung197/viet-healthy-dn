@@ -1,0 +1,129 @@
+@import "./../../../assets/styles/variables.scss";
+
+.product-card {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s box-shadow;
+  border: 1px solid $card-light-border;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  > a {
+    width: 100%;
+  }
+
+  &__describ {
+    flex: 1;
+    position: relative;
+
+    &--main-img {
+      position: relative;
+      width: 100%;
+      padding-top: calc(100% * 5.5 / 5);
+
+      img {
+        width: unset !important;
+        min-width: 100% !important;
+        max-width: unset !important;
+        height: unset !important;
+        min-height: unset !important;
+        max-width: unset !important;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__title {
+    padding: 10px;
+    text-align: center;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    min-height: 3.35em;
+    max-height: 3.35em;
+    line-height: 1.3em;
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-bottom: 10px;
+    color: $darkgray;
+    transition: 0.3s;
+  }
+
+  &__price {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+      padding: 0 5px;
+    }
+
+    del {
+      opacity: 0.7;
+      font-size: 1.3em;
+
+      + span {
+        color: $danger-color;
+      }
+    }
+
+    span {
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+  }
+
+  &__add-cart-btn {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+
+    button,
+    a {
+      margin: 0;
+      margin-top: -10px;
+      padding: 0;
+      font-size: 40px;
+      font-weight: 200;
+      line-height: 0;
+      background: none;
+      outline: none;
+      border: none;
+      box-shadow: none;
+      height: 30px;
+      color: $darkgray;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    &--btn {
+      margin: 0 20px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border: 1px solid $lightest-gray;
+      border-radius: 9999px;
+      width: auto;
+      flex: 1;
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover {
+    box-shadow: $card-box-shadow-value;
+    transition: 0.3s box-shadow;
+
+    .product-card__title {
+      color: $primary-color;
+      transition: 0.3s;
+    }
+  }
+}

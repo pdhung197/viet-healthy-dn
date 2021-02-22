@@ -3,7 +3,7 @@ import {ReactNode} from "react";
 import styled from "styled-components";
 
 const FixedRow = styled(Row)`
-  max-width: 1280px;
+  max-width: 1190px;
   margin: 0 auto;
   width: 100%;
 `;
@@ -18,9 +18,9 @@ export const Container = ({children}: ContainerProps) => {
       <Col
         xs={{span: 22}}
         sm={{span: 22}}
-        md={{span: 22}}
-        lg={{span: 22}}
-        xl={{span: 19}}
+        md={{span: 23}}
+        lg={{span: 23}}
+        xl={{span: 24}}
       >
         {children}
       </Col>

@@ -7,6 +7,8 @@ export const common = {
     authGroup: "Biểu mẫu xác thực",
     adminGroup: "Quản trị",
     cart: "Giỏ hàng",
+    payment: "Thanh toán",
+    buyNow: "Mua ngay",
   },
   adminView:
     "Đây là view admin {{text, lowercase}} and {{num}} and {{date, dd/MM/yyyy HH:mm}}",

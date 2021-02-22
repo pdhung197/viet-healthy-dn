@@ -24,6 +24,7 @@ export const ProductsList = ({
           <p className="product__category">{prodCat.label[currentLang]}</p>
         </Col>
       </Row>
+      <hr className="product__seperator" />
       <Row gutter={[36, 36]}>
         {(data || []).map((product: ProductBase) => (
           <Col
@@ -37,7 +38,7 @@ export const ProductsList = ({
           </Col>
         ))}
       </Row>
-      <hr />
+      <hr className="product__seperator" />
     </>
   );
 };

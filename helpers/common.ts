@@ -23,7 +23,7 @@ const resultFormatting = (result: any, option: string): any => {
 
 export const getResultFormatted = (
   text: string,
-  resultTormat: FormatType
+  resultFormat: FormatType
 ): string => {
   const textSplit = (text.split(regexGetTextsBetweenDoubleBracket) || []).map(
     (tx: string) => {
@@ -33,7 +33,7 @@ export const getResultFormatted = (
         .split(",")
         .map((keyOrOption) => keyOrOption.trim());
 
-      return resultFormatting(resultTormat[key], option) || "";
+      return resultFormatting(resultFormat[key], option) || "";
     }
   );
 
@@ -43,7 +43,7 @@ export const getResultFormatted = (
 export const getObjectWithKey = (
   object: any,
   key: string,
-  resultTormat?: FormatType
+  resultFormat?: FormatType
 ): any => {
   if (!(object instanceof Object)) return null;
   if (!Object.keys(object).length) return null;
@@ -53,8 +53,8 @@ export const getObjectWithKey = (
     keys.length - 1
       ? getObjectWithKey(object[keys[0]], keys.slice(1).join("."))
       : object[key];
-  if (resultTormat && typeof result === "string")
-    return getResultFormatted(result, resultTormat);
+  if (resultFormat && typeof result === "string")
+    return getResultFormatted(result, resultFormat);
   return result;
 };
 

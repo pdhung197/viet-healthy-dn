@@ -1,18 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import {calPrice} from "../../../helpers/productsFnc";
 import {ProductBase} from "../../../models/Product";
-import {AddProdToCart} from "./AddProdToCart";
+import {ProductBtns} from "./ProductBtns";
+import {useProducts} from "../../../hooks/useProducts/useProducts";
 
 import "./product-item.scss";
+import {CartItem} from "../../../models/Cart";
+import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 
 type ProductItem = {
   product: ProductBase;
 };
 
 export const ProductItem = ({product}: ProductItem) => {
+  const {currentLang} = useTranslation();
+  const {addOrRemoveCart, carts} = useProducts();
   const {id, name, images, price, discount = 0} = product;
-  const currentPrice = (price * (100 - discount)) / 100;
+  const currentPrice = calPrice(price, discount);
+  const productInCart = carts.find((cartItem: CartItem) => cartItem.id === id);
+  const countInCart = productInCart?.count || 0;
 
   return (
     <div id={`product${id}`} className="product-card">
@@ -33,13 +41,16 @@ export const ProductItem = ({product}: ProductItem) => {
         </a>
       </Link>
       <h5 className="product-card__price">
-        {discount > 0 && <del>{price}</del>}
-        <span>{currentPrice} VND</span>
+        {discount > 0 && <del>{price.toLocaleString(currentLang)}</del>}
+        <span>{currentPrice.toLocaleString(currentLang)} VNĐ</span>
       </h5>
-      <div className="product-card__add-cart-btn">
-        <AddProdToCart />
+      <div className="product-card__prod-btns">
+        <ProductBtns
+          product={product}
+          handleAddRemoveCart={addOrRemoveCart}
+          countInCart={countInCart}
+        />
       </div>
-      <div className="product-card__buy-btn"></div>
     </div>
   );
 };

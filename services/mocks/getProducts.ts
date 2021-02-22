@@ -18,9 +18,10 @@ const generateProduct = (cat?: string) => {
   prodCats.map((prodCat: ProdCatType) => {
     if (selectedCat && selectedCat !== prodCat.key) return;
     const productCount = faker.random.number({min: 15, max: 30});
-    products[prodCat.key] = Array.from({length: productCount}, () =>
-      product(prodCat.key)
-    );
+    products[prodCat.key] = Array.from({length: productCount}, (p, index) => {
+      console.log({index});
+      return product(prodCat.key, index);
+    });
   });
 
   return products;

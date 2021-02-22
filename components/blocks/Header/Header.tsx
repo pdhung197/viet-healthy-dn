@@ -6,13 +6,13 @@ import {theme} from "../../../configs/theme/theme";
 
 const StyledHeader = styled.header`
   background-color: ${theme.light};
-  padding: 10px 0;
+  padding: 5px 0;
   margin-bottom: 10px;
 `;
 
 const HeaderLink = styled(Button)`
   color: ${theme.black};
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
   padding: 0;
   font-size: small;

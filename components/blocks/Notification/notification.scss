@@ -1,0 +1,51 @@
+@import "./../../../assets/styles/variables.scss";
+
+.vh-notification {
+  padding: 7px 10px;
+
+  &__success {
+    .ant-notification-notice-message {
+      color: $primary-color;
+    }
+  }
+
+  &__info {
+    .ant-notification-notice-message {
+      color: $info-color;
+    }
+  }
+
+  &__warning {
+    .ant-notification-notice-message {
+      color: $secondary-color;
+    }
+  }
+
+  &__error {
+    .ant-notification-notice-message {
+      color: $danger-color;
+    }
+  }
+
+  &.ant-notification-notice {
+    width: auto;
+    max-width: 90vw;
+  }
+
+  .ant-notification-notice-message {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 36px;
+  }
+
+  .ant-notification-notice-description {
+    font-size: 0.8rem;
+    color: $black;
+    margin-left: 36px;
+  }
+
+  > a {
+    top: 10px;
+  }
+}

@@ -1,8 +1,15 @@
 @import "./../../../assets/styles/variables.scss";
 
-.product__category {
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-align: center;
-  color: $primary-color;
+.product {
+  &__category {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $black;
+  }
+
+  &__seperator {
+    margin-bottom: 30px;
+    border: none;
+    border-top: 1px solid $lightest-gray;
+  }
 }

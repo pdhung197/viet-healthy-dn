@@ -9,9 +9,31 @@
   padding: 2px 15px !important;
   min-height: 40px;
 
-  > span {
+  &__icon {
     padding-right: 10px;
     border-right: 1px solid $lightest-gray;
+    position: relative;
+
+    svg {
+      position: relative;
+      bottom: -2px;
+      left: -5px;
+    }
+
+    sup {
+      position: absolute;
+      top: -3px;
+      right: 5px;
+      width: 20px;
+      height: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 20px;
+      border-radius: 50%;
+      background-color: $danger-color;
+      color: $white;
+      text-align: center;
+    }
   }
 
   svg {
@@ -36,6 +58,180 @@
     &__price {
       font-size: smaller;
       font-weight: 700;
+    }
+  }
+}
+
+.cart-dropdown {
+  background-color: $white;
+  padding: 0;
+  border: 1px solid $lightest-gray;
+  box-shadow: $card-box-shadow-light;
+  border-radius: 5px;
+  min-width: 220px;
+  max-width: 320px;
+  overflow: hidden;
+
+  &__list {
+    padding: 15px;
+    max-height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__list-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed $lightest-gray;
+    padding: 3px 0;
+    position: relative;
+
+    > a {
+      cursor: pointer;
+    }
+
+    &:last-of-type {
+      border: none;
+    }
+  }
+
+  &__item-body {
+    display: flex;
+    cursor: pointer;
+  }
+
+  &__item-img-wrapper {
+    padding: 5px 0;
+  }
+
+  &__item-img {
+    position: relative;
+    width: 80px;
+    padding-top: calc(100% * 5.5 / 5);
+
+    img {
+      width: unset !important;
+      min-width: 100% !important;
+      max-width: unset !important;
+      height: unset !important;
+      min-height: unset !important;
+      max-width: unset !important;
+      object-fit: cover;
+    }
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+
+    > * {
+      margin: 0;
+      padding: 0;
+    }
+
+    h4 {
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      overflow: hidden;
+      min-height: 29px;
+      max-height: 29px;
+      line-height: 14px;
+      font-size: 14px;
+      color: $darkgray;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 100;
+    }
+  }
+
+  &__cancel-btn {
+    padding-top: 10px;
+    button {
+      background: none;
+      outline: none;
+      border: none;
+      color: $danger-color;
+      text-transform: uppercase;
+      transform: scale(1.2, 1);
+      cursor: pointer;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid $light-gray;
+  }
+
+  &__total {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 14px;
+
+    &--title {
+      font-weight: 200;
+    }
+
+    &--value {
+      font-size: 15px;
+      font-weight: 500;
+      color: $black;
+    }
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+
+    a {
+      text-transform: uppercase;
+      font-size: 13px;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      outline: none;
+      border: 1px solid $light-gray;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition: 0.2s;
+    }
+
+    &--cart {
+      color: $darkgray;
+      background-color: $lightest-gray;
+
+      &:hover {
+        background-color: $light-gray;
+        color: $white;
+      }
+    }
+
+    &--pay {
+      color: $white;
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: $white;
+        color: $primary-color;
+      }
     }
   }
 }

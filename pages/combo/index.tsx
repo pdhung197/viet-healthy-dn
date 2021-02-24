@@ -4,7 +4,6 @@ import {getCombos} from "../../services/mocks/getCombos";
 
 const Combo = (props: ComboProps) => {
   const {combos} = props;
-  console.log({combos});
 
   return (
     <div>

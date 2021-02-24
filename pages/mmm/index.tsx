@@ -10,7 +10,6 @@ type ProductsProps = {
 
 const Products = (props: ProductsProps) => {
   const {products} = props;
-  console.log({products});
 
   return (
     <div>

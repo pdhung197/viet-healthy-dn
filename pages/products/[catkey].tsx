@@ -6,8 +6,6 @@ import {CatProdListProps} from "../../models/PageProps";
 import {getProducts} from "../../services/mocks/getProducts";
 
 const CatProdList = (props: CatProdListProps) => {
-  console.log({props});
-
   return (
     <>
       <ProductsView {...props} />

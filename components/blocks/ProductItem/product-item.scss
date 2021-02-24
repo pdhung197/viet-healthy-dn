@@ -7,8 +7,9 @@
   transition: 0.3s box-shadow;
   border: 1px solid $card-light-border;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 6px;
   position: relative;
+  overflow: hidden;
 
   > a {
     width: 100%;

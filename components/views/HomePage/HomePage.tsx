@@ -1,13 +1,14 @@
 import Link from "next/link";
 import {HomeProps} from "../../../models/PageProps";
-import { HomeCarousel } from "../../blocks/Carousels/HomeCarousel";
+import {HomeCarousel} from "../../blocks/Carousels/HomeCarousel";
+import {ProductCarousel} from "../../blocks/Carousels/ProductCarousel";
 
 export const HomePage = (props: HomeProps) => {
   const {products} = props;
-  console.log({products});
+
   return (
     <div>
-      <HomeCarousel/>
+      <ProductCarousel />
       <br />
       <Link href="/admin">
         <a>Admin</a>

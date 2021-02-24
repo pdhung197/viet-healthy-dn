@@ -5,7 +5,7 @@ import client from "../utils/ApolloClient";
 import {FETCH_ALL_PRODUCTS_QUERY} from "../utils/gql/gqlQuery";
 
 const Home = (props: HomeProps) => {
-  console.log({prd: props.prdData});
+  console.log({prd: props.prdData.nodes});
   return <HomePage {...props} />;
 };
 

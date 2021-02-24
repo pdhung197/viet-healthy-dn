@@ -1,15 +1,26 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const FETCH_ALL_PRODUCTS_QUERY = gql`
   query MyQuery {
-    products(first: 100) {
+    products(first: 1000) {
       nodes {
-        id
+        productCategories {
+          nodes {
+            name
+            slug
+          }
+        }
         name
-        link
-        status
+        sku
         slug
-        description
+        status
+        totalSales
+        databaseId
+        date
+        dateOnSaleFrom
+        dateOnSaleTo
+        description(format: RAW)
+        featured
       }
     }
   }

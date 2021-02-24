@@ -29,6 +29,7 @@
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-slick": "^0.28.0",
     "sass": "^1.32.4",
     "styled-components": "^5.2.1"
   },

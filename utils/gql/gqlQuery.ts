@@ -1,8 +1,8 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const FETCH_ALL_PRODUCTS_QUERY = gql`
-  query MyQuery($after: String, $first: Int) {
-    products(first: $first, after: $after) {
+  query MyQuery($after: String, $first: Int, $categoryIn: [String]) {
+    products(first: $first, after: $after, where: {categoryIn: $categoryIn}) {
       nodes {
         id
         image {

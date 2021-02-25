@@ -1,21 +1,17 @@
 import {HomePage} from "../components/views/HomePage/HomePage";
 import {HomeProps} from "../models/PageProps";
 import {getProducts} from "../services/mocks/getProducts";
-import client from "../utils/ApolloClient";
-import {FETCH_ALL_PRODUCTS_QUERY} from "../utils/gql/gqlQuery";
+import {getAllProduct} from "../services/productsSv/productQuery";
 
 const Home = (props: HomeProps) => {
-  console.log({prd: props.prdData.nodes});
   return <HomePage {...props} />;
 };
 
 export async function getStaticProps() {
-  const {data} = await client.query({
-    query: FETCH_ALL_PRODUCTS_QUERY,
-  });
+  const prdData = await getAllProduct();
 
   const products = await getProducts();
-  return {props: {products, prdData: data.products}};
+  return {props: {products, prdData: prdData}};
 }
 
 export default Home;

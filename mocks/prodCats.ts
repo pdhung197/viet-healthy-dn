@@ -9,7 +9,7 @@ export type ProdCatType = {
 export const prodCats: ProdCatType[] = [
   {
     id: 1,
-    key: "health",
+    key: "suc-khoe",
     label: {
       en: "For Health",
       vi: "Sức khỏe",
@@ -17,7 +17,7 @@ export const prodCats: ProdCatType[] = [
   },
   {
     id: 2,
-    key: "household-article",
+    key: "gia-dung",
     label: {
       en: "Household Article",
       vi: "Gia Dụng",
@@ -25,7 +25,7 @@ export const prodCats: ProdCatType[] = [
   },
   {
     id: 3,
-    key: "foodstuffs",
+    key: "thuc-pham",
     label: {
       en: "Foodstuffs",
       vi: "Thực phẩm",
@@ -41,7 +41,7 @@ export const prodCats: ProdCatType[] = [
   },
   {
     id: 5,
-    key: "detox-tour",
+    key: "tour-thai-doc",
     label: {
       en: "Detox Tour",
       vi: "Tour thải độc",
@@ -49,7 +49,7 @@ export const prodCats: ProdCatType[] = [
   },
   {
     id: 6,
-    key: "other",
+    key: "khac",
     label: {
       en: "Other",
       vi: "Khác",

@@ -3,8 +3,8 @@ import {HomeProps} from "../../../models/PageProps";
 import {ProductCarousel} from "../../blocks/Carousels/ProductCarousel";
 
 export const HomePage = (props: HomeProps) => {
-  const {products} = props;
-
+  const {products, prdData} = props;
+  console.log({prdData});
   return (
     <div>
       <ProductCarousel />

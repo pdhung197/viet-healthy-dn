@@ -49,6 +49,14 @@ export const prodCats: ProdCatType[] = [
   },
   {
     id: 6,
+    key: "kien-thuc",
+    label: {
+      en: "Book",
+      vi: "Kiến thức",
+    },
+  },
+  {
+    id: 7,
     key: "khac",
     label: {
       en: "Other",

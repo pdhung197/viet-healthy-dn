@@ -43,3 +43,28 @@ export interface ProductBaseItem {
   width?: string;
   virtual?: string;
 }
+
+export interface ProductItem {
+  id: string;
+  image: string | null;
+  name: string;
+  onSale: boolean;
+  productCategories: (string | undefined)[];
+  productTags: (string | undefined)[];
+  sku: string;
+  status: string;
+  totalSales: number;
+  type: string;
+  visibleProducts: {
+    slug?: string;
+    isRestricted?: boolean;
+  }[];
+  manageStock?: number;
+  price?: string;
+  regularPrice?: string;
+  salePrice?: string;
+  soldIndividually?: string;
+  weight?: string;
+  width?: string;
+  virtual?: string;
+}

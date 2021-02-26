@@ -4,8 +4,10 @@ import {ProductsView} from "../../components/views/ProductView/ProductsView";
 import {prodCats, ProdCatType} from "../../mocks/prodCats";
 import {CatProdListProps} from "../../models/PageProps";
 import {getProducts} from "../../services/mocks/getProducts";
+import {getAllProduct} from "../../services/productsSv/productQuery";
 
 const CatProdList = (props: CatProdListProps) => {
+  console.log({prdData: props.prdData});
   return (
     <>
       <ProductsView {...props} />
@@ -30,10 +32,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}: Params) {
+  const prdData = await getAllProduct(
+    params.catkey === "all" ? undefined : params.catkey
+  );
+
   const products = await getProducts(
     params.catkey === "all" ? undefined : params.catkey
   );
-  return {props: {products}};
+  return {props: {products, prdData}};
 }
 
 export default CatProdList;

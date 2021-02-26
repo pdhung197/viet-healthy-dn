@@ -4,6 +4,7 @@ export type CatProdListProps = {
   products: {
     [key in string]: ProductBase[];
   };
+  prdData?: any;
 };
 
 export type HomeProps = {

@@ -7,7 +7,6 @@ import {getProducts} from "../../services/mocks/getProducts";
 import {getAllProduct} from "../../services/productsSv/productQuery";
 
 const CatProdList = (props: CatProdListProps) => {
-  console.log({prdData: props.prdData});
   return (
     <>
       <ProductsView {...props} />

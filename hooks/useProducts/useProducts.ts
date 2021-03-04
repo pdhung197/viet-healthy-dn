@@ -3,7 +3,7 @@ import {calPrice} from "./../../helpers/productsFnc";
 import {useContext} from "react";
 import {UserContext} from "../../contexts/userContext/userContext";
 import {CartActionType} from "../../models/Cart";
-import {ProductBase} from "../../models/Product";
+import {ProductBase, ProductDataItem} from "../../models/Product";
 
 export const useProducts = () => {
   const {carts, addToCart, removeFromCart} = useContext(UserContext);
@@ -18,11 +18,11 @@ export const useProducts = () => {
 
   const addOrRemoveCart = (
     cartAction: CartActionType,
-    product: ProductBase | Partial<CartItem>[]
+    product: ProductDataItem | Partial<CartItem>[]
   ) => {
     switch (cartAction) {
       case "add":
-        addToCart(product as ProductBase);
+        addToCart(product as ProductDataItem);
         return;
       case "remove":
         removeFromCart(

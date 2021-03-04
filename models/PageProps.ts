@@ -1,10 +1,10 @@
-import {ProductBase} from "./Product";
+import {ProductBase, ProductDataItem} from "./Product";
 
 export type CatProdListProps = {
   products: {
     [key in string]: ProductBase[];
   };
-  prdData?: any;
+  prdData?: ProductDataItem[];
 };
 
 export type HomeProps = {

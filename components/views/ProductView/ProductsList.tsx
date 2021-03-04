@@ -1,14 +1,14 @@
 import {Col, Row} from "antd";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {prodCats} from "../../../mocks/prodCats";
-import {ProductBase} from "../../../models/Product";
+import {ProductDataItem} from "../../../models/Product";
 import {ProductItem} from "../../blocks/ProductItem/ProductItem";
 
 export const ProductsList = ({
   data,
   productKey,
 }: {
-  data: ProductBase[];
+  data: ProductDataItem[];
   productKey: string;
 }) => {
   const {currentLang} = useTranslation();
@@ -26,7 +26,7 @@ export const ProductsList = ({
       </Row>
       <hr className="product__seperator" />
       <Row gutter={[36, 36]}>
-        {(data || []).map((product: ProductBase) => (
+        {(data || []).map((product: ProductDataItem) => (
           <Col
             key={product.id}
             xs={{span: 24}}

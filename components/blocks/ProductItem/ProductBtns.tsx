@@ -1,13 +1,13 @@
 import {MinusOutlined, PlusOutlined} from "@ant-design/icons";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {CartActionType} from "../../../models/Cart";
-import {ProductBase} from "../../../models/Product";
+import {ProductBase, ProductDataItem} from "../../../models/Product";
 
 type AddRemoveCartProps = {
-  product: ProductBase;
+  product: ProductDataItem;
   handleAddRemoveCart: (
     cartAction: CartActionType,
-    product: ProductBase | ProductBase[]
+    product: ProductDataItem
   ) => void;
   countInCart: number;
 };

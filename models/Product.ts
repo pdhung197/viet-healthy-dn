@@ -44,7 +44,7 @@ export interface ProductBaseItem {
   virtual?: string;
 }
 
-export interface ProductItem {
+export interface ProductDataItem {
   id: string;
   image: string | null;
   name: string;
@@ -60,11 +60,11 @@ export interface ProductItem {
     isRestricted?: boolean;
   }[];
   manageStock?: number;
-  price?: string;
-  regularPrice?: string;
-  salePrice?: string;
+  price?: number;
+  regularPrice?: number;
+  salePrice?: number;
   soldIndividually?: string;
-  weight?: string;
-  width?: string;
+  weight?: number;
+  width?: number;
   virtual?: string;
 }

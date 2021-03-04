@@ -1,17 +1,17 @@
 import {CartItem} from "./../../models/Cart";
-import {ProductBase} from "./../../models/Product";
+import {ProductDataItem} from "./../../models/Product";
 import {createContext} from "react";
 
 export const UserContext = createContext({
   carts: [] as CartItem[],
-  addToCart: (product: ProductBase) => {
+  addToCart: (product: ProductDataItem) => {
     console.log({product});
   },
   removeFromCart: (products: Partial<CartItem>[]) => {
     console.log({products});
   },
-  productsList: [] as ProductBase[],
-  storeProductsData: (products: ProductBase[]) => {
+  productsList: [] as ProductDataItem[],
+  storeProductsData: (products: ProductDataItem[]) => {
     console.log({products});
   },
 });

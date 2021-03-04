@@ -27,10 +27,9 @@
       img {
         width: unset !important;
         min-width: 100% !important;
-        max-width: unset !important;
         height: unset !important;
         min-height: unset !important;
-        max-width: unset !important;
+        max-width: 100% !important;
         object-fit: cover;
         transition: 0.3s;
       }

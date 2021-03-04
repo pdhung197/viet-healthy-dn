@@ -1,8 +1,8 @@
-import {ProductBaseItem, ProductItem} from "../../models/Product";
+import {ProductBaseItem, ProductDataItem} from "../../models/Product";
 import client from "../../utils/ApolloClient";
 import {FETCH_ALL_PRODUCTS_QUERY} from "../../utils/gql/gqlQuery";
 
-const productProcess = (productRaw: ProductBaseItem): ProductItem => {
+const productProcess = (productRaw: ProductBaseItem): ProductDataItem => {
   const {
     id,
     name,
@@ -25,7 +25,7 @@ const productProcess = (productRaw: ProductBaseItem): ProductItem => {
     virtual,
   } = productRaw;
 
-  const productItem: ProductItem = {
+  const productItem: ProductDataItem = {
     id,
     name,
     image: image?.sourceUrl || null,
@@ -39,24 +39,45 @@ const productProcess = (productRaw: ProductBaseItem): ProductItem => {
     totalSales,
     type,
     manageStock,
-    price,
-    regularPrice,
-    salePrice,
+    // price,
+    // regularPrice,
+    // salePrice,
     soldIndividually,
     visibleProducts: (visibleProducts.nodes || []).map(
       (visibleProduct) => visibleProduct
     ),
-    weight,
-    width,
+    // weight,
+    // width,
     virtual,
   };
+
+  if (price) {
+    productItem.price = Math.round(parseFloat(price) * 1000) / 1000;
+  }
+
+  if (regularPrice) {
+    productItem.regularPrice =
+      Math.round(parseFloat(regularPrice) * 1000) / 1000;
+  }
+
+  if (salePrice) {
+    productItem.salePrice = Math.round(parseFloat(salePrice) * 1000) / 1000;
+  }
+
+  if (weight) {
+    productItem.weight = parseFloat(weight);
+  }
+
+  if (width) {
+    productItem.width = parseFloat(width);
+  }
 
   return productItem;
 };
 
 export const getAllProduct = async (categories?: string | string[]) => {
   try {
-    const prodDatas: ProductItem[] = [];
+    const prodDatas: ProductDataItem[] = [];
     let finished = false;
 
     const variables = {

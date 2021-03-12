@@ -10,7 +10,7 @@ type CartDropProps = {
   carts: CartItem[];
   addOrRemoveCart: (
     cartAction: CartActionType,
-    cartItem: ProductBase | Partial<CartItem>[]
+    cartItem: any | Partial<CartItem>[]
   ) => void;
 };
 

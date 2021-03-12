@@ -1,3 +1,5 @@
+export type StockStatusType = "IN_STOCK" | "OUT_OF_STOCK" | "ON_BACKORDER";
+
 export interface ProductBase {
   id: string | number;
   name: string;
@@ -8,6 +10,7 @@ export interface ProductBase {
 }
 
 export interface ProductBaseItem {
+  databaseId: string;
   id: string;
   image: {
     sourceUrl?: string;
@@ -42,9 +45,12 @@ export interface ProductBaseItem {
   weight?: string;
   width?: string;
   virtual?: string;
+  stockQuantity?: Number;
+  stockStatus?: StockStatusType;
 }
 
 export interface ProductDataItem {
+  databaseId: string;
   id: string;
   image: string | null;
   name: string;
@@ -67,4 +73,6 @@ export interface ProductDataItem {
   weight?: number;
   width?: number;
   virtual?: string;
+  stockQuantity?: Number;
+  stockStatus?: StockStatusType;
 }

@@ -4,27 +4,23 @@ import {Container} from "../../blocks/Containers/Container";
 import {ProductsList} from "./ProductsList";
 
 import "./products.scss";
+import {prodCats, ProdCatType} from "../../../mocks/prodCats";
 
 export const ProductsView = (props: CatProdListProps) => {
-  const {products, prdData = []} = props;
+  const {prdData = []} = props;
 
-  if (!products || !Object.keys(products).length) return <></>;
+  if (!prdData || !prdData.length) return <></>;
 
   return (
     <Container>
-      {Object.keys(products).map((productKey: string) => {
+      {prodCats.map((prodCat: ProdCatType) => {
+        const {key} = prodCat;
         const productData: ProductDataItem[] = prdData.filter(
           (prod: ProductDataItem) =>
-            (prod.productCategories || []).includes(productKey)
+            (prod.productCategories || []).includes(key)
         );
         console.log({productData});
-        return (
-          <ProductsList
-            key={productKey}
-            productKey={productKey}
-            data={productData}
-          />
-        );
+        return <ProductsList key={key} productKey={key} data={productData} />;
       })}
     </Container>
   );

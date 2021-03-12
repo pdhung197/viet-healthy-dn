@@ -62,6 +62,10 @@ const client = new ApolloClient({
       createHttpLink({
         uri: GRAPHQL_URL,
         fetch: fetch,
+        credentials: "include",
+        headers: {
+          "Access-Control-Allow-Origin": true,
+        },
       })
     )
   ),

@@ -34,6 +34,13 @@ export const MainMenu = ({mode}: any) => {
           selectedKey.startsWith("products") ? `ant-menu-item-selected` : ""
         }
       >
+        <Item>
+          <MenuItemContent
+            path="/products/all"
+            label={t("menu.allCats")}
+            className="ant-menu-custom-link menu-item-content submenu-item-content"
+          />
+        </Item>
         {(prodCats || []).map((prodCat: ProdCatType) => (
           <Item key={`products:${prodCat.key}`}>
             <MenuItemContent

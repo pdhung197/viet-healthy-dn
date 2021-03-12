@@ -8,8 +8,8 @@ import {UserContext} from "./userContext";
 
 export const UserProvider = ({children}: CommonProps) => {
   const {t} = useTranslation();
-  const [productsList, setProducts] = useState<ProductBase[]>([]);
-  const [carts, setCarts] = useState<CartItem[]>([]);
+  const [productsList, setProducts] = useState<any[]>([]);
+  const [carts, setCarts] = useState<any[]>([]);
 
   useEffect(() => {
     if (
@@ -21,18 +21,18 @@ export const UserProvider = ({children}: CommonProps) => {
     }
   }, []);
 
-  const updateCartToLocalStorage = (updateCarts: CartItem[]) => {
+  const updateCartToLocalStorage = (updateCarts: any[]) => {
     if (window) {
       window.localStorage.setItem("carts", JSON.stringify(updateCarts));
     }
   };
 
-  const storeProductsData = (products: ProductBase[]) => setProducts(products);
+  const storeProductsData = (products: any[]) => setProducts(products);
 
-  const addToCart = (product: ProductBase) => {
-    try {
+  const addToCart = (product: any) => {
+    /* try {
       const indexProductInCart = carts.findIndex(
-        (cartItem: CartItem) => cartItem.id === product.id
+        (cartItem: any) => cartItem.id === product.id
       );
       if (indexProductInCart > -1) {
         const updatedExistsItem = [
@@ -74,17 +74,17 @@ export const UserProvider = ({children}: CommonProps) => {
         message: t("notifications.carts.addFailTitle"),
         description: t("notifications.carts.addFail", {product: product.name}),
       });
-    }
+    } */
   };
 
-  const removeFromCart = (products: Partial<CartItem>[]) => {
-    try {
+  const removeFromCart = (products: Partial<any>[]) => {
+    /* try {
       let isCartUpdated = false;
       const updatedCart = products.reduce(
-        (newCart: CartItem[], product: Partial<CartItem>) => {
+        (newCart: any[], product: Partial<any>) => {
           const {id, count = 1} = product;
           const indexProductInCart = newCart.findIndex(
-            (cartItem: CartItem) => cartItem.id === id
+            (cartItem: any) => cartItem.id === id
           );
           if (
             indexProductInCart < 0 ||
@@ -112,7 +112,7 @@ export const UserProvider = ({children}: CommonProps) => {
       }
 
       const filteredUpdatedCart = updatedCart.filter(
-        (cartItem: CartItem) => cartItem.count > 0
+        (cartItem: any) => cartItem.count > 0
       );
 
       updateCartToLocalStorage(filteredUpdatedCart);
@@ -134,7 +134,7 @@ export const UserProvider = ({children}: CommonProps) => {
           product: products[0].name,
         }),
       });
-    }
+    } */
   };
 
   const providerValue = {

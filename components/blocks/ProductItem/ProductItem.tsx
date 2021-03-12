@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import {calPrice} from "../../../helpers/productsFnc";
 import {ProductDataItem} from "../../../models/Product";
 import {ProductBtns} from "./ProductBtns";
 import {useProducts} from "../../../hooks/useProducts/useProducts";
@@ -15,9 +13,10 @@ type ProductItem = {
 };
 
 export const ProductItem = ({product}: ProductItem) => {
-  const {currentLang} = useTranslation();
-  const {addOrRemoveCart, carts} = useProducts();
+  const {t, currentLang} = useTranslation();
+
   const {
+    databaseId,
     id,
     image,
     name,
@@ -37,9 +36,9 @@ export const ProductItem = ({product}: ProductItem) => {
     weight,
     width,
     virtual,
+    stockQuantity,
+    stockStatus,
   } = product;
-  const productInCart = carts.find((cartItem: CartItem) => cartItem.id === id);
-  const countInCart = productInCart?.count || 0;
 
   return (
     <div id={`product${id}`} className="product-card">
@@ -50,7 +49,11 @@ export const ProductItem = ({product}: ProductItem) => {
             <div className="product-card__describ--main-img">
               <Image
                 layout="fill"
-                src={image || "/images/LogoTransThumb.png"}
+                src={
+                  !image || image.includes("woocommerce-placeholder")
+                    ? "/images/LogoTransThumb.png"
+                    : image
+                }
                 alt={name}
                 className="product-card__describ--img"
                 quality={100}
@@ -68,11 +71,7 @@ export const ProductItem = ({product}: ProductItem) => {
         <span>{(price || 0).toLocaleString(currentLang)} VNĐ</span>
       </h5>
       <div className="product-card__prod-btns">
-        <ProductBtns
-          product={product}
-          handleAddRemoveCart={addOrRemoveCart}
-          countInCart={countInCart}
-        />
+        <ProductBtns product={product} />
       </div>
     </div>
   );

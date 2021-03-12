@@ -35,10 +35,7 @@ export async function getStaticProps({params}: Params) {
     params.catkey === "all" ? undefined : params.catkey
   );
 
-  const products = await getProducts(
-    params.catkey === "all" ? undefined : params.catkey
-  );
-  return {props: {products, prdData}};
+  return {props: {prdData}};
 }
 
 export default CatProdList;

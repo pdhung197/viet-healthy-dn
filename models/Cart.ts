@@ -1,5 +1,5 @@
 import {ProductBase, ProductDataItem} from "./Product";
-export type CartActionType = "add" | "remove";
+export type CartActionType = "add" | "remove" | "buynow";
 
 export interface CartVariantation {
   id: string;
@@ -49,4 +49,18 @@ export interface CartData {
 
 export interface CartItem extends ProductBase {
   count: number;
+}
+
+export interface CartDataContext {
+  content: Partial<ProductDataItem>[];
+  subtotal: number;
+  subtotalTax: number;
+  total: number;
+  totalTax: number;
+  shippingTax: number;
+  shippingTotal: number;
+  feeTax: number;
+  feeTotal: number;
+  discountTax: number;
+  discountTotal: number;
 }

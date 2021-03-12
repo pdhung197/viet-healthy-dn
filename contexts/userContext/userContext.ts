@@ -3,15 +3,15 @@ import {ProductDataItem} from "./../../models/Product";
 import {createContext} from "react";
 
 export const UserContext = createContext({
-  carts: [] as CartItem[],
-  addToCart: (product: ProductDataItem) => {
+  carts: [] as any[],
+  addToCart: (product: any) => {
     console.log({product});
   },
-  removeFromCart: (products: Partial<CartItem>[]) => {
+  removeFromCart: (products: Partial<any>[]) => {
     console.log({products});
   },
-  productsList: [] as ProductDataItem[],
-  storeProductsData: (products: ProductDataItem[]) => {
+  productsList: [] as any[],
+  storeProductsData: (products: any[]) => {
     console.log({products});
   },
 });

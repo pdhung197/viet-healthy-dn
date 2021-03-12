@@ -1,12 +1,25 @@
 import {CartItem} from "./../../models/Cart";
 import {calPrice} from "./../../helpers/productsFnc";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {UserContext} from "../../contexts/userContext/userContext";
 import {CartActionType} from "../../models/Cart";
-import {ProductBase, ProductDataItem} from "../../models/Product";
+import {ProductDataItem} from "../../models/Product";
+import {useLazyQuery} from "@apollo/client";
+import {GET_CART} from "../../utils/gql/gqlQuery";
+
+export const getProductOnRequest = (productId: string) => {
+  const [getProductInfo, {loading, data}] = useLazyQuery(GET_CART);
+
+  return {
+    getProductInfo,
+    loading,
+    data,
+  };
+};
 
 export const useProducts = () => {
   const {carts, addToCart, removeFromCart} = useContext(UserContext);
+  const [countToCart, setCountToCart] = useState(1);
 
   const totalPrice = (carts || []).reduce(
     (total: number, cartItem: CartItem) => {
@@ -36,9 +49,32 @@ export const useProducts = () => {
     }
   };
 
+  const handleIncreaseOrDecrease = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const count: number = parseInt(e.currentTarget.value);
+
+    if (countToCart + count > 0) {
+      setCountToCart(countToCart + count);
+    }
+  };
+
+  const onCountChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const count: number = parseInt(e.currentTarget.value);
+
+    if (count > 0) {
+      setCountToCart(count);
+    } else {
+      setCountToCart(1);
+    }
+  };
+
   return {
     carts,
     totalPrice: Math.floor(totalPrice),
     addOrRemoveCart,
+    handleIncreaseOrDecrease,
+    onCountChange,
+    countToCart,
   };
 };

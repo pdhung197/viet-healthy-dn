@@ -4,6 +4,7 @@ import {FETCH_ALL_PRODUCTS_QUERY} from "../../utils/gql/gqlQuery";
 
 const productProcess = (productRaw: ProductBaseItem): ProductDataItem => {
   const {
+    databaseId,
     id,
     name,
     image,
@@ -23,9 +24,12 @@ const productProcess = (productRaw: ProductBaseItem): ProductDataItem => {
     weight,
     width,
     virtual,
+    stockQuantity,
+    stockStatus,
   } = productRaw;
 
   const productItem: ProductDataItem = {
+    databaseId,
     id,
     name,
     image: image?.sourceUrl || null,
@@ -49,6 +53,8 @@ const productProcess = (productRaw: ProductBaseItem): ProductDataItem => {
     // weight,
     // width,
     virtual,
+    stockQuantity,
+    stockStatus,
   };
 
   if (price) {

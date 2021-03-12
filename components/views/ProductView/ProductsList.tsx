@@ -25,7 +25,7 @@ export const ProductsList = ({
         </Col>
       </Row>
       <hr className="product__seperator" />
-      <Row gutter={[36, 36]}>
+      <Row gutter={[24, 36]}>
         {(data || []).map((product: ProductDataItem) => (
           <Col
             key={product.id}

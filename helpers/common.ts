@@ -68,3 +68,12 @@ export const removeLatinCharAndSpecialChar = (str: string) =>
 export const timeout = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
+
+export const debounce = (callBack: Function, timeout = 300) => {
+  let timer: ReturnType<typeof setTimeout>;
+
+  return (...args: any[]) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => callBack.apply(this, args), timeout);
+  };
+};

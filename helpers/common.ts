@@ -77,3 +77,9 @@ export const debounce = (callBack: Function, timeout = 300) => {
     timer = setTimeout(() => callBack.apply(this, args), timeout);
   };
 };
+
+export const returnData = (dataOrMessage: any, status: boolean) => ({
+  ok: status,
+  data: status ? dataOrMessage : undefined,
+  error: status ? undefined : dataOrMessage,
+});

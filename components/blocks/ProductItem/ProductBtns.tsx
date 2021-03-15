@@ -1,11 +1,12 @@
 import {v4 as uuidv4} from "uuid";
-import {MinusOutlined, PlusOutlined} from "@ant-design/icons";
+import {MinusOutlined, PlusOutlined, ReloadOutlined} from "@ant-design/icons";
 import {useMutation} from "@apollo/client";
 import {FaCartPlus} from "react-icons/fa";
 import {useProducts} from "../../../hooks/useProducts/useProducts";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {ProductDataItem} from "../../../models/Product";
 import {ADD_TO_CART} from "../../../utils/gql/gqlMutation";
+import {addProductToCart} from "../../../services/cartSv/cartMutate";
 
 type AddRemoveCartProps = {
   product: ProductDataItem;
@@ -16,29 +17,8 @@ export const ProductBtns = ({product}: AddRemoveCartProps) => {
 
   const {handleIncreaseOrDecrease, onCountChange, countToCart} = useProducts();
 
-  const productQueryInput = {
-    clientMutationId: uuidv4(), // Generate a unique id.
-    productId: product.id,
-  };
-
-  const [addToCart, {loading, error}] = useMutation(ADD_TO_CART, {
-    variables: {
-      input: productQueryInput,
-    },
-    onCompleted: () => {
-      if (error) {
-        console.log(error.graphQLErrors[0].message);
-      }
-    },
-    onError: (error) => {
-      if (error) {
-        console.log(error);
-      }
-    },
-  });
-
   const handleAddToCart = () => {
-    console.log("Fire");
+    addProductToCart(product, countToCart);
   };
 
   return (
@@ -71,8 +51,12 @@ export const ProductBtns = ({product}: AddRemoveCartProps) => {
           onClick={handleAddToCart}
           className="product-card__prod-btns--add-to-cart"
         >
-          <FaCartPlus size="1.2em" />
-          {t("pageData.product.addToCart")}
+          {loading ? (
+            <ReloadOutlined spin={true} />
+          ) : (
+            <FaCartPlus size="1.2em" />
+          )}
+          <span>{t("pageData.product.addToCart")}</span>
         </button>
       </div>
     </>

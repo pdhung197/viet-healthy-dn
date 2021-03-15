@@ -183,8 +183,8 @@
       align-items: center;
       text-transform: uppercase;
 
-      svg {
-        margin-right: 3px;
+      span:last-of-type {
+        margin-left: 5px;
       }
 
       &:hover {

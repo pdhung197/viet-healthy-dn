@@ -61,11 +61,11 @@ const client = new ApolloClient({
     afterware.concat(
       createHttpLink({
         uri: GRAPHQL_URL,
-        fetch: fetch,
+        fetch: fetch /* 
         credentials: "include",
         headers: {
           "Access-Control-Allow-Origin": true,
-        },
+        }, */,
       })
     )
   ),

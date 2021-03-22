@@ -5,7 +5,7 @@ import {ProductDataItem} from "../../models/Product";
 import client from "../../utils/ApolloClient";
 import {returnData} from "../../helpers/common";
 
-export const addProductToCart = async (
+export const mutationAddCart = async (
   product: ProductDataItem,
   quantity = 1
 ): Promise<ReturnData> => {
@@ -22,7 +22,7 @@ export const addProductToCart = async (
         input: productQueryInput,
       },
     });
-
+    console.log({da: mutationData.data});
     return returnData(mutationData.data, true);
   } catch (error) {
     return returnData(error.message, false);

@@ -1,16 +1,20 @@
 import {ProductDataItem} from "../../models/Product";
+import {mutationAddCart} from "../../services/cartSv/cartMutate";
 
 export const useCart = () => {
-  const addProductToCart = (product: ProductDataItem, goToCart = false) => {
-    console.log("Add", {product});
-  };
+  const addToCart = (product: ProductDataItem, quantity: number) =>
+    mutationAddCart(product, quantity);
 
-  const removeProductFromCart = (product: ProductDataItem) => {
+  const removeFromCart = (product: ProductDataItem) => {
     console.log("Remove", {product});
   };
 
+  const getCart = () => {};
+
+  const updateCartToContext = () => {};
+
   return {
-    addProductToCart,
-    removeProductFromCart,
+    addToCart,
+    removeFromCart,
   };
 };

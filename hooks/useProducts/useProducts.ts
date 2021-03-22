@@ -1,3 +1,6 @@
+import {useCart} from "./../useCart/useCart";
+import {useTranslation} from "./../useTranslation/useTranslation";
+import {ReturnData} from "./../../models/Common";
 import {CartItem} from "./../../models/Cart";
 import {calPrice} from "./../../helpers/productsFnc";
 import {useContext, useState} from "react";
@@ -6,6 +9,7 @@ import {CartActionType} from "../../models/Cart";
 import {ProductDataItem} from "../../models/Product";
 import {useLazyQuery} from "@apollo/client";
 import {GET_CART} from "../../utils/gql/gqlQuery";
+import {openNotificationWithIcon} from "../../components/blocks/Notification/Notification";
 
 export const getProductOnRequest = (productId: string) => {
   const [getProductInfo, {loading, data}] = useLazyQuery(GET_CART);
@@ -18,8 +22,11 @@ export const getProductOnRequest = (productId: string) => {
 };
 
 export const useProducts = () => {
-  const {carts, addToCart, removeFromCart} = useContext(UserContext);
+  const {t} = useTranslation();
+  const {carts} = useContext(UserContext);
+  const {addToCart} = useCart();
   const [countToCart, setCountToCart] = useState(1);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const totalPrice = (carts || []).reduce(
     (total: number, cartItem: CartItem) => {
@@ -28,26 +35,6 @@ export const useProducts = () => {
     },
     0
   );
-
-  const addOrRemoveCart = (
-    cartAction: CartActionType,
-    product: ProductDataItem | Partial<CartItem>[]
-  ) => {
-    switch (cartAction) {
-      case "add":
-        addToCart(product as ProductDataItem);
-        return;
-      case "remove":
-        removeFromCart(
-          ((product instanceof Array
-            ? product
-            : [product]) as unknown) as Partial<CartItem>[]
-        );
-        return;
-      default:
-        return;
-    }
-  };
 
   const handleIncreaseOrDecrease = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -69,12 +56,38 @@ export const useProducts = () => {
     }
   };
 
+  const addProductToCart = async (product: ProductDataItem) => {
+    setIsProcessing(true);
+    const processData: ReturnData = await addToCart(product, countToCart);
+
+    const {ok, data, error} = processData;
+    setIsProcessing(false);
+    setCountToCart(1);
+
+    if (ok) {
+      openNotificationWithIcon({
+        notifiType: "success",
+        message: t("notifications.carts.addSuccessTitle"),
+        description: t("notifications.carts.addSuccess", {
+          product: product.name,
+        }),
+      });
+    } else {
+      openNotificationWithIcon({
+        notifiType: "error",
+        message: t("notifications.carts.addFailTitle"),
+        description: t("notifications.carts.addFail", {product: product.name}),
+      });
+    }
+  };
+
   return {
     carts,
     totalPrice: Math.floor(totalPrice),
-    addOrRemoveCart,
     handleIncreaseOrDecrease,
     onCountChange,
     countToCart,
+    isProcessing,
+    addProductToCart,
   };
 };

@@ -5,8 +5,9 @@ import {FaCartPlus} from "react-icons/fa";
 import {useProducts} from "../../../hooks/useProducts/useProducts";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {ProductDataItem} from "../../../models/Product";
-import {ADD_TO_CART} from "../../../utils/gql/gqlMutation";
 import {addProductToCart} from "../../../services/cartSv/cartMutate";
+import {useState} from "react";
+import {ReturnData} from "../../../models/Common";
 
 type AddRemoveCartProps = {
   product: ProductDataItem;
@@ -15,10 +16,17 @@ type AddRemoveCartProps = {
 export const ProductBtns = ({product}: AddRemoveCartProps) => {
   const {t} = useTranslation();
 
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const {handleIncreaseOrDecrease, onCountChange, countToCart} = useProducts();
 
-  const handleAddToCart = () => {
-    addProductToCart(product, countToCart);
+  const handleAddToCart = async () => {
+    setIsProcessing(true);
+    const processingResult: ReturnData = await addProductToCart(
+      product,
+      countToCart
+    );
+    setIsProcessing(false);
   };
 
   return (
@@ -51,7 +59,7 @@ export const ProductBtns = ({product}: AddRemoveCartProps) => {
           onClick={handleAddToCart}
           className="product-card__prod-btns--add-to-cart"
         >
-          {loading ? (
+          {isProcessing ? (
             <ReloadOutlined spin={true} />
           ) : (
             <FaCartPlus size="1.2em" />

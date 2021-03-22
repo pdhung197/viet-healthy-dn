@@ -19,8 +19,10 @@ export const ProductsView = (props: CatProdListProps) => {
           (prod: ProductDataItem) =>
             (prod.productCategories || []).includes(key)
         );
-        console.log({productData});
-        return <ProductsList key={key} productKey={key} data={productData} />;
+
+        return productData && productData.length ? (
+          <ProductsList key={key} productKey={key} data={productData} />
+        ) : null;
       })}
     </Container>
   );

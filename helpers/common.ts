@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import {ReturnData} from "../models/Common";
 import {FormatType} from "../models/Trans";
 
 const regexGetTextsBetweenDoubleBracket = /\{(.*?\}*)\}/g;
@@ -78,7 +79,10 @@ export const debounce = (callBack: Function, timeout = 300) => {
   };
 };
 
-export const returnData = (dataOrMessage: any, status: boolean) => ({
+export const returnData = (
+  dataOrMessage: any,
+  status: boolean
+): ReturnData => ({
   ok: status,
   data: status ? dataOrMessage : undefined,
   error: status ? undefined : dataOrMessage,

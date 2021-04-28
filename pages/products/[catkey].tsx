@@ -31,11 +31,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}: Params) {
-  const prdData = await getAllProduct(
+  /* const prdData = await getAllProduct(
     params.catkey === "all" ? undefined : params.catkey
-  );
+  ); */
 
-  return {props: {prdData}};
+  return {props: {prdData: []}};
 }
 
 export default CatProdList;

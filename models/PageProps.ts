@@ -10,6 +10,7 @@ export type CatProdListProps = {
 export type HomeProps = {
   products: ProductBase[];
   prdData: any;
+  prdsData: any;
 };
 
 export type ComboProps = {

@@ -4,7 +4,7 @@ import {ProductCarousel} from "../../blocks/Carousels/ProductCarousel";
 
 export const HomePage = (props: HomeProps) => {
   const {products, prdData} = props;
-  console.log({prdData});
+
   return (
     <div>
       <ProductCarousel />

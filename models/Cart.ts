@@ -1,5 +1,9 @@
-import {ProductBase, ProductDataItem} from "./Product";
+import {ProductBase, ProductDataItem, ProductInfo} from "./Product";
 export type CartActionType = "add" | "remove" | "buynow";
+
+export enum CartsStore {
+  name = "carts",
+}
 
 export interface CartVariantation {
   id: string;
@@ -47,8 +51,8 @@ export interface CartData {
   totalTax: string;
 }
 
-export interface CartItem extends ProductBase {
-  count: number;
+export interface CartItem extends ProductInfo {
+  quantity: number;
 }
 
 export interface CartDataContext {

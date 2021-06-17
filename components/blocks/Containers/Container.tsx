@@ -10,11 +10,12 @@ const FixedRow = styled(Row)`
 
 type ContainerProps = {
   children: ReactNode;
+  className?: string;
 };
 
-export const Container = ({children}: ContainerProps) => {
+export const Container = ({children, className = ""}: ContainerProps) => {
   return (
-    <FixedRow justify="center" align="middle">
+    <FixedRow className={className} justify="center" align="middle">
       <Col
         xs={{span: 22}}
         sm={{span: 22}}

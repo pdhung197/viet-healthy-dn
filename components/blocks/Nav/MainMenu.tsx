@@ -1,8 +1,9 @@
 import {Menu} from "antd";
-import React from "react";
+import React, {useContext} from "react";
+import {UserContext} from "../../../contexts/userContext/userContext";
 import {useMenu} from "../../../hooks/useMenu/useMenu";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {prodCats, ProdCatType} from "../../../mocks/prodCats";
+import {CategoryInfo} from "../../../models/Category";
 
 import "./main-menu.scss";
 import {MenuItemContent} from "./MenuItemContent";
@@ -10,10 +11,8 @@ import {MenuItemContent} from "./MenuItemContent";
 const {SubMenu, Item} = Menu;
 
 export const MainMenu = ({mode}: any) => {
-  const {t, getLanguage} = useTranslation();
-
-  const currentLang = getLanguage();
-
+  const {t} = useTranslation();
+  const {categoryList = []} = useContext(UserContext);
   const {selectedKey} = useMenu();
 
   return (
@@ -27,25 +26,23 @@ export const MainMenu = ({mode}: any) => {
       </Item>
       <SubMenu
         key="products"
-        title={
-          <MenuItemContent path="/products/all" label={t("menu.products")} />
-        }
+        title={<MenuItemContent path="/products" label={t("menu.products")} />}
         className={
           selectedKey.startsWith("products") ? `ant-menu-item-selected` : ""
         }
       >
         <Item>
           <MenuItemContent
-            path="/products/all"
+            path="/products"
             label={t("menu.allCats")}
             className="ant-menu-custom-link menu-item-content submenu-item-content"
           />
         </Item>
-        {(prodCats || []).map((prodCat: ProdCatType) => (
-          <Item key={`products:${prodCat.key}`}>
+        {categoryList.map((category: CategoryInfo) => (
+          <Item key={`products#${category.slug}`}>
             <MenuItemContent
-              path={`/products/${prodCat.key}`}
-              label={prodCat.label[currentLang]}
+              path={`/products#${category.slug}`}
+              label={t(`menu.${category.slug}`) || category.name}
               className="ant-menu-custom-link menu-item-content submenu-item-content"
             />
           </Item>

@@ -6,4 +6,11 @@ export const menu = {
   contact: "Liên hệ",
   cats: "Danh mục sản phẩm",
   allCats: "Tất cả sản phẩm",
+  "suc-khoe": "Sức khỏe",
+  "gia-dung": "Gia Dụng",
+  "thuc-pham": "Thực phẩm",
+  "healthy-drink": "Healthy drink",
+  "tour-thai-doc": "Tour thải độc",
+  "kien-thuc": "Kiến thức",
+  khac: "Khác",
 };

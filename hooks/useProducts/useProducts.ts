@@ -1,3 +1,4 @@
+import {ProductInfo} from "./../../models/Product";
 import {useCart} from "./../useCart/useCart";
 import {useTranslation} from "./../useTranslation/useTranslation";
 import {ReturnData} from "./../../models/Common";
@@ -23,15 +24,15 @@ export const getProductOnRequest = (productId: string) => {
 
 export const useProducts = () => {
   const {t} = useTranslation();
-  const {carts} = useContext(UserContext);
+  const {carts, updateCartToContextAndLocalStorage} = useContext(UserContext);
   const {addToCart} = useCart();
   const [countToCart, setCountToCart] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const totalPrice = (carts || []).reduce(
     (total: number, cartItem: CartItem) => {
-      const itemPrice = calPrice(cartItem.price, cartItem.discount || 0);
-      return total + itemPrice * cartItem.count;
+      const itemPrice = (cartItem.price as unknown as number) * 1;
+      return total + itemPrice * cartItem.quantity;
     },
     0
   );
@@ -56,11 +57,14 @@ export const useProducts = () => {
     }
   };
 
-  const addProductToCart = async (product: ProductDataItem) => {
+  const addProductToCart = (product: ProductInfo) => {
     setIsProcessing(true);
-    const processData: ReturnData = await addToCart(product, countToCart);
-
+    const processData: ReturnData = addToCart(product, countToCart);
+    console.log({processData});
     const {ok, data, error} = processData;
+    if (updateCartToContextAndLocalStorage) {
+      updateCartToContextAndLocalStorage(data);
+    }
     setIsProcessing(false);
     setCountToCart(1);
 

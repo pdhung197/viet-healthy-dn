@@ -6,4 +6,11 @@ export const menu = {
   contact: "Contact",
   cats: "All Categories",
   allCats: "All",
+  "suc-khoe": "For Health",
+  "gia-dung": "Household Article",
+  "thuc-pham": "Foodstuffs",
+  "healthy-drink": "Healthy drink",
+  "tour-thai-doc": "Detox Tour",
+  "kien-thuc": "Book",
+  khac: "Other",
 };

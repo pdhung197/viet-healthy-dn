@@ -1,18 +1,22 @@
-import {ProductBase, ProductDataItem} from "./Product";
+import {
+  ProductBase,
+  ProductDataItem,
+  ProductInfo,
+  ProductListByCatInfo,
+} from "./Product";
 
 export type CatProdListProps = {
-  products: {
-    [key in string]: ProductBase[];
-  };
-  prdData?: ProductDataItem[];
+  productList: ProductListByCatInfo;
 };
 
 export type HomeProps = {
-  products: ProductBase[];
-  prdData: any;
-  prdsData: any;
+  productsList: ProductInfo[];
 };
 
 export type ComboProps = {
   combos: ProductBase[];
+};
+
+export type ProductsProps = {
+  productsList: ProductInfo[];
 };

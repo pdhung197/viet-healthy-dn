@@ -1,6 +1,6 @@
 @import "~antd/dist/antd.less";
 
-@primary-color: #7fad39; // primary color for all components
+@primary-color: #056939; //7fad39; // primary color for all components
 @link-color: #1890ff; // link color
 @success-color: #52c41a; // success state color
 @warning-color: #faad14; // warning state color
@@ -13,3 +13,31 @@
 @border-radius-base: 4px; // major border radius
 @border-color-base: #d9d9d9; // major border color
 @box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // major shadow for layers
+
+#nprogress {
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 5px;
+  position: fixed;
+  z-index: 99999;
+
+  .bar {
+    height: 5px;
+    background: @primary-color;
+  }
+
+  .peg {
+    box-shadow: 0 0 10px @primary-color, 0 0 5px @primary-color;
+  }
+
+  .spinner-icon {
+    border-top-color: @primary-color;
+    border-left-color: @primary-color;
+  }
+}
+
+.ant-btn-primary {
+  background: @primary-color;
+  border-color: @primary-color;
+}

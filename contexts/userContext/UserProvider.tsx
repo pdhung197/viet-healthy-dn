@@ -1,33 +1,52 @@
 import {useEffect, useState} from "react";
 import {openNotificationWithIcon} from "../../components/blocks/Notification/Notification";
 import {useTranslation} from "../../hooks/useTranslation/useTranslation";
-import {CartItem} from "../../models/Cart";
+import {CartItem, CartsStore} from "../../models/Cart";
+import {CategoryInfo} from "../../models/Category";
 import {CommonProps} from "../../models/Common";
-import {ProductBase} from "../../models/Product";
+import {ProductBase, ProductInfo} from "../../models/Product";
+import {fetchCategoryList} from "../../services/apis/categoryApis";
 import {UserContext} from "./userContext";
 
 export const UserProvider = ({children}: CommonProps) => {
   const {t} = useTranslation();
   const [productsList, setProducts] = useState<any[]>([]);
   const [carts, setCarts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<CategoryInfo[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categoryList = await fetchCategoryList();
+      if (categoryList && categoryList.length) {
+        setCategories(categoryList);
+      }
+    };
+
+    fetchCategories();
+    return () => {
+      fetchCategories();
+    };
+  }, []);
 
   useEffect(() => {
     if (
       (!carts || !carts.length) &&
       window &&
-      window.localStorage.getItem("carts")
+      window.localStorage.getItem(CartsStore.name)
     ) {
-      setCarts(JSON.parse(window.localStorage.getItem("carts") || ""));
+      setCarts(JSON.parse(window.localStorage.getItem(CartsStore.name) || ""));
     }
   }, []);
 
-  const updateCartToLocalStorage = (updateCarts: any[]) => {
+  const updateCartToContextAndLocalStorage = (updateCarts: any[]) => {
+    setCarts(updateCarts);
+    console.log({updateCarts});
     if (window) {
-      window.localStorage.setItem("carts", JSON.stringify(updateCarts));
+      window.localStorage.setItem(CartsStore.name, JSON.stringify(updateCarts));
     }
   };
 
-  const storeProductsData = (products: any[]) => setProducts(products);
+  const storeProductsData = (products: ProductInfo[]) => setProducts(products);
 
   const addToCart = (product: any) => {
     /* try {
@@ -143,6 +162,8 @@ export const UserProvider = ({children}: CommonProps) => {
     storeProductsData,
     addToCart,
     removeFromCart,
+    categoryList: categories,
+    updateCartToContextAndLocalStorage,
   };
 
   return (

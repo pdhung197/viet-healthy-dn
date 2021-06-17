@@ -27,10 +27,9 @@ export const CartDropMenu = ({
     <div className="cart-dropdown">
       <div className="cart-dropdown__list">
         {(carts || []).map((cartItem: CartItem) => {
-          const {name, id, images, price, discount = 0, count} = cartItem;
-          const realPrice = calPrice(price, discount);
+          const {name, id, images, price, quantity} = cartItem;
 
-          if (!count) return null;
+          if (!quantity) return null;
 
           return (
             <div key={`cart-little${id}`} className="cart-dropdown__list-item">
@@ -38,13 +37,26 @@ export const CartDropMenu = ({
                 <a className="cart-dropdown__item-body">
                   <div className="cart-dropdown__item-img-wrapper">
                     <div className="cart-dropdown__item-img">
-                      <Image src={images[0]} layout="fill" />
+                      <img
+                        src={
+                          !images ||
+                          !images.length ||
+                          !images[0] ||
+                          images[0].src.includes("woocommerce-placeholder")
+                            ? `${process.env.NEXT_PUBLIC_PAGE_URL}wp-content/uploads/2021/05/LogoTransThumb.png`
+                            : images[0].src
+                        }
+                      />
                     </div>
                   </div>
                   <div className="cart-dropdown__item-content">
                     <h4 className="cart-dropdown__item-title">{name}</h4>
                     <p className="cart-dropdown__item-price">
-                      {count} x {realPrice.toLocaleString(currentLang)} VNĐ
+                      {quantity} x{" "}
+                      {((price as unknown as number) * 1).toLocaleString(
+                        currentLang
+                      )}{" "}
+                      VNĐ
                     </p>
                   </div>
                 </a>

@@ -116,13 +116,12 @@
     padding-top: calc(100% * 5.5 / 5);
 
     img {
-      width: unset !important;
-      min-width: 100% !important;
-      max-width: unset !important;
-      height: unset !important;
-      min-height: unset !important;
-      max-width: unset !important;
-      object-fit: cover;
+      position: absolute;
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      top: 0;
+      left: 0;
     }
   }
 

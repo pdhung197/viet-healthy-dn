@@ -1,44 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import {ProductDataItem} from "../../../models/Product";
+import {ProductInfo} from "../../../models/Product";
 import {ProductBtns} from "./ProductBtns";
 import {useProducts} from "../../../hooks/useProducts/useProducts";
 
 import "./product-item.scss";
-import {CartItem} from "../../../models/Cart";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 
 type ProductItem = {
-  product: ProductDataItem;
+  product: ProductInfo;
 };
 
 export const ProductItem = ({product}: ProductItem) => {
   const {t, currentLang} = useTranslation();
 
-  const {
-    databaseId,
-    id,
-    image,
-    name,
-    onSale,
-    productCategories,
-    productTags,
-    sku,
-    status,
-    totalSales,
-    type,
-    visibleProducts,
-    manageStock,
-    price,
-    regularPrice,
-    salePrice,
-    soldIndividually,
-    weight,
-    width,
-    virtual,
-    stockQuantity,
-    stockStatus,
-  } = product;
+  const {id, images, name, sale_price, regular_price, price} = product;
 
   return (
     <div id={`product${id}`} className="product-card">
@@ -50,9 +26,12 @@ export const ProductItem = ({product}: ProductItem) => {
               <Image
                 layout="fill"
                 src={
-                  !image || image.includes("woocommerce-placeholder")
-                    ? "/images/LogoTransThumb.png"
-                    : image
+                  !images ||
+                  !images.length ||
+                  !images[0] ||
+                  images[0].src.includes("woocommerce-placeholder")
+                    ? `${process.env.NEXT_PUBLIC_PAGE_URL}wp-content/uploads/2021/05/LogoTransThumb.png`
+                    : images[0].src
                 }
                 alt={name}
                 className="product-card__describ--img"
@@ -65,10 +44,17 @@ export const ProductItem = ({product}: ProductItem) => {
         </a>
       </Link>
       <h5 className="product-card__price">
-        {salePrice && (
-          <del>{(regularPrice || 0).toLocaleString(currentLang)}</del>
+        {sale_price && (
+          <del>
+            {((regular_price as unknown as number) / 1 || 0).toLocaleString(
+              currentLang
+            )}
+          </del>
         )}
-        <span>{(price || 0).toLocaleString(currentLang)} VNĐ</span>
+        <span>
+          {((price as unknown as number) / 1 || 0).toLocaleString(currentLang)}{" "}
+          VNĐ
+        </span>
       </h5>
       <div className="product-card__prod-btns">
         <ProductBtns product={product} />

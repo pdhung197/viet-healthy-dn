@@ -1,32 +1,30 @@
 import {Col, Row} from "antd";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {prodCats} from "../../../mocks/prodCats";
-import {ProductDataItem} from "../../../models/Product";
+import {ProductDataItem, ProductInfo} from "../../../models/Product";
 import {ProductItem} from "../../blocks/ProductItem/ProductItem";
 
 export const ProductsList = ({
   data,
-  productKey,
+  catSlug,
+  catName,
 }: {
-  data: ProductDataItem[];
-  productKey: string;
+  data: ProductInfo[];
+  catSlug: string;
+  catName: string;
 }) => {
   const {currentLang} = useTranslation();
 
-  const prodCat = prodCats.find((p) => p.key === productKey);
-
-  if (!prodCat) return <></>;
-
   return (
-    <>
+    <div id={catSlug}>
       <Row gutter={16}>
         <Col xs={{span: 24}}>
-          <p className="product__category">{prodCat.label[currentLang]}</p>
+          <p className="product__category">{catName}</p>
         </Col>
       </Row>
       <hr className="product__seperator" />
       <Row gutter={[24, 36]}>
-        {(data || []).map((product: ProductDataItem) => (
+        {(data || []).map((product: ProductInfo) => (
           <Col
             key={product.id}
             xs={{span: 24}}
@@ -39,6 +37,6 @@ export const ProductsList = ({
         ))}
       </Row>
       <hr className="product__seperator" />
-    </>
+    </div>
   );
 };

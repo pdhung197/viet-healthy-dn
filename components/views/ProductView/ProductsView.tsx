@@ -1,27 +1,24 @@
 import {CatProdListProps} from "../../../models/PageProps";
-import {ProductDataItem} from "../../../models/Product";
 import {Container} from "../../blocks/Containers/Container";
 import {ProductsList} from "./ProductsList";
 
 import "./products.scss";
-import {prodCats, ProdCatType} from "../../../mocks/prodCats";
 
 export const ProductsView = (props: CatProdListProps) => {
-  const {prdData = []} = props;
-
-  if (!prdData || !prdData.length) return <></>;
-
+  const {productList = {}} = props;
+  console.log({productList});
   return (
     <Container>
-      {prodCats.map((prodCat: ProdCatType) => {
-        const {key} = prodCat;
-        const productData: ProductDataItem[] = prdData.filter(
-          (prod: ProductDataItem) =>
-            (prod.productCategories || []).includes(key)
-        );
+      {(Object.keys(productList) || []).map((slug: string) => {
+        const {catId, catName, catSlug, products} = productList[slug];
 
-        return productData && productData.length ? (
-          <ProductsList key={key} productKey={key} data={productData} />
+        return products && products.length ? (
+          <ProductsList
+            key={catId}
+            catSlug={catSlug}
+            catName={catName}
+            data={products}
+          />
         ) : null;
       })}
     </Container>

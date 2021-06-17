@@ -1,3 +1,4 @@
+import {ProductInCart, ProductInfo} from "./../../models/Product";
 import {ReturnData} from "./../../models/Common";
 import {ADD_TO_CART} from "./../../utils/gql/gqlMutation";
 import {v4 as uuidv4} from "uuid";
@@ -6,24 +7,44 @@ import client from "../../utils/ApolloClient";
 import {returnData} from "../../helpers/common";
 
 export const mutationAddCart = async (
-  product: ProductDataItem,
+  product: ProductInfo,
   quantity = 1
 ): Promise<ReturnData> => {
   try {
-    const productQueryInput = {
-      clientMutationId: uuidv4(), // Generate a unique id.
-      productId: product.databaseId,
-      quantity,
-    };
+    const dataCart: ProductInCart[] = JSON.parse(
+      window.localStorage.getItem("cart") || "[]"
+    );
+    const {
+      id,
+      name,
+      slug,
+      images,
+      price,
+      regular_price,
+      sale_price,
+      variations,
+    } = product;
+    const productExistsInCartIndex = dataCart.findIndex(
+      (prd: ProductInCart) => prd.id === id
+    );
+    if (productExistsInCartIndex > -1) {
+      dataCart[productExistsInCartIndex].quantity =
+        dataCart[productExistsInCartIndex].quantity + quantity;
+    } else {
+      dataCart.push({
+        id,
+        name,
+        slug,
+        images,
+        price,
+        regular_price,
+        sale_price,
+        variations,
+        quantity,
+      });
+    }
 
-    const mutationData = await client.mutate({
-      mutation: ADD_TO_CART,
-      variables: {
-        input: productQueryInput,
-      },
-    });
-    console.log({da: mutationData.data});
-    return returnData(mutationData.data, true);
+    return returnData(dataCart, true);
   } catch (error) {
     return returnData(error.message, false);
   }

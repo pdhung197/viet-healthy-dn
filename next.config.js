@@ -15,6 +15,9 @@ const themeVariables = lessToJS(
 );
 
 module.exports = {
+  future: {
+    webpack5: true,
+  },
   images: {
     deviceSizes: [
       320,

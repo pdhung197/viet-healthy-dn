@@ -14,7 +14,7 @@ type CartLittleProps = {
 };
 
 export const CartLittle = ({isMobile}: CartLittleProps) => {
-  const {carts, totalPrice, addOrRemoveCart} = useProducts();
+  const {carts, totalPrice} = useProducts();
 
   const {t, currentLang} = useTranslation();
   const screens = useBreakpoint();
@@ -22,7 +22,7 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
   const isSmallestScreen = screens.xs && !screens.sm;
 
   const totalItems = carts.reduce(
-    (summary: number, cartItem: CartItem) => (summary += cartItem.count),
+    (summary: number, cartItem: CartItem) => (summary += cartItem.quantity),
     0
   );
 
@@ -35,7 +35,7 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
           <CartDropMenu
             carts={carts}
             totalPrice={totalPrice}
-            addOrRemoveCart={addOrRemoveCart}
+            addOrRemoveCart={() => {}}
           />
         )
       }

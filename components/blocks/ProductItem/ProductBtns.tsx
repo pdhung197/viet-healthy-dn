@@ -2,10 +2,10 @@ import {MinusOutlined, PlusOutlined, ReloadOutlined} from "@ant-design/icons";
 import {FaCartPlus} from "react-icons/fa";
 import {useProducts} from "../../../hooks/useProducts/useProducts";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {ProductDataItem} from "../../../models/Product";
+import {ProductDataItem, ProductInfo} from "../../../models/Product";
 
 type AddRemoveCartProps = {
-  product: ProductDataItem;
+  product: ProductInfo;
 };
 
 export const ProductBtns = ({product}: AddRemoveCartProps) => {
@@ -19,7 +19,9 @@ export const ProductBtns = ({product}: AddRemoveCartProps) => {
     addProductToCart,
   } = useProducts();
 
-  const handleAddToCart = () => addProductToCart(product);
+  const handleAddToCart = () => {
+    addProductToCart(product);
+  };
 
   return (
     <>

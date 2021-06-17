@@ -30,7 +30,7 @@ const UserWrapper = ({children}: UserWrapperProps) => {
       <CustomLayout>
         <Header />
         <Nav />
-        <main style={{marginTop: 30}}>
+        <main>
           <SearchAndBanner />
           {children}
         </main>

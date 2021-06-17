@@ -213,3 +213,33 @@ export interface ProductInfo {
     }[];
   };
 }
+
+export type ProductListByCatInfo = {
+  [key in string]: {
+    catId: string | number;
+    catName: string;
+    catSlug: string;
+    products: ProductInfo[];
+  };
+};
+
+export type ProductInCart = {
+  id: string | number;
+  name: string;
+  slug: string;
+  price: string;
+  regular_price: string;
+  sale_price: string;
+  images: {
+    id: string | number;
+    date_created: string;
+    date_created_gmt: string;
+    date_modified: string;
+    date_modified_gmt: string;
+    src: string;
+    name: string;
+    alt: string;
+  }[];
+  variations: string[];
+  quantity: number;
+};

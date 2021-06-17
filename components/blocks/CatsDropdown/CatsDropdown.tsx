@@ -2,10 +2,11 @@ import {AlignLeftOutlined} from "@ant-design/icons";
 import {Button, Menu} from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {UserContext} from "../../../contexts/userContext/userContext";
 import {useMenu} from "../../../hooks/useMenu/useMenu";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {prodCats, ProdCatType} from "../../../mocks/prodCats";
+import {CategoryInfo} from "../../../models/Category";
 
 import "./cat-dropdown.scss";
 
@@ -20,6 +21,7 @@ const DropDownBtn = () => {
 
 export const CatsDropdown = () => {
   const {selectedKey, currentRoute} = useMenu();
+  const {categoryList = []} = useContext(UserContext);
 
   const [openKey, setopenKey] = useState(
     selectedKey === "home" ? "products" : "anything"
@@ -51,15 +53,15 @@ export const CatsDropdown = () => {
         title={<DropDownBtn />}
         onTitleClick={onTitleClick}
       >
-        <Menu.Item key="products:all">
-          <Link href="/products/all">
+        <Menu.Item key="products">
+          <Link href="/products">
             <a>{t("menu.allCats")}</a>
           </Link>
         </Menu.Item>
-        {(prodCats || []).map((prodCat: ProdCatType) => (
-          <Menu.Item key={`products:${prodCat.key}`}>
-            <Link href={`/products/${prodCat.key}`}>
-              <a>{prodCat.label[currentLang]}</a>
+        {categoryList.map((category: CategoryInfo) => (
+          <Menu.Item key={`products#${category.slug}`}>
+            <Link href={`/products#${category.slug}`}>
+              <a>{t(`menu.${category.slug}`) || category.name}</a>
             </Link>
           </Menu.Item>
         ))}

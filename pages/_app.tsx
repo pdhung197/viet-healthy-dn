@@ -4,6 +4,7 @@ import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {Router} from "next/router";
 import NProgress from "nprogress"; //nprogress module
 
+import "./../assets/styles/style.scss";
 import "nprogress/nprogress.css"; //styles of nprogress
 
 import client from "../utils/ApolloClient";

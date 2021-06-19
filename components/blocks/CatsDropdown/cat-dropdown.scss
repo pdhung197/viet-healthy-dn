@@ -9,8 +9,8 @@
     outline: none;
     box-shadow: none;
     color: $white;
-    font-weight: 600;
-    font-size: medium;
+    font-weight: 500;
+    font-size: 1.7rem;
 
     &:hover,
     &:focus,
@@ -19,11 +19,11 @@
       border: none;
       outline: none;
       box-shadow: none;
-      color: $lightest-gray;
+      color: $lighter-gray;
     }
 
     .anticon {
-      margin-right: 5px;
+      margin-right: 0.5rem;
     }
   }
 
@@ -41,7 +41,7 @@
       line-height: unset;
 
       button {
-        padding-left: 25px;
+        padding-left: 2.5rem;
       }
     }
 
@@ -51,18 +51,24 @@
     }
 
     li.ant-menu-item {
-      height: $inputHeight;
-      line-height: $inputHeight;
-      padding-left: 25px !important;
+      display: flex;
+      padding-left: 2.5rem !important;
+      font-size: 1.6rem;
+      font-weight: 500;
       margin: 0;
       color: $black;
+
+      a {
+        width: 100%;
+        height: $inputHeight;
+        line-height: $inputHeight;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
     }
 
     .ant-menu-sub {
-      border: 1px solid $light-gray;
-      border-top: none;
-      box-sizing: border-box;
-      padding: 8px 0;
+      background-color: $lightest-gray;
+      padding: 0.8rem 0;
     }
 
     .ant-menu-submenu-title {

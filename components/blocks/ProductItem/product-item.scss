@@ -7,7 +7,7 @@
   transition: 0.3s box-shadow;
   border: 1px solid $card-light-border;
   box-sizing: border-box;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   position: relative;
   overflow: hidden;
 
@@ -37,7 +37,7 @@
   }
 
   &__title {
-    padding: 10px 15px;
+    padding: 1rem 1.5rem;
     text-align: center;
     text-overflow: ellipsis;
     word-wrap: break-word;
@@ -47,7 +47,7 @@
     line-height: 1.3em;
     font-size: 1.1em;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
     color: $black;
     transition: 0.3s;
   }
@@ -67,7 +67,7 @@
     align-items: center;
 
     > * {
-      padding: 0 5px;
+      padding: 0 0.5rem;
     }
 
     del {
@@ -87,8 +87,8 @@
 
   &__prod-btns {
     display: flex;
-    padding: 15px 5px;
-    padding-top: 10px;
+    padding: 1.5rem 0.5rem;
+    padding-top: 1rem;
     justify-content: space-between;
     align-items: center;
 
@@ -98,7 +98,7 @@
     }
 
     button {
-      margin: 0 2px;
+      margin: 0 0.2rem;
     }
 
     &--sub,
@@ -108,8 +108,8 @@
       outline: none;
       box-shadow: none;
       background: none;
-      width: 30px;
-      height: 30px;
+      width: 3rem;
+      height: 3rem;
       border-radius: 50%;
       cursor: pointer;
       transition: 0.3s;
@@ -118,14 +118,14 @@
       align-items: center;
 
       svg {
-        width: 25px;
-        height: 25px;
+        width: 2.5rem;
+        height: 2.5rem;
       }
     }
 
     &--add {
       background-color: $primary-color;
-      border: 0px solid $primary-color;
+      border: 0 solid $primary-color;
 
       svg {
         color: $white;
@@ -160,22 +160,22 @@
 
     &--count {
       cursor: default;
-      background-color: $lightest-gray;
-      width: 32px;
-      height: 32px;
+      background-color: $lighter-gray;
+      width: 3.2rem;
+      height: 3.2rem;
       color: $black;
       font-weight: 600;
       text-align: center;
     }
 
     &--add-to-cart {
-      border-radius: 999px;
-      height: 32px;
+      border-radius: 99.9rem;
+      height: 3.2rem;
       border: 1px solid $primary-color;
       outline: none !important;
       background-color: $white;
       color: $primary-color;
-      padding: 0 12px;
+      padding: 0 1.2rem;
       white-space: nowrap;
       cursor: pointer;
       transition: 0.3s;
@@ -184,7 +184,7 @@
       text-transform: uppercase;
 
       span:last-of-type {
-        margin-left: 5px;
+        margin-left: 0.5rem;
       }
 
       &:hover {

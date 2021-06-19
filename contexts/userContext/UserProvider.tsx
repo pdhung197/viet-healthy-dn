@@ -46,7 +46,12 @@ export const UserProvider = ({children}: CommonProps) => {
     }
   };
 
-  const storeProductsData = (products: ProductInfo[]) => setProducts(products);
+  const storeProductsData = (products: ProductInfo[]) => {
+    setProducts(products);
+  };
+  const storeCategoryList = (categoryList: CategoryInfo[]) => {
+    setCategories(categoryList);
+  };
 
   const addToCart = (product: any) => {
     /* try {
@@ -163,6 +168,7 @@ export const UserProvider = ({children}: CommonProps) => {
     addToCart,
     removeFromCart,
     categoryList: categories,
+    storeCategoryList,
     updateCartToContextAndLocalStorage,
   };
 

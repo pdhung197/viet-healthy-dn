@@ -1,7 +1,7 @@
 @import "./../../../assets/styles/variables.scss";
 
 .nav-wrapper {
-  height: 6rem;
+  height: 9.6rem;
   position: relative;
 
   .nav-floater {
@@ -16,21 +16,31 @@
       top: 0;
       transform: translateY(0);
       z-index: 998;
-      box-shadow: 0px 10px 32px -2px rgba(0, 0, 0, 0.11);
+      box-shadow: 0 1rem 3.2rem -0.2rem rgba(0, 0, 0, 0.11);
       transition: 0.8s ease-out;
     }
   }
 }
 
-.menu-item-content {
-  height: 100%;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  background: none;
-  text-transform: uppercase;
-  font-weight: 600;
-  cursor: pointer;
+.ant-menu-item,
+.ant-menu-submenu {
+  .menu-item-content {
+    height: 100%;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &.ant-menu-item-selected,
+  &.ant-menu-submenu-selected {
+    .menu-item-content {
+      font-weight: 700;
+    }
+  }
 }
 
 .submenu-item-content {
@@ -63,7 +73,7 @@
 
   .ant-menu-item,
   .ant-menu-submenu {
-    margin: 0 10px !important;
+    margin: 0 1rem !important;
     padding: 0 !important;
     height: 100%;
 
@@ -83,8 +93,8 @@
     > .ant-menu-submenu-title
     .ant-menu-submenu-arrow {
     display: block;
-    padding: 20px;
-    transform: translate(12px, -22px);
+    padding: 2rem;
+    transform: translate(1.2rem, -2.2rem);
   }
 
   &.ant-menu-vertical,
@@ -98,7 +108,7 @@
 
       > button,
       > div > button {
-        padding: 0 10px;
+        padding: 0 1rem;
         text-align: left;
       }
     }
@@ -112,7 +122,7 @@
     }
 
     button.submenu-item-content {
-      padding-left: 20px;
+      padding-left: 2rem;
     }
 
     .ant-menu-item-selected {

@@ -1,3 +1,4 @@
+import {CategoryInfo} from "./Category";
 import {
   ProductBase,
   ProductDataItem,
@@ -9,14 +10,16 @@ export type CatProdListProps = {
   productList: ProductListByCatInfo;
 };
 
-export type HomeProps = {
+export interface HomeProps {
   productsList: ProductInfo[];
-};
+  categoryList: CategoryInfo[];
+}
 
 export type ComboProps = {
   combos: ProductBase[];
 };
 
-export type ProductsProps = {
+export interface ProductsProps {
   productsList: ProductInfo[];
-};
+  categoryList: CategoryInfo[];
+}

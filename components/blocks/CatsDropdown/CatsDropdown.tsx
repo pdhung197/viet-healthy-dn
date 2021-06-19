@@ -2,8 +2,9 @@ import {AlignLeftOutlined} from "@ant-design/icons";
 import {Button, Menu} from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import Link from "next/link";
-import {useContext, useEffect, useState} from "react";
+import {LegacyRef, useContext, useEffect, useRef, useState} from "react";
 import {UserContext} from "../../../contexts/userContext/userContext";
+import useOutsideClick from "../../../hooks/useClickOutside/useClickOutside";
 import {useMenu} from "../../../hooks/useMenu/useMenu";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {CategoryInfo} from "../../../models/Category";
@@ -22,6 +23,7 @@ const DropDownBtn = () => {
 export const CatsDropdown = () => {
   const {selectedKey, currentRoute} = useMenu();
   const {categoryList = []} = useContext(UserContext);
+  const menuRef = useRef<LegacyRef<HTMLDivElement> | undefined>();
 
   const [openKey, setopenKey] = useState(
     selectedKey === "home" ? "products" : "anything"
@@ -32,6 +34,13 @@ export const CatsDropdown = () => {
     setopenKey(openKey === "products" ? "anything" : "products");
   };
 
+  const handleCloseMenu = () => {
+    if (selectedKey !== "home" && openKey !== "anything") {
+      setopenKey("anything");
+    }
+  };
+  useOutsideClick(menuRef, handleCloseMenu);
+
   useEffect(() => {
     if (selectedKey === "home") {
       return setopenKey("products");
@@ -40,32 +49,34 @@ export const CatsDropdown = () => {
   }, [selectedKey]);
 
   return (
-    <Menu
-      selectedKeys={[selectedKey]}
-      openKeys={[openKey]}
-      mode="inline"
-      className={`cats-dropdown ${
-        currentRoute !== "home" ? "relative-dropdown" : ""
-      }`}
-    >
-      <SubMenu
-        key="products"
-        title={<DropDownBtn />}
-        onTitleClick={onTitleClick}
+    <div ref={menuRef as LegacyRef<HTMLDivElement>} className="menu-wrapper">
+      <Menu
+        selectedKeys={[selectedKey]}
+        openKeys={[openKey]}
+        mode="inline"
+        className={`cats-dropdown ${
+          currentRoute !== "home" ? "relative-dropdown" : ""
+        }`}
       >
-        <Menu.Item key="products">
-          <Link href="/products">
-            <a>{t("menu.allCats")}</a>
-          </Link>
-        </Menu.Item>
-        {categoryList.map((category: CategoryInfo) => (
-          <Menu.Item key={`products#${category.slug}`}>
-            <Link href={`/products#${category.slug}`}>
-              <a>{t(`menu.${category.slug}`) || category.name}</a>
+        <SubMenu
+          key="products"
+          title={<DropDownBtn />}
+          onTitleClick={onTitleClick}
+        >
+          <Menu.Item key="products">
+            <Link href="/products">
+              <a>{t("menu.allCats")}</a>
             </Link>
           </Menu.Item>
-        ))}
-      </SubMenu>
-    </Menu>
+          {categoryList.map((category: CategoryInfo) => (
+            <Menu.Item key={`products#${category.slug}`}>
+              <Link href={`/products#${category.slug}`}>
+                <a>{t(`menu.${category.slug}`) || category.name}</a>
+              </Link>
+            </Menu.Item>
+          ))}
+        </SubMenu>
+      </Menu>
+    </div>
   );
 };

@@ -6,29 +6,29 @@
   justify-content: space-between;
   align-items: center;
   height: auto !important;
-  padding: 2px 15px !important;
-  min-height: 40px;
+  padding: 0.2rem 1.5rem !important;
+  min-height: 4rem;
 
   &__icon {
-    padding-right: 10px;
-    border-right: 1px solid $lightest-gray;
+    padding-right: 1rem;
+    border-right: 1px solid $lighter-gray;
     position: relative;
 
     svg {
       position: relative;
-      bottom: -2px;
-      left: -5px;
+      bottom: -0.2rem;
+      left: -0.5rem;
     }
 
     sup {
       position: absolute;
-      top: -3px;
-      right: 5px;
-      width: 20px;
-      height: 20px;
-      font-size: 11px;
+      top: -0.3rem;
+      right: 0.5rem;
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.1rem;
       font-weight: 500;
-      line-height: 20px;
+      line-height: 2rem;
       border-radius: 50%;
       background-color: $danger-color;
       color: $white;
@@ -37,12 +37,12 @@
   }
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
   }
 
   .cart-btn-content {
-    margin-left: 10px;
+    margin-left: 1rem;
 
     p {
       margin: 0;
@@ -51,7 +51,7 @@
 
     &__title {
       font-weight: 600;
-      color: $lightest-gray;
+      color: $lighter-gray;
       font-size: small;
     }
 
@@ -65,16 +65,16 @@
 .cart-dropdown {
   background-color: $white;
   padding: 0;
-  border: 1px solid $lightest-gray;
+  border: 1px solid $lighter-gray;
   box-shadow: $card-box-shadow-light;
-  border-radius: 5px;
-  min-width: 220px;
-  max-width: 320px;
+  border-radius: 0.5rem;
+  min-width: 22rem;
+  max-width: 32rem;
   overflow: hidden;
 
   &__list {
-    padding: 15px;
-    max-height: 500px;
+    padding: 1.5rem;
+    max-height: 50rem;
     overflow: hidden;
     overflow-y: auto;
     -ms-overflow-style: none; /* IE and Edge */
@@ -88,8 +88,8 @@
   &__list-item {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px dashed $lightest-gray;
-    padding: 3px 0;
+    border-bottom: 1px dashed $lighter-gray;
+    padding: 0.3rem 0;
     position: relative;
 
     > a {
@@ -107,12 +107,12 @@
   }
 
   &__item-img-wrapper {
-    padding: 5px 0;
+    padding: 0.5rem 0;
   }
 
   &__item-img {
     position: relative;
-    width: 80px;
+    width: 8rem;
     padding-top: calc(100% * 5.5 / 5);
 
     img {
@@ -129,7 +129,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    padding: 1rem;
 
     > * {
       margin: 0;
@@ -140,10 +140,10 @@
       text-overflow: ellipsis;
       word-wrap: break-word;
       overflow: hidden;
-      min-height: 29px;
-      max-height: 29px;
-      line-height: 14px;
-      font-size: 14px;
+      min-height: 2.9rem;
+      max-height: 2.9rem;
+      line-height: 1.4rem;
+      font-size: 1.4rem;
       color: $darkgray;
 
       &:hover {
@@ -152,13 +152,13 @@
     }
 
     p {
-      font-size: 14px;
+      font-size: 1.4rem;
       font-weight: 100;
     }
   }
 
   &__cancel-btn {
-    padding-top: 10px;
+    padding-top: 1rem;
     button {
       background: none;
       outline: none;
@@ -176,19 +176,19 @@
   }
 
   &__total {
-    padding: 10px 15px;
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 1.4rem;
 
     &--title {
       font-weight: 200;
     }
 
     &--value {
-      font-size: 15px;
+      font-size: 1.5rem;
       font-weight: 500;
       color: $black;
     }
@@ -198,13 +198,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 1.5rem;
 
     a {
       text-transform: uppercase;
-      font-size: 13px;
-      padding: 7px 16px;
-      border-radius: 9999px;
+      font-size: 1.3rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999.9rem;
       outline: none;
       border: 1px solid $light-gray;
       cursor: pointer;
@@ -215,7 +215,7 @@
 
     &--cart {
       color: $darkgray;
-      background-color: $lightest-gray;
+      background-color: $lighter-gray;
 
       &:hover {
         background-color: $light-gray;

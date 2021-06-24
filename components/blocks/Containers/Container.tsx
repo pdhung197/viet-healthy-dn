@@ -3,7 +3,7 @@ import {ReactNode} from "react";
 import styled from "styled-components";
 
 const FixedRow = styled(Row)`
-  max-width: 1190px;
+  max-width: 1140px;
   margin: 0 auto;
   width: 100%;
 `;

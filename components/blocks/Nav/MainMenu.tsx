@@ -33,6 +33,7 @@ export const MainMenu = ({mode}: any) => {
       >
         <Item>
           <MenuItemContent
+            shallow={true}
             path="/products"
             label={t("menu.allCats")}
             className="ant-menu-custom-link menu-item-content submenu-item-content"
@@ -41,6 +42,7 @@ export const MainMenu = ({mode}: any) => {
         {categoryList.map((category: CategoryInfo) => (
           <Item key={`products#${category.slug}`}>
             <MenuItemContent
+              shallow={true}
               path={`/products#${category.slug}`}
               label={t(`menu.${category.slug}`) || category.name}
               className="ant-menu-custom-link menu-item-content submenu-item-content"

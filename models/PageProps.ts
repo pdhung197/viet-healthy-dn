@@ -23,3 +23,10 @@ export interface ProductsProps {
   productsList: ProductInfo[];
   categoryList: CategoryInfo[];
 }
+
+export enum BenefitKeys {
+  freeShip = "freeShip",
+  quality = "quality",
+  save = "save",
+  support = "support",
+}

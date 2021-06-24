@@ -1,0 +1,111 @@
+@import "./../../../assets/styles/variables.scss";
+
+.benefit {
+  &__wrapper {
+    padding: 0;
+
+    * {
+      transition: 0.2s;
+    }
+  }
+
+  &__item {
+    padding: 2.4rem 0;
+    border: 1px solid $primary-color-opacity;
+
+    &__icon {
+      text-align: center;
+      padding-bottom: 1rem;
+
+      svg {
+        fill: $secondary-color;
+        width: 4.2rem;
+        height: 4.2rem;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.8rem;
+      color: $primary-color;
+      font-weight: 700;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.6rem;
+      margin: 0.4rem 0;
+      font-weight: 400;
+
+      a {
+        color: inherit !important;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $sm) {
+  .benefit {
+    &__item {
+      min-height: 21rem;
+    }
+  }
+}
+
+@media screen and (min-width: $md) {
+  .benefit {
+    &__wrapper {
+      border: 1px solid $primary-color-opacity;
+      > .ant-row {
+        align-items: stretch;
+
+        .ant-col {
+          position: relative;
+          &:not(:last-child):after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0.3px;
+            height: 50%;
+            background-color: $primary-color-opacity;
+            top: 50%;
+            right: 0;
+            transform: translate(-50%, -40%);
+          }
+        }
+      }
+    }
+
+    &__item {
+      border: none;
+      padding: 1.6rem 0.3rem;
+      padding-bottom: 0;
+      min-height: 100%;
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $lg) {
+  .benefit {
+    &__item {
+      padding: 1.6rem 1.2rem;
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

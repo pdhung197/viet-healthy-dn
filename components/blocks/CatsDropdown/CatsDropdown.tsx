@@ -64,13 +64,13 @@ export const CatsDropdown = () => {
           onTitleClick={onTitleClick}
         >
           <Menu.Item key="products">
-            <Link href="/products">
+            <Link shallow={true} href="/products">
               <a>{t("menu.allCats")}</a>
             </Link>
           </Menu.Item>
           {categoryList.map((category: CategoryInfo) => (
             <Menu.Item key={`products#${category.slug}`}>
-              <Link href={`/products#${category.slug}`}>
+              <Link shallow={true} href={`/products#${category.slug}`}>
                 <a>{t(`menu.${category.slug}`) || category.name}</a>
               </Link>
             </Menu.Item>

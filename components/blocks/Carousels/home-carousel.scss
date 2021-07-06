@@ -1,3 +1,5 @@
+@import "./../../../assets/styles/variables.scss";
+
 .ant-carousel {
   .home-carousel {
     &.slick-slider {
@@ -22,7 +24,94 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+.product-carousel {
+  overflow: hidden;
+
+  .slick-list {
+    margin: 0 -1rem;
+  }
+  .slick-slide {
+    padding: 1rem;
+
+    > div:nth-child(2) {
+      margin-top: 2rem;
+    }
+
+    .product-card {
+      border-color: transparent;
+    }
+  }
+}
+
+.product-images {
+  &__thumbnail {
+    overflow: hidden;
+
+    .slick-track {
+      height: 20rem;
+      overflow: hidden;
+    }
+
+    .slick-list {
+      margin: 0 -0.45rem;
+    }
+
+    .slick-slide {
+      padding: 0 0.5rem;
+      height: 20rem;
+      box-sizing: border-box;
+
+      > div {
+        border: 1px solid $primary-color-opacity;
+        overflow: hidden;
+        position: relative;
+        height: 20rem;
+      }
+
+      img {
+        width: auto;
+        max-height: calc(20rem - 2px);
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &__image {
+    width: 100%;
+    padding: 0;
+    padding-top: 80%;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid $primary-color-opacity;
+    margin-bottom: 1rem;
+
+    img {
+      position: absolute;
+      width: auto;
+      max-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      visibility: hidden;
+      z-index: -1;
+      transition: 0.5s;
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+        transition: 0.7s;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $md) {
   .ant-carousel {
     .home-carousel {
       &.slick-slider {
@@ -34,8 +123,45 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: $xl) {
   .ant-carousel {
+    .product-carousel {
+      .product-card {
+        &__title {
+          margin-bottom: 1rem;
+        }
+
+        &__price {
+          transition: 0.3s;
+        }
+
+        &__prod-btns {
+          position: absolute;
+          width: 100%;
+          left: 0;
+          bottom: -100%;
+          transition: 0.3s;
+        }
+
+        &:hover {
+          .product-card__title {
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+          }
+
+          .product-card__price {
+            transform: translateY(-220%);
+            transition: 0.3s;
+          }
+
+          .product-card__prod-btns {
+            bottom: 0.3rem;
+            transition: 0.3s;
+          }
+        }
+      }
+    }
     .home-carousel {
       &.slick-slider {
         .slick-track {

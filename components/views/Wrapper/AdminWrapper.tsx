@@ -15,7 +15,7 @@ const AdminWrapper = ({children}: AdminWrapperProps) => {
     <CustomLayout>
       <main>
         <SwitcherBtn
-          onClick={setSidebarCollapse}
+          onClick={() => setSidebarCollapse()}
           icon={<MenuFoldOutlined />}
           size="middle"
         />

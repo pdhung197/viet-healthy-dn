@@ -1,9 +1,13 @@
+import {PageKeys} from "../../../models/PageProps";
+
 export const menu = {
-  home: "Trang chủ",
-  products: "Sản phẩm",
-  combo: "Combo",
-  about: "Giới thiệu",
-  contact: "Liên hệ",
+  [PageKeys.home]: "Trang chủ",
+  [PageKeys.products]: "Sản phẩm",
+  [PageKeys.combo]: "Combo",
+  [PageKeys.about]: "Giới thiệu",
+  [PageKeys.contact]: "Liên hệ",
+  [PageKeys.terms]: "Chính sách",
+  [PageKeys.share]: "Chia sẻ",
   cats: "Danh mục sản phẩm",
   allCats: "Tất cả sản phẩm",
   "suc-khoe": "Sức khỏe",

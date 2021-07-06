@@ -62,7 +62,7 @@ export const Header = () => {
   return (
     <StyledHeader>
       <Container>
-        <Row justify="center" align="middle">
+        <Row justify="space-between" align="middle">
           <Col sm={{span: 24}} md={{span: 12}}>
             <HeaderLink
               type="link"

@@ -18,6 +18,7 @@ export const useCart = () => {
         regular_price,
         sale_price,
         variations,
+        description,
       } = product;
       const productExistsInCartIndex = dataCart.findIndex(
         (prd: ProductInCart) => prd.id === id
@@ -35,6 +36,7 @@ export const useCart = () => {
           regular_price,
           sale_price,
           variations,
+          description,
           quantity,
         });
       }

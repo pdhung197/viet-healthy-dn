@@ -5,6 +5,9 @@ export const pageData = {
     total: "Tổng",
     preOrderAvai: "Có thể đặt trước",
     addToCart: "Thêm",
+    price: "Giá",
+    quantity: "Số lượng",
+    relates: "Sản phẩm liên quan",
   },
   homePage: {
     benefits: {
@@ -27,6 +30,10 @@ export const pageData = {
         describe2:
           "<a href='tel:0938711074'>0938 711 074</a> | <a href='tel:0934763123'>0934 763 123</a> ",
       },
+    },
+    seeMore: "Xem thêm",
+    features: {
+      title: "Sản phẩm nổi bật",
     },
   },
 };

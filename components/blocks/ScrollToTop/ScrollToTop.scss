@@ -1,0 +1,35 @@
+@import "./../../../assets/styles/variables.scss";
+
+.scroll-top {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(2rem);
+  transition: 0.5s;
+
+  &.hidden {
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-2rem);
+    transition: 0.5s;
+  }
+
+  svg {
+    width: 6.3rem;
+    height: 6.3rem;
+    fill: $white;
+    background-color: $danger-color;
+    border-radius: 50%;
+  }
+}

@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import {calPrice} from "../../../helpers/productsFnc";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {CartActionType, CartItem} from "../../../models/Cart";
 import {ProductBase} from "../../../models/Product";
+import {ProductLink} from "../ProductItem/ProductLink";
 
 type CartDropProps = {
   totalPrice: number;
@@ -27,13 +29,14 @@ export const CartDropMenu = ({
     <div className="cart-dropdown">
       <div className="cart-dropdown__list">
         {(carts || []).map((cartItem: CartItem) => {
-          const {name, id, images, price, quantity} = cartItem;
+          const {quantity, ...product} = cartItem;
+          const {name, id, images, price} = product;
 
           if (!quantity) return null;
 
           return (
             <div key={`cart-little${id}`} className="cart-dropdown__list-item">
-              <Link href={`/product/${id}`}>
+              <ProductLink product={product}>
                 <a className="cart-dropdown__item-body">
                   <div className="cart-dropdown__item-img-wrapper">
                     <div className="cart-dropdown__item-img">
@@ -60,7 +63,7 @@ export const CartDropMenu = ({
                     </p>
                   </div>
                 </a>
-              </Link>
+              </ProductLink>
               <div className="cart-dropdown__cancel-btn">
                 <button onClick={() => addOrRemoveCart("remove", cartItem)}>
                   X

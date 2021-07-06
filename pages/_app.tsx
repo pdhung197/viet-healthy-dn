@@ -9,6 +9,7 @@ import "nprogress/nprogress.css"; //styles of nprogress
 
 import client from "../utils/ApolloClient";
 import {ApolloProvider} from "@apollo/client";
+import {useEffect} from "react";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -25,11 +26,19 @@ type AppProps = {
   pageProps: any;
 };
 
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
-
 const MyApp = ({Component, pageProps}: AppProps) => {
+  useEffect(() => {
+    Router.events.on("routeChangeStart", () => NProgress.start());
+    Router.events.on("routeChangeComplete", () => NProgress.done());
+    Router.events.on("routeChangeError", () => NProgress.done());
+
+    return () => {
+      Router.events.off("routeChangeStart", () => NProgress.start());
+      Router.events.off("routeChangeComplete", () => NProgress.done());
+      Router.events.off("routeChangeError", () => NProgress.done());
+    };
+  }, [Router]);
+
   return (
     <ApolloProvider client={client}>
       <GlobalStyle />

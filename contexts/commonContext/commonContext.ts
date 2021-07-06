@@ -2,7 +2,7 @@ import {createContext} from "react";
 
 export const CommonContext = createContext({
   isSidebarCollapse: true,
-  setSidebarCollapse: () => {
-    console.log("Change");
+  setSidebarCollapse: (manualState?: boolean) => {
+    console.log({manualState});
   },
 });

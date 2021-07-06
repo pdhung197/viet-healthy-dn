@@ -60,7 +60,7 @@ export const useProducts = () => {
   const addProductToCart = (product: ProductInfo) => {
     setIsProcessing(true);
     const processData: ReturnData = addToCart(product, countToCart);
-    console.log({processData});
+    /* console.log({processData}); */
     const {ok, data, error} = processData;
     if (updateCartToContextAndLocalStorage) {
       updateCartToContextAndLocalStorage(data);
@@ -73,7 +73,7 @@ export const useProducts = () => {
         notifiType: "success",
         message: t("notifications.carts.addSuccessTitle"),
         description: t("notifications.carts.addSuccess", {
-          product: product.name,
+          product: countToCart + " " + product.name,
         }),
       });
     } else {

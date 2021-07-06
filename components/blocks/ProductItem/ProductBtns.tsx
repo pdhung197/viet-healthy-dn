@@ -1,14 +1,19 @@
-import {MinusOutlined, PlusOutlined, ReloadOutlined} from "@ant-design/icons";
+import {ReloadOutlined} from "@ant-design/icons";
 import {FaCartPlus} from "react-icons/fa";
+import {HiMinusSm, HiPlus} from "react-icons/hi";
 import {useProducts} from "../../../hooks/useProducts/useProducts";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {ProductDataItem, ProductInfo} from "../../../models/Product";
 
 type AddRemoveCartProps = {
   product: ProductInfo;
+  className?: string;
 };
 
-export const ProductBtns = ({product}: AddRemoveCartProps) => {
+export const ProductBtns = ({
+  product,
+  className = "product-card",
+}: AddRemoveCartProps) => {
   const {t} = useTranslation();
 
   const {
@@ -24,18 +29,18 @@ export const ProductBtns = ({product}: AddRemoveCartProps) => {
   };
 
   return (
-    <>
+    <div className={`${className}__prod-btns`}>
       <div>
         <button
-          className="product-card__prod-btns--sub"
+          className={`${className}__prod-btns--sub`}
           value={-1}
           onClick={handleIncreaseOrDecrease}
           disabled={isProcessing}
         >
-          <MinusOutlined />
+          <HiMinusSm />
         </button>
         <input
-          className="product-card__prod-btns--count"
+          className={`${className}__prod-btns--count`}
           value={countToCart}
           onChange={onCountChange}
           pattern="^[0–9]$"
@@ -43,18 +48,18 @@ export const ProductBtns = ({product}: AddRemoveCartProps) => {
         />
         <button
           value={1}
-          className="product-card__prod-btns--add"
+          className={`${className}__prod-btns--add`}
           onClick={handleIncreaseOrDecrease}
           disabled={isProcessing}
         >
-          <PlusOutlined />
+          <HiPlus />
         </button>
       </div>
       <div>
         <button
           value="addToCart"
           onClick={handleAddToCart}
-          className="product-card__prod-btns--add-to-cart"
+          className={`${className}__prod-btns--add-to-cart`}
           disabled={isProcessing}
         >
           {isProcessing ? (
@@ -65,6 +70,6 @@ export const ProductBtns = ({product}: AddRemoveCartProps) => {
           <span>{t("pageData.product.addToCart")}</span>
         </button>
       </div>
-    </>
+    </div>
   );
 };

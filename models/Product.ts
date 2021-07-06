@@ -1,3 +1,5 @@
+import {ImageInfo} from "./Category";
+
 export type StockStatusType = "IN_STOCK" | "OUT_OF_STOCK" | "ON_BACKORDER";
 
 export interface ProductBase {
@@ -108,6 +110,17 @@ export interface ProductParams {
   stock_status?: string;
 }
 
+export interface ProductImage {
+  id: string | number;
+  date_created: string;
+  date_created_gmt: string;
+  date_modified: string;
+  date_modified_gmt: string;
+  src: string;
+  name: string;
+  alt: string;
+}
+
 export interface ProductInfo {
   id: string | number;
   name: string;
@@ -160,6 +173,7 @@ export interface ProductInfo {
   shipping_taxable: boolean;
   shipping_class: string;
   shipping_class_id: number;
+  short_description: string;
   reviews_allowed: boolean;
   average_rating: number;
   rating_count: number;
@@ -174,16 +188,7 @@ export interface ProductInfo {
     slug: string;
   }[];
   tags: string[];
-  images: {
-    id: string | number;
-    date_created: string;
-    date_created_gmt: string;
-    date_modified: string;
-    date_modified_gmt: string;
-    src: string;
-    name: string;
-    alt: string;
-  }[];
+  images: ProductImage[];
   attributes: {
     id: string | number;
     name: string;
@@ -223,23 +228,11 @@ export type ProductListByCatInfo = {
   };
 };
 
-export type ProductInCart = {
-  id: string | number;
-  name: string;
-  slug: string;
-  price: string;
-  regular_price: string;
-  sale_price: string;
-  images: {
-    id: string | number;
-    date_created: string;
-    date_created_gmt: string;
-    date_modified: string;
-    date_modified_gmt: string;
-    src: string;
-    name: string;
-    alt: string;
-  }[];
-  variations: string[];
+export interface ProductInCart extends Partial<ProductInfo> {
   quantity: number;
+}
+
+export type ProductsForSlideType = {
+  features: ProductInfo[];
+  productsByCat: ProductListByCatInfo;
 };

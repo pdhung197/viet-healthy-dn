@@ -3,22 +3,30 @@ import {Container} from "../../blocks/Containers/Container";
 import {ProductsList} from "./ProductsList";
 
 import "./products.scss";
+import React from "react";
+import {Col, Row} from "antd";
 
 export const ProductsView = (props: CatProdListProps) => {
-  const {productList = {}} = props;
-  console.log({productList});
+  const {productsList = {}} = props;
+  /* console.log({productsList}); */
   return (
     <Container>
-      {(Object.keys(productList) || []).map((slug: string) => {
-        const {catId, catName, catSlug, products} = productList[slug];
+      {(Object.keys(productsList) || []).map((slug: string) => {
+        const {catId, catName, catSlug, products} = productsList[slug];
 
         return products && products.length ? (
-          <ProductsList
-            key={catId}
-            catSlug={catSlug}
-            catName={catName}
-            data={products}
-          />
+          <div id={catSlug} key={catId}>
+            <Row gutter={16}>
+              <Col xs={{span: 24}}>
+                <p className="product__category">{catName}</p>
+              </Col>
+            </Row>
+            <hr className="product__seperator" />
+            <Row gutter={[24, 36]}>
+              <ProductsList data={products} />
+            </Row>
+            <hr className="product__seperator" />
+          </div>
         ) : null;
       })}
     </Container>

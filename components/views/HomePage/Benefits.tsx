@@ -1,58 +1,43 @@
 import {Col, Row} from "antd";
-import React, {ReactElement} from "react";
-import {FaPiggyBank, FaShippingFast} from "react-icons/fa";
-import {BsAwardFill} from "react-icons/bs";
-import {BiSupport} from "react-icons/bi";
+import React from "react";
 import {BenefitKeys} from "../../../models/PageProps";
 import {Container} from "../../blocks/Containers/Container";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 
 type BenefitType = {
   key: BenefitKeys;
-  icon: () => ReactElement<any, any>;
+  imgPath: string;
 };
 
 const benefitsList: BenefitType[] = [
   {
     key: BenefitKeys.freeShip,
-    icon: () => <FaShippingFast />,
+    imgPath: "/images/benefits/freeShip.png",
   },
   {
     key: BenefitKeys.save,
-    icon: () => <FaPiggyBank />,
+    imgPath: "/images/benefits/save.png",
   },
   {
     key: BenefitKeys.quality,
-    icon: () => <BsAwardFill />,
+    imgPath: "/images/benefits/quality.png",
   },
   {
     key: BenefitKeys.support,
-    icon: () => <BiSupport />,
+    imgPath: "/images/benefits/supporter.png",
   },
 ];
 
 const Benefit = ({data}: {data: BenefitType}) => {
-  const {t} = useTranslation();
-  const {key, icon} = data;
-  const langData = t(`pageData.homePage.benefits.${key}`);
-  if (!langData) {
-    return null;
-  }
-  const {title, describe1, describe2 = ""} = langData;
+  const {key, imgPath} = data;
 
   return (
-    <Col xs={{span: 24}} sm={{span: 12}} md={{span: 6}}>
+    <Col
+      xs={{span: 24}}
+      sm={{span: 12}}
+      md={{span: key === BenefitKeys.quality ? 0 : 8}}
+    >
       <div className="benefit__item">
-        <div className="benefit__item__icon">{icon()}</div>
-        <h2 className="benefit__item__title">{title}</h2>
-        <p
-          className="benefit__item__des"
-          dangerouslySetInnerHTML={{__html: describe1}}
-        />
-        <p
-          className="benefit__item__des"
-          dangerouslySetInnerHTML={{__html: describe2}}
-        />
+        <img src={imgPath} alt="" />
       </div>
     </Col>
   );

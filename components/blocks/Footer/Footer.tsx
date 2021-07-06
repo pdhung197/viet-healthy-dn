@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import Image from "next/image";
+import React from "react";
 import Head from "next/head";
 import {Col, Row} from "antd";
 import {Container} from "../Containers/Container";
@@ -9,8 +8,7 @@ import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {FacebookFilled, MessageFilled, PhoneFilled} from "@ant-design/icons";
 import Link from "next/link";
 import styled from "styled-components";
-import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
-import {debounce} from "../../../helpers/common";
+import {FbEmbed} from "../FacebookContact/FbEmbed";
 
 const FaceBookIcon = styled(FacebookFilled)`
   path {
@@ -32,47 +30,6 @@ const PhoneIcon = styled(PhoneFilled)`
 
 export const Footer = () => {
   const {t} = useTranslation();
-  const screens = useBreakpoint();
-
-  const calculateIframeWidth = (): number => {
-    if (typeof window === "undefined" || !window) {
-      return 0;
-    }
-    let updateWidth = 0;
-    const {md, lg, xl} = screens;
-    const windowW = window.innerWidth > 1208 ? 1140 : window.innerWidth;
-
-    if (xl) {
-      updateWidth = windowW / 4 - 20;
-    } else if (lg) {
-      updateWidth = windowW / 4 - 35;
-    } else if (md) {
-      updateWidth = windowW / 2 - 35;
-    } else {
-      updateWidth = windowW;
-    }
-    if (updateWidth > 500) {
-      return 500;
-    }
-
-    return Math.floor(updateWidth);
-  };
-
-  const [iframeWidth, setIframeWidth] = useState(calculateIframeWidth());
-
-  useEffect(() => {
-    const handleUpdateIframeWidthOnResize = debounce(() => {
-      const updateWidth = calculateIframeWidth();
-
-      setIframeWidth(updateWidth);
-    }, 300);
-
-    handleUpdateIframeWidthOnResize();
-    window.addEventListener("resize", handleUpdateIframeWidthOnResize);
-    return () => {
-      window.removeEventListener("resize", handleUpdateIframeWidthOnResize);
-    };
-  }, [screens]);
 
   return (
     <>
@@ -188,16 +145,7 @@ export const Footer = () => {
                 <h2>{t("common.footer.fanPage")}</h2>
               </div>
               <div className="bottom-blocks">
-                <iframe
-                  src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fviethealthy.dn%2F&tabs=messages&width=${iframeWidth}&height=400&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=2773538049524292`}
-                  width={iframeWidth}
-                  height="400"
-                  style={{border: "none", overflow: "hidden"}}
-                  scrolling="no"
-                  frameBorder="0"
-                  allowFullScreen={true}
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                ></iframe>
+                <FbEmbed />
               </div>
             </Col>
           </Row>

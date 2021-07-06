@@ -1,13 +1,13 @@
-import dynamic from "next/dynamic";
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 import {useRouter} from "next/router";
 import {TranslationProvider} from "../../../contexts/translationContext/TranslaterProvider";
 import {CommonProvider} from "../../../contexts/commonContext/CommonProvider";
-import {Sidebar} from "../../blocks/Sidebar/Sidebar";
 import Layout from "antd/lib/layout/layout";
 import styled from "styled-components";
 import AdminWrapper from "./AdminWrapper";
 import UserWrapper from "./UserWrapper";
+import {ContactBtns} from "../../blocks/ContactBtns/ContactBtns";
+import Head from "next/head";
 
 export const CustomLayout = styled(Layout)`
   background: none;
@@ -27,7 +27,15 @@ export const Wrapper = ({children}: WrapperProps) => {
     <CommonProvider>
       <TranslationProvider>
         <>
-          <Sidebar />
+          <Head>
+            <script
+              async={true}
+              type="text/javascript"
+              src="/script/messenger.js"
+            />
+          </Head>
+          <div id="fb-customer-chat" className="fb-customerchat"></div>
+          <ContactBtns />
           {isAdmin ? (
             <AdminWrapper>{children}</AdminWrapper>
           ) : (

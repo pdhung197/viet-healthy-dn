@@ -84,6 +84,12 @@
 
       .ant-menu-submenu-title {
         padding: 0 !important;
+
+        span {
+          padding-left: 1rem;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
       }
     }
   }

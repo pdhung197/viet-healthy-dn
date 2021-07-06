@@ -71,7 +71,7 @@ export const CatsDropdown = () => {
           {categoryList.map((category: CategoryInfo) => (
             <Menu.Item key={`products#${category.slug}`}>
               <Link shallow={true} href={`/products#${category.slug}`}>
-                <a>{t(`menu.${category.slug}`) || category.name}</a>
+                <a>{category.name}</a>
               </Link>
             </Menu.Item>
           ))}

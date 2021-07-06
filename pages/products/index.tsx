@@ -1,12 +1,13 @@
+import {useRouter} from "next/router";
 import React, {useContext, useEffect} from "react";
+import {ProductDetail} from "../../components/views/ProductView/ProductDetail";
 import {ProductsView} from "../../components/views/ProductView/ProductsView";
 import {UserContext} from "../../contexts/userContext/userContext";
+import {orderProductsByCat} from "../../helpers/productsFnc";
 import {ProductsProps} from "../../models/PageProps";
+import {ProductInfo, ProductListByCatInfo} from "../../models/Product";
 import {fetchCategoryList} from "../../services/apis/categoryApis";
-import {
-  fetchAllProducts,
-  productListByCat,
-} from "../../services/apis/productApis";
+import {fetchAllProducts} from "../../services/apis/productApis";
 
 const Products = ({productsList, categoryList}: ProductsProps) => {
   const {
@@ -14,6 +15,13 @@ const Products = ({productsList, categoryList}: ProductsProps) => {
     storeProductsData,
     storeCategoryList,
   } = useContext(UserContext);
+  const {query} = useRouter();
+  const {pid} = query;
+
+  const pageProductsList =
+    contextProductList && contextProductList.length
+      ? contextProductList
+      : productsList;
 
   useEffect(() => {
     if (categoryList) {
@@ -30,13 +38,21 @@ const Products = ({productsList, categoryList}: ProductsProps) => {
       fetchProducts();
     }
   }, []);
-  const productsListByCat = productListByCat(
-    contextProductList && contextProductList.length
-      ? contextProductList
-      : productsList
-  );
 
-  return <ProductsView productList={productsListByCat} />;
+  const productsListByCat = (): ProductListByCatInfo =>
+    orderProductsByCat(pageProductsList);
+
+  if (pid && pid.length && pageProductsList && pageProductsList.length) {
+    const productData = pageProductsList.find(
+      (product: ProductInfo) => product.id.toString() === pid
+    );
+
+    if (productData) {
+      return <ProductDetail product={productData} />;
+    }
+  }
+
+  return <ProductsView productsList={productsListByCat()} />;
 };
 
 export async function getStaticProps() {

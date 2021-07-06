@@ -1,0 +1,144 @@
+@import "./../../../assets/styles/variables.scss";
+
+.btn.blue {
+  background: rgb(0, 119, 255);
+  box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.616);
+  animation: pulse-blue 1s infinite;
+}
+
+@keyframes pulse-blue {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
+  }
+}
+
+@keyframes pulse-red {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(189, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
+  }
+}
+
+@keyframes delay-display {
+  99% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+.phone-call,
+.zalo-contact {
+  position: fixed;
+  z-index: 999;
+  bottom: 2rem;
+  right: 2rem;
+
+  img,
+  svg {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.phone-call {
+  background: none;
+  right: unset;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0.5rem;
+  border-radius: 9999px;
+  background-color: $danger-color;
+  line-height: 1;
+
+  span {
+    color: $white;
+    padding: 0 1rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+
+  svg {
+    margin-left: -1px;
+    height: 4rem;
+    width: 4rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: 0.5rem solid $white;
+    fill: $white;
+    box-shadow: 0 0 0 0 rgba(189, 0, 0, 0.7);
+    animation: pulse-red 1s infinite;
+  }
+}
+
+.zalo-contact,
+.messenger-back {
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0.8rem;
+  bottom: 15.6rem;
+}
+
+.messenger-back {
+  position: fixed;
+  bottom: 91px;
+  right: 25px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  z-index: 99;
+  box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.616);
+  opacity: 0;
+
+  animation: fadeIn 3s, pulse-blue 1s infinite;
+  animation-delay: 8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: $md) {
+  .phone-call {
+    span {
+      font-size: 1.8rem;
+    }
+
+    svg {
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+}

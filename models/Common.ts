@@ -9,3 +9,16 @@ export interface ReturnData {
   data?: any;
   error?: any;
 }
+
+export interface CarouselSettings {
+  slidesToScroll?: number;
+  slidesToShow?: number;
+  infinite?: boolean;
+  autoplay?: boolean;
+  pauseOnHover?: boolean;
+  pauseOnFocus?: boolean;
+  swipeToSlide?: boolean;
+  dots?: boolean;
+  rows?: number;
+  speed?: number;
+}

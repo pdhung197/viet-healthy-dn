@@ -1,8 +1,7 @@
-import {Col, Row} from "antd";
 import {ReactNode} from "react";
 import styled from "styled-components";
 
-const FixedRow = styled(Row)`
+const FixedRow = styled.div`
   max-width: 1140px;
   margin: 0 auto;
   width: 100%;
@@ -15,16 +14,12 @@ type ContainerProps = {
 
 export const Container = ({children, className = ""}: ContainerProps) => {
   return (
-    <FixedRow className={className} justify="center" align="middle">
-      <Col
-        xs={{span: 22}}
-        sm={{span: 22}}
-        md={{span: 23}}
-        lg={{span: 23}}
-        xl={{span: 24}}
-      >
+    <FixedRow
+      className={`ant-row ant-row-center ant-row-middle sc-hScDUP ernKvI features-products ${className}`}
+    >
+      <div className="ant-col ant-col-xs-22 ant-col-sm-22 ant-col-md-23 ant-col-lg-23 ant-col-xl-24">
         {children}
-      </Col>
+      </div>
     </FixedRow>
   );
 };

@@ -1,6 +1,6 @@
 export const notifications = {
   carts: {
-    addSuccess: "{{product}} was added to cart successfully.",
+    addSuccess: "{{product}}",
     addFail:
       "Can not add {{product}} to cart. Please try again or contact customer service.",
     removeSuccess: "{{product}} was removed from cart successfully.",

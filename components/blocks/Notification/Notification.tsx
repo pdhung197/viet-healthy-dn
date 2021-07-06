@@ -14,6 +14,7 @@ export const openNotificationWithIcon = ({
   description,
 }: NotificationProps) => {
   notification[notifiType]({
+    placement: "topRight",
     message,
     description,
     className: `vh-notification vh-notification__${notifiType}`,

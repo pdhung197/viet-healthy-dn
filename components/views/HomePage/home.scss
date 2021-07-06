@@ -2,54 +2,79 @@
 
 .benefit {
   &__wrapper {
-    padding: 0;
-
-    * {
-      transition: 0.2s;
-    }
+    margin-bottom: 4rem;
   }
 
   &__item {
-    padding: 2.4rem 0;
-    border: 1px solid $primary-color-opacity;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
 
-    &__icon {
-      text-align: center;
-      padding-bottom: 1rem;
-
-      svg {
-        fill: $secondary-color;
-        width: 4.2rem;
-        height: 4.2rem;
-      }
+    img {
+      width: 100%;
+      max-width: 100%;
+      transform: scale(1);
+      transition: 0.3s;
     }
 
-    h2 {
-      text-align: center;
-      text-transform: uppercase;
-      font-size: 1.8rem;
-      color: $primary-color;
-      font-weight: 700;
-    }
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      box-shadow: $card-box-shadow-light;
+      transition: 0.3s;
 
-    p {
-      text-align: center;
-      font-size: 1.6rem;
-      margin: 0.4rem 0;
-      font-weight: 400;
-
-      a {
-        color: inherit !important;
-        cursor: pointer;
+      img {
+        transform: scale(1.01);
+        transition: 0.3s;
       }
     }
   }
 }
 
+.features-products,
+.cat-products {
+  &__title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 2rem 0;
+    padding: 0;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 8rem;
+      background-color: $primary-color;
+      position: relative;
+      margin-top: 1rem;
+      left: 0;
+    }
+  }
+
+  &__link {
+    float: right;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $white;
+    background-color: $primary-color;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    margin: 1rem 0;
+  }
+}
+
 @media screen and (min-width: $sm) {
-  .benefit {
-    &__item {
-      min-height: 21rem;
+  .features-products,
+  .cat-products {
+    &__title {
+      text-align: center;
+      font-size: 3.2rem;
+
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
 }
@@ -57,55 +82,17 @@
 @media screen and (min-width: $md) {
   .benefit {
     &__wrapper {
-      border: 1px solid $primary-color-opacity;
-      > .ant-row {
-        align-items: stretch;
-
-        .ant-col {
-          position: relative;
-          &:not(:last-child):after {
-            content: "";
-            display: block;
-            position: absolute;
-            width: 0.3px;
-            height: 50%;
-            background-color: $primary-color-opacity;
-            top: 50%;
-            right: 0;
-            transform: translate(-50%, -40%);
-          }
-        }
-      }
-    }
-
-    &__item {
-      border: none;
-      padding: 1.6rem 0.3rem;
-      padding-bottom: 0;
-      min-height: 100%;
-
-      h2 {
-        font-size: 1.3rem;
-      }
-
-      p {
-        font-size: 1.1rem;
-      }
+      margin-bottom: 6rem;
     }
   }
-}
+  .features-products,
+  .cat-products {
+    &__title {
+      font-size: 4rem;
+    }
 
-@media screen and (min-width: $lg) {
-  .benefit {
-    &__item {
-      padding: 1.6rem 1.2rem;
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      p {
-        font-size: 1.5rem;
-      }
+    &__link {
+      font-size: 1.6rem;
     }
   }
 }

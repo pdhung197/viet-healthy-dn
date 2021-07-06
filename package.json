@@ -2,9 +2,12 @@
   "name": "with-ant-design",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next dev -p 1357",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next build && next start",
+    "export": "next export",
+    "deploy": "next build && firebase deploy",
+    "ed": "next build && next export && firebase deploy"
   },
   "dependencies": {
     "@ant-design/icons": "^4.4.0",

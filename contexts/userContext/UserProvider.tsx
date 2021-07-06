@@ -13,10 +13,15 @@ export const UserProvider = ({children}: CommonProps) => {
   const [productsList, setProducts] = useState<any[]>([]);
   const [carts, setCarts] = useState<any[]>([]);
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
+  const [productDetail, setProductDetail] = useState({});
 
   useEffect(() => {
+    if (categories && categories.length) {
+      return;
+    }
     const fetchCategories = async () => {
       const categoryList = await fetchCategoryList();
+
       if (categoryList && categoryList.length) {
         setCategories(categoryList);
       }
@@ -40,7 +45,7 @@ export const UserProvider = ({children}: CommonProps) => {
 
   const updateCartToContextAndLocalStorage = (updateCarts: any[]) => {
     setCarts(updateCarts);
-    console.log({updateCarts});
+    /* console.log({updateCarts}); */
     if (window) {
       window.localStorage.setItem(CartsStore.name, JSON.stringify(updateCarts));
     }
@@ -51,6 +56,9 @@ export const UserProvider = ({children}: CommonProps) => {
   };
   const storeCategoryList = (categoryList: CategoryInfo[]) => {
     setCategories(categoryList);
+  };
+  const storeProductDetail = (product: ProductInfo) => {
+    setProductDetail(product);
   };
 
   const addToCart = (product: any) => {
@@ -170,6 +178,8 @@ export const UserProvider = ({children}: CommonProps) => {
     categoryList: categories,
     storeCategoryList,
     updateCartToContextAndLocalStorage,
+    productDetail,
+    storeProductDetail,
   };
 
   return (

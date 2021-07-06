@@ -1,13 +1,18 @@
 import {CategoryInfo} from "./Category";
-import {
-  ProductBase,
-  ProductDataItem,
-  ProductInfo,
-  ProductListByCatInfo,
-} from "./Product";
+import {ProductBase, ProductInfo, ProductListByCatInfo} from "./Product";
+
+export enum PageKeys {
+  home = "home",
+  products = "products",
+  combo = "combo",
+  share = "share",
+  about = "about",
+  terms = "terms",
+  contact = "contact",
+}
 
 export type CatProdListProps = {
-  productList: ProductListByCatInfo;
+  productsList: ProductListByCatInfo;
 };
 
 export interface HomeProps {

@@ -4,7 +4,6 @@ import {useContext, useEffect, useState} from "react";
 import styled from "styled-components";
 import {theme} from "../../../configs/theme/theme";
 import {CommonContext} from "../../../contexts/commonContext/commonContext";
-import {debounce} from "../../../helpers/common";
 import {Brand} from "../Brand/Brand";
 import {CartLittle} from "../CartLittle/CartLittle";
 import {Container} from "../Containers/Container";
@@ -112,7 +111,7 @@ export const Nav = () => {
               <CartLittle isMobile={isMobile} />
               {isMobile && (
                 <SwitcherBtn
-                  onClick={setSidebarCollapse}
+                  onClick={() => setSidebarCollapse()}
                   icon={<MenuFoldOutlined />}
                   size="middle"
                 />

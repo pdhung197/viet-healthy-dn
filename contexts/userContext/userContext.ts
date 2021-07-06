@@ -21,4 +21,8 @@ export const UserContext = createContext({
   updateCartToContextAndLocalStorage: (updateCart: any[]) => {
     console.log({updateCart});
   },
+  productDetail: {} as Partial<ProductInfo>,
+  storeProductDetail: (product: ProductInfo) => {
+    console.log({product});
+  },
 });

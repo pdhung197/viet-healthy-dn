@@ -6,20 +6,23 @@ import {useProducts} from "../../../hooks/useProducts/useProducts";
 
 import "./product-item.scss";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
+import React from "react";
+import {ProductLink} from "./ProductLink";
+import {ProductPrice} from "./ProductPrice";
 
-type ProductItem = {
+type ProductItemProps = {
   product: ProductInfo;
 };
 
-export const ProductItem = ({product}: ProductItem) => {
-  const {t, currentLang} = useTranslation();
+export const ProductItem = ({product}: ProductItemProps) => {
+  const {t} = useTranslation();
 
-  const {id, images, name, sale_price, regular_price, price} = product;
+  const {id, images, name} = product;
 
   return (
     <div id={`product${id}`} className="product-card">
-      <Link href={`/product/${id}`}>
-        <a>
+      <ProductLink product={product}>
+        <>
           <div className="product-card__describ">
             <div className="product-card__describ--hot"></div>
             <div className="product-card__describ--main-img">
@@ -41,24 +44,10 @@ export const ProductItem = ({product}: ProductItem) => {
             </div>
           </div>
           <h4 className="product-card__title">{name}</h4>
-        </a>
-      </Link>
-      <h5 className="product-card__price">
-        {sale_price && (
-          <del>
-            {((regular_price as unknown as number) / 1 || 0).toLocaleString(
-              currentLang
-            )}
-          </del>
-        )}
-        <span>
-          {((price as unknown as number) / 1 || 0).toLocaleString(currentLang)}{" "}
-          VNĐ
-        </span>
-      </h5>
-      <div className="product-card__prod-btns">
-        <ProductBtns product={product} />
-      </div>
+        </>
+      </ProductLink>
+      <ProductPrice product={product} />
+      <ProductBtns product={product} />
     </div>
   );
 };

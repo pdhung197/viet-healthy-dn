@@ -13,13 +13,12 @@ export const CommonProvider = ({children}: CommonProps) => {
 
   const provider = {
     isSidebarCollapse,
-    setSidebarCollapse: () => {
-      setIsSidebarCollapse(!isSidebarCollapse);
+    setSidebarCollapse: (manualState?: boolean) => {
+      const newState =
+        manualState === undefined ? !isSidebarCollapse : manualState;
+      setIsSidebarCollapse(newState);
       if (window) {
-        window.localStorage.setItem(
-          "isSidebarCollapse",
-          (!isSidebarCollapse).toString()
-        );
+        window.localStorage.setItem("isSidebarCollapse", newState.toString());
       }
     },
   };

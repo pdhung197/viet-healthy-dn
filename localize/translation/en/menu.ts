@@ -1,10 +1,13 @@
+import {PageKeys} from "../../../models/PageProps";
+
 export const menu = {
-  home: "Home",
-  products: "Products",
-  combo: "Combo",
-  about: "About Us",
-  contact: "Contact",
-  cats: "All Categories",
+  [PageKeys.home]: "Home",
+  [PageKeys.products]: "Products",
+  [PageKeys.combo]: "Combo",
+  [PageKeys.about]: "About Us",
+  [PageKeys.contact]: "Contact",
+  [PageKeys.terms]: "Terms",
+  [PageKeys.share]: "Sharing",
   allCats: "All",
   "suc-khoe": "For Health",
   "gia-dung": "Household Article",

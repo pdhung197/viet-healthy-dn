@@ -1,6 +1,6 @@
 export const notifications = {
   carts: {
-    addSuccess: "{{product}} đã được thêm thành công vào giỏ hàng.",
+    addSuccess: "{{product}}",
     addFail:
       "Không thể thêm {{product}} vào giỏ hàng. Vui lòng thử lại hoặc liên hệ với shop.",
     removeSuccess: "{{product}} đã được gỡ khỏi giỏ hàng.",

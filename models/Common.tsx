@@ -1,3 +1,4 @@
+import {ColumnTitle} from "antd/lib/table/interface";
 import {ReactNode} from "react";
 
 export type CommonProps = {
@@ -21,4 +22,12 @@ export interface CarouselSettings {
   dots?: boolean;
   rows?: number;
   speed?: number;
+}
+
+export interface TableColumn {
+  title: ColumnTitle<any>;
+  dataIndex: string;
+  key: string;
+  align?: "left" | "right" | "center";
+  render?: (text: string, record: any) => JSX.Element;
 }

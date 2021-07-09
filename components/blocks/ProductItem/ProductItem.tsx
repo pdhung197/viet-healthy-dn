@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {ProductInfo} from "../../../models/Product";
 import {ProductBtns} from "./ProductBtns";
-import {useProducts} from "../../../hooks/useProducts/useProducts";
 
 import "./product-item.scss";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
@@ -47,7 +46,7 @@ export const ProductItem = ({product}: ProductItemProps) => {
         </>
       </ProductLink>
       <ProductPrice product={product} />
-      <ProductBtns product={product} />
+      <ProductBtns btns={["add-cart"]} product={product} />
     </div>
   );
 };

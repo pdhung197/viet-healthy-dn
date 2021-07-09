@@ -1,4 +1,4 @@
-import {ProductInfo} from "./../../models/Product";
+import {ProductInCart, ProductInfo} from "./../../models/Product";
 import {useCart} from "./../useCart/useCart";
 import {useTranslation} from "./../useTranslation/useTranslation";
 import {ReturnData} from "./../../models/Common";
@@ -23,44 +23,12 @@ export const getProductOnRequest = (productId: string) => {
 };
 
 export const useProducts = () => {
-  const {t} = useTranslation();
-  const {carts, updateCartToContextAndLocalStorage} = useContext(UserContext);
-  const {addToCart} = useCart();
-  const [countToCart, setCountToCart] = useState(1);
-  const [isProcessing, setIsProcessing] = useState(false);
-
-  const totalPrice = (carts || []).reduce(
-    (total: number, cartItem: CartItem) => {
-      const itemPrice = (cartItem.price as unknown as number) * 1;
-      return total + itemPrice * cartItem.quantity;
-    },
-    0
-  );
-
-  const handleIncreaseOrDecrease = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    const count: number = parseInt(e.currentTarget.value);
-
-    if (countToCart + count > 0) {
-      setCountToCart(countToCart + count);
-    }
-  };
-
-  const onCountChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const count: number = parseInt(e.currentTarget.value);
-
-    if (count > 0) {
-      setCountToCart(count);
-    } else {
-      setCountToCart(1);
-    }
-  };
+  const {carts} = useContext(UserContext);
 
   const addProductToCart = (product: ProductInfo) => {
-    setIsProcessing(true);
+    /* setIsProcessing(true);
     const processData: ReturnData = addToCart(product, countToCart);
-    /* console.log({processData}); */
+
     const {ok, data, error} = processData;
     if (updateCartToContextAndLocalStorage) {
       updateCartToContextAndLocalStorage(data);
@@ -82,16 +50,11 @@ export const useProducts = () => {
         message: t("notifications.carts.addFailTitle"),
         description: t("notifications.carts.addFail", {product: product.name}),
       });
-    }
+    } */
   };
 
   return {
     carts,
-    totalPrice: Math.floor(totalPrice),
-    handleIncreaseOrDecrease,
-    onCountChange,
-    countToCart,
-    isProcessing,
     addProductToCart,
   };
 };

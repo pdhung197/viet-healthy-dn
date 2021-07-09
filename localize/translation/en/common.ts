@@ -20,6 +20,7 @@ export const common = {
     baseName: "Viet Healthy Da Nang",
     shopName: "Agent Huyen Do - Official agent of Viet Healthy in Da Nang",
     connectUs: "Connect with us",
+    contactUs: "Contact us",
     contact: "Contact Info",
     email: "phuyendole@gmail.com",
     hotline1: "0938 711 074",

@@ -5,3 +5,13 @@ html {
     Verdana, sans-serif, cursive;
   font-size: 62.5%;
 }
+
+#fb-root {
+  .fb_dialog.fb_dialog_advanced {
+    .fb_dialog_content {
+      iframe {
+        transform: scale(0.6);
+      }
+    }
+  }
+}

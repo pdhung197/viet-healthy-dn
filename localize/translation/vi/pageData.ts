@@ -5,6 +5,7 @@ export const pageData = {
     total: "Tổng",
     preOrderAvai: "Có thể đặt trước",
     addToCart: "Thêm",
+    pay: "Thanh toán",
     price: "Giá",
     quantity: "Số lượng",
     relates: "Sản phẩm liên quan",
@@ -35,5 +36,22 @@ export const pageData = {
     features: {
       title: "Sản phẩm nổi bật",
     },
+  },
+  cart: {
+    steps: {
+      cart: {
+        title: "Đơn hàng",
+        describe: "Thông tin đơn hàng",
+      },
+      payment: {
+        title: "Thông tin thanh toán",
+        describe: "Thông tin thanh toán",
+      },
+      finish: {
+        title: "Hoàn thành",
+        describe: "Hoàn tất đặt hàng",
+      },
+    },
+    remove: "Xóa",
   },
 };

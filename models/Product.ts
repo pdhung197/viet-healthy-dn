@@ -228,7 +228,7 @@ export type ProductListByCatInfo = {
   };
 };
 
-export interface ProductInCart extends Partial<ProductInfo> {
+export interface ProductInCart extends ProductInfo {
   quantity: number;
 }
 

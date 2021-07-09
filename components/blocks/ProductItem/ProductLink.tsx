@@ -14,11 +14,7 @@ type RouteLinkProps = {
   shallow?: boolean;
 };
 
-export const ProductLink = ({
-  children,
-  product,
-  shallow = true,
-}: RouteLinkProps) => {
+export const ProductLink = ({children, product}: RouteLinkProps) => {
   const router = useRouter();
   const {storeProductDetail} = useContext(UserContext);
   const {id, slug} = product;

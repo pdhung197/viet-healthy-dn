@@ -24,6 +24,7 @@ export const common = {
     shopName:
       "Đại lý Huyền Đỗ - Đại lý chính thức của Việt Healthy tại Đà Nẵng",
     connectUs: "Kết nối với chúng tôi",
+    contactUs: "Liên hệ",
     contact: "Thông tin chung",
     email:
       "Email: <a target='_blank' href='mailto:phuyendole@gmail.com'>phuyendole@gmail.com</a>",

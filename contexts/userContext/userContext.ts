@@ -1,15 +1,9 @@
 import {CategoryInfo} from "./../../models/Category";
-import {ProductInfo} from "./../../models/Product";
+import {ProductInCart, ProductInfo} from "./../../models/Product";
 import {createContext} from "react";
 
 export const UserContext = createContext({
-  carts: [] as any[],
-  addToCart: (product: any) => {
-    console.log({product});
-  },
-  removeFromCart: (products: Partial<any>[]) => {
-    console.log({products});
-  },
+  carts: [] as ProductInCart[],
   productsList: [] as ProductInfo[],
   storeProductsData: (products: any[]) => {
     console.log({products});
@@ -18,10 +12,10 @@ export const UserContext = createContext({
   storeCategoryList: (categoryList: CategoryInfo[]) => {
     console.log({categoryList});
   },
-  updateCartToContextAndLocalStorage: (updateCart: any[]) => {
+  updateCartToContextAndLocalStorage: (updateCart: ProductInCart[]) => {
     console.log({updateCart});
   },
-  productDetail: {} as Partial<ProductInfo>,
+  productDetail: {} as ProductInfo,
   storeProductDetail: (product: ProductInfo) => {
     console.log({product});
   },

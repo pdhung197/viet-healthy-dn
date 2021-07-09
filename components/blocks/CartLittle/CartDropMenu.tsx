@@ -2,14 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import {calPrice} from "../../../helpers/productsFnc";
+import {useCart} from "../../../hooks/useCart/useCart";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {CartActionType, CartItem} from "../../../models/Cart";
-import {ProductBase} from "../../../models/Product";
+import {ProductBase, ProductInCart} from "../../../models/Product";
 import {ProductLink} from "../ProductItem/ProductLink";
 
 type CartDropProps = {
   totalPrice: number;
-  carts: CartItem[];
+  carts: ProductInCart[];
   addOrRemoveCart: (
     cartAction: CartActionType,
     cartItem: any | Partial<CartItem>[]
@@ -22,13 +23,14 @@ export const CartDropMenu = ({
   addOrRemoveCart,
 }: CartDropProps) => {
   const {t, currentLang} = useTranslation();
+  const {removeFromCart} = useCart();
 
   if (!carts || !carts.length) return null;
 
   return (
     <div className="cart-dropdown">
       <div className="cart-dropdown__list">
-        {(carts || []).map((cartItem: CartItem) => {
+        {(carts || []).map((cartItem: ProductInCart) => {
           const {quantity, ...product} = cartItem;
           const {name, id, images, price} = product;
 
@@ -65,9 +67,7 @@ export const CartDropMenu = ({
                 </a>
               </ProductLink>
               <div className="cart-dropdown__cancel-btn">
-                <button onClick={() => addOrRemoveCart("remove", cartItem)}>
-                  X
-                </button>
+                <button onClick={() => removeFromCart(product)}>X</button>
               </div>
             </div>
           );

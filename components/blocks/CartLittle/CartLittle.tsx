@@ -2,19 +2,28 @@ import {ShoppingCartOutlined} from "@ant-design/icons";
 import {Button, Dropdown} from "antd";
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {useProducts} from "../../../hooks/useProducts/useProducts";
 
 import "./cart-litte.scss";
 import {CartDropMenu} from "./CartDropMenu";
 import Link from "next/link";
-import {CartItem} from "../../../models/Cart";
+import {ProductInCart} from "../../../models/Product";
+import {UserContext} from "../../../contexts/userContext/userContext";
+import {useContext} from "react";
 
 type CartLittleProps = {
   isMobile: boolean;
 };
 
 export const CartLittle = ({isMobile}: CartLittleProps) => {
-  const {carts, totalPrice} = useProducts();
+  const {carts} = useContext(UserContext);
+
+  const totalPrice = (carts || []).reduce(
+    (total: number, cartItem: ProductInCart) => {
+      const itemPrice = (cartItem.price as unknown as number) * 1;
+      return total + itemPrice * cartItem.quantity;
+    },
+    0
+  );
 
   const {t, currentLang} = useTranslation();
   const screens = useBreakpoint();
@@ -22,7 +31,8 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
   const isSmallestScreen = screens.xs && !screens.sm;
 
   const totalItems = carts.reduce(
-    (summary: number, cartItem: CartItem) => (summary += cartItem.quantity),
+    (summary: number, cartItem: ProductInCart) =>
+      (summary += cartItem.quantity),
     0
   );
 
@@ -34,7 +44,7 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
         ) : (
           <CartDropMenu
             carts={carts}
-            totalPrice={totalPrice}
+            totalPrice={Math.floor(totalPrice)}
             addOrRemoveCart={() => {}}
           />
         )
@@ -64,7 +74,8 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
               </p>
             )}
             <p className="cart-btn-content__price">
-              {totalPrice.toLocaleString(currentLang)} <span>VNĐ</span>
+              {Math.floor(totalPrice).toLocaleString(currentLang)}{" "}
+              <span>VNĐ</span>
             </p>
           </div>
         </Link>

@@ -9,6 +9,7 @@ import {BData, BreadCrumb} from "../../blocks/BreadCrumb/BreadCrumb";
 import {ProductCarousel} from "../../blocks/Carousels/ProductCarousel";
 import {ProductImages} from "../../blocks/Carousels/ProductImages";
 import {Container} from "../../blocks/Containers/Container";
+import {SocialContactBtns} from "../../blocks/Footer/SocialContactBtns";
 import {ProductBtns} from "../../blocks/ProductItem/ProductBtns";
 import {ProductPrice} from "../../blocks/ProductItem/ProductPrice";
 
@@ -65,11 +66,17 @@ export const ProductDetail = ({product}: ProductDetailProps) => {
                 />
               </div>
               <div className="product-detail__sale__quantity-block">
-                <span>{t("pageData.product.quantity")}</span>
                 <ProductBtns
+                  btns={["add-cart", "payment"]}
                   product={product}
                   className="product-detail__sale"
                 />
+              </div>
+              <div className="product-detail__sale__social">
+                <div className="product-detail__sale__social--contact">
+                  <span>{t("common.footer.contactUs")}:</span>
+                  <SocialContactBtns />
+                </div>
               </div>
             </div>
           </Col>
@@ -81,25 +88,27 @@ export const ProductDetail = ({product}: ProductDetailProps) => {
           </Col>
         </Row>
       </div>
-      <div className="product-relates">
-        <h2 className="product-relates__title">
-          {t("pageData.product.relates")}
-        </h2>
-        <ProductCarousel
-          className="product-relates__carousel"
-          data={relateProducts}
-          slidesToScroll={slideToDisplay}
-          slidesToShow={slideToDisplay}
-          infinite={relateProducts.length > slideToDisplay}
-          autoplay={true}
-          pauseOnHover={true}
-          pauseOnFocus={true}
-          swipeToSlide={true}
-          dots={false}
-          speed={1000}
-          rows={carouselRows}
-        />
-      </div>
+      {relateProducts && relateProducts.length && (
+        <div className="product-relates">
+          <h2 className="product-relates__title">
+            {t("pageData.product.relates")}
+          </h2>
+          <ProductCarousel
+            className="product-relates__carousel"
+            data={relateProducts}
+            slidesToScroll={slideToDisplay}
+            slidesToShow={slideToDisplay}
+            infinite={relateProducts.length > slideToDisplay}
+            autoplay={true}
+            pauseOnHover={true}
+            pauseOnFocus={true}
+            swipeToSlide={true}
+            dots={false}
+            speed={1000}
+            rows={carouselRows}
+          />
+        </div>
+      )}
     </Container>
   );
 };

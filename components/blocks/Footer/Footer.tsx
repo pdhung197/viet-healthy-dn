@@ -5,28 +5,9 @@ import {Container} from "../Containers/Container";
 
 import "./footer.scss";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {FacebookFilled, MessageFilled, PhoneFilled} from "@ant-design/icons";
 import Link from "next/link";
-import styled from "styled-components";
 import {FbEmbed} from "../FacebookContact/FbEmbed";
-
-const FaceBookIcon = styled(FacebookFilled)`
-  path {
-    fill: #3b5998;
-  }
-`;
-
-const MessengerIcon = styled(MessageFilled)`
-  path {
-    fill: #006aff;
-  }
-`;
-
-const PhoneIcon = styled(PhoneFilled)`
-  path {
-    fill: #ff0000;
-  }
-`;
+import {SocialContactBtns} from "./SocialContactBtns";
 
 export const Footer = () => {
   const {t} = useTranslation();
@@ -63,37 +44,7 @@ export const Footer = () => {
               <div className="bottom-blocks">
                 <p>{t("common.footer.connectUs")}</p>
                 <div className="footer__col__main-info--social">
-                  <a
-                    target="_blank"
-                    href="http://zalo.me/0938711074"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src="/images/icons/zalo-logo.png"
-                      alt={t("common.footer.shopName")}
-                    />
-                  </a>
-                  <a
-                    target="_blank"
-                    href="https://www.facebook.com/viethealthy.dn"
-                    rel="noopener noreferrer"
-                  >
-                    <FaceBookIcon />
-                  </a>
-                  <a
-                    href="http://m.me/viethealthy.dn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessengerIcon />
-                  </a>
-                  <a
-                    href="tel:0938711074"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <PhoneIcon />
-                  </a>
+                  <SocialContactBtns />
                 </div>
               </div>
             </Col>

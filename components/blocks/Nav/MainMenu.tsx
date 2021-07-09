@@ -28,7 +28,16 @@ export const MainMenu = ({mode = "horizontal"}: MainMenuProps) => {
       </Item>
       <SubMenu
         key={PageKeys.products}
-        title={<span>{t(`menu.${PageKeys.products}`)}</span>}
+        title={
+          mode === "horizontal" ? (
+            <MenuItemContent
+              path="/products"
+              label={t(`menu.${PageKeys.products}`)}
+            />
+          ) : (
+            <span>{t(`menu.${PageKeys.products}`)}</span>
+          )
+        }
         className={
           selectedKey.startsWith(PageKeys.products)
             ? `ant-menu-item-selected`

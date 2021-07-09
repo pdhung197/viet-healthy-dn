@@ -14,16 +14,7 @@ export const mutationAddCart = async (
     const dataCart: ProductInCart[] = JSON.parse(
       window.localStorage.getItem("cart") || "[]"
     );
-    const {
-      id,
-      name,
-      slug,
-      images,
-      price,
-      regular_price,
-      sale_price,
-      variations,
-    } = product;
+    const {id} = product;
     const productExistsInCartIndex = dataCart.findIndex(
       (prd: ProductInCart) => prd.id === id
     );
@@ -32,14 +23,7 @@ export const mutationAddCart = async (
         dataCart[productExistsInCartIndex].quantity + quantity;
     } else {
       dataCart.push({
-        id,
-        name,
-        slug,
-        images,
-        price,
-        regular_price,
-        sale_price,
-        variations,
+        ...product,
         quantity,
       });
     }

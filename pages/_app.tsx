@@ -1,9 +1,9 @@
-import "../assets/styles/antd-custom.less";
 import {Wrapper} from "../components/views/Wrapper/Wrapper";
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {Router} from "next/router";
 import NProgress from "nprogress"; //nprogress module
 
+import "../assets/styles/antd-custom.less";
 import "./../assets/styles/style.scss";
 import "nprogress/nprogress.css"; //styles of nprogress
 

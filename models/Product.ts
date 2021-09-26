@@ -2,6 +2,8 @@ import {ImageInfo} from "./Category";
 
 export type StockStatusType = "IN_STOCK" | "OUT_OF_STOCK" | "ON_BACKORDER";
 
+export type BtnType = "add-cart" | "payment" | "remove";
+
 export interface ProductBase {
   id: string | number;
   name: string;

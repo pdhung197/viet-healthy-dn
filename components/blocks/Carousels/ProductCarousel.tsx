@@ -3,7 +3,7 @@ import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 import React from "react";
 import {CarouselSettings} from "../../../models/Common";
 import {ProductInfo} from "../../../models/Product";
-import {ProductItem} from "../ProductItem/ProductItem";
+import {ProductItem} from "../../views/ProductItem/ProductItem";
 
 interface ProductCarouselProps extends CarouselSettings {
   data: ProductInfo[];

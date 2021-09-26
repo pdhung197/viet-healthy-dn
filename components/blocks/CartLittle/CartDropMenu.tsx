@@ -1,26 +1,20 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import {calPrice} from "../../../helpers/productsFnc";
 import {useCart} from "../../../hooks/useCart/useCart";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {CartActionType, CartItem} from "../../../models/Cart";
-import {ProductBase, ProductInCart} from "../../../models/Product";
-import {ProductLink} from "../ProductItem/ProductLink";
+import {ProductInCart} from "../../../models/Product";
+import {ProductLink} from "../../views/ProductItem/ProductLink";
 
 type CartDropProps = {
   totalPrice: number;
   carts: ProductInCart[];
-  addOrRemoveCart: (
-    cartAction: CartActionType,
-    cartItem: any | Partial<CartItem>[]
-  ) => void;
+  showRemoveBtn?: boolean;
 };
 
 export const CartDropMenu = ({
   totalPrice,
   carts,
-  addOrRemoveCart,
+  showRemoveBtn = true,
 }: CartDropProps) => {
   const {t, currentLang} = useTranslation();
   const {removeFromCart} = useCart();
@@ -66,9 +60,11 @@ export const CartDropMenu = ({
                   </div>
                 </a>
               </ProductLink>
-              <div className="cart-dropdown__cancel-btn">
-                <button onClick={() => removeFromCart(product)}>X</button>
-              </div>
+              {showRemoveBtn && (
+                <div className="cart-dropdown__cancel-btn">
+                  <button onClick={() => removeFromCart(product)}>X</button>
+                </div>
+              )}
             </div>
           );
         })}
@@ -82,16 +78,20 @@ export const CartDropMenu = ({
           {totalPrice.toLocaleString(currentLang)} VNĐ
         </span>
       </div>
-      <div className="cart-dropdown__btns">
-        <Link href="/cart">
-          <a className="cart-dropdown__btns--cart">{t("common.route.cart")}</a>
-        </Link>
-        <Link href="/payment">
-          <a className="cart-dropdown__btns--pay">
-            {t("common.route.payment")}
-          </a>
-        </Link>
-      </div>
+      {showRemoveBtn && (
+        <div className="cart-dropdown__btns">
+          <Link href="/cart?step=cart">
+            <a className="cart-dropdown__btns--cart">
+              {t("common.route.cart")}
+            </a>
+          </Link>
+          <Link href="/cart?step=payment">
+            <a className="cart-dropdown__btns--pay">
+              {t("common.route.payment")}
+            </a>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

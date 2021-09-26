@@ -5,10 +5,12 @@ import "./ContactBtns.scss";
 import {PhoneIcon} from "../SVGIcons/PhoneIcon";
 import {FbEmbed} from "../FacebookContact/FbEmbed";
 import useOutsideClick from "../../../hooks/useClickOutside/useClickOutside";
+import {useRouter} from "next/router";
 
 export const ContactBtns = () => {
   const [isMessageBoxActive, setIsMessageBoxActive] = useState(false);
   const messageBoxRef = useRef<LegacyRef<HTMLDivElement> | undefined>();
+  const {pathname = ""} = useRouter();
 
   const handleSwitchActiveMessageBox = () => {
     setIsMessageBoxActive(!isMessageBoxActive);
@@ -22,7 +24,11 @@ export const ContactBtns = () => {
   return (
     <>
       <ScrollToTop />
-      <a href="tel:0938711074" rel="noopener noreferrer" className="phone-call">
+      <a
+        href="tel:0938711074"
+        rel="noopener noreferrer"
+        className={`phone-call ${pathname.split("/")[1]}`}
+      >
         <PhoneIcon />
         <span>0938 711 074</span>
       </a>

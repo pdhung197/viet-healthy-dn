@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import {Button, Col, Row} from "antd";
-import {PhoneFilled, UserOutlined} from "@ant-design/icons";
-import {Container} from "../Containers/Container";
-import {theme} from "../../../configs/theme/theme";
+import { Button, Col, Row } from "antd";
+import { PhoneFilled, UserOutlined } from "@ant-design/icons";
+import { Container } from "../Containers/Container";
+import { theme } from "../../../configs/theme/theme";
 
 const StyledHeader = styled.header`
   background-color: ${theme.light};
@@ -63,13 +63,14 @@ export const Header = () => {
     <StyledHeader>
       <Container>
         <Row justify="space-between" align="middle">
-          <Col sm={{span: 24}} md={{span: 12}}>
+          <Col sm={{ span: 24 }} md={{ span: 12 }}>
             <HeaderLink
               type="link"
+              target="_blank"
               icon={<InlineIcon src="/images/icons/zalo.png" alt="Zalo" />}
               href="http://zalo.me/0938711074"
             >
-              Zalo: Windy
+              Zalo: VietHealthy Đà Nẵng - Đại lý chính thức
             </HeaderLink>
             <Seperator />
             <HeaderLink
@@ -80,7 +81,7 @@ export const Header = () => {
               0938 711 074
             </HeaderLink>
           </Col>
-          <Col sm={{span: 24}} md={{span: 12}}>
+          <Col sm={{ span: 24 }} md={{ span: 12 }}>
             <RightGroup>
               <LoginBtn icon={<UserOutlined />}>Login</LoginBtn>
             </RightGroup>

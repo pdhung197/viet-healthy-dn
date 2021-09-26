@@ -1,3 +1,4 @@
+import {ProductInCart} from "./../models/Product";
 import {
   ProductInfo,
   ProductListByCatInfo,
@@ -64,3 +65,9 @@ export const filterProductsForSlide = (
     productsByCat,
   };
 };
+
+export const calculateCartPrice = (carts: ProductInCart[]) =>
+  (carts || []).reduce((total: number, cartItem: ProductInCart) => {
+    const itemPrice = (cartItem.price as unknown as number) * 1;
+    return total + itemPrice * cartItem.quantity;
+  }, 0);

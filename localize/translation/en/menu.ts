@@ -8,6 +8,7 @@ export const menu = {
   [PageKeys.contact]: "Contact",
   [PageKeys.terms]: "Terms",
   [PageKeys.share]: "Sharing",
+  cats: "Categories list",
   allCats: "All",
   "suc-khoe": "For Health",
   "gia-dung": "Household Article",

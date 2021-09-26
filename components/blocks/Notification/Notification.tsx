@@ -1,4 +1,4 @@
-import {notification} from "antd";
+import { notification } from "antd";
 
 import "./notification.scss";
 
@@ -18,5 +18,6 @@ export const openNotificationWithIcon = ({
     message,
     description,
     className: `vh-notification vh-notification__${notifiType}`,
+    top: 75,
   });
 };

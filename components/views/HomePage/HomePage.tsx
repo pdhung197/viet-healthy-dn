@@ -1,26 +1,27 @@
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 import Link from "next/link";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   filterProductsForSlide,
   orderProductsByCat,
 } from "../../../helpers/productsFnc";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {HomeProps} from "../../../models/PageProps";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
+import { HomeProps, PageKeys } from "../../../models/PageProps";
 import {
   ProductListByCatInfo,
   ProductsForSlideType,
 } from "../../../models/Product";
-import {ProductCarousel} from "../../blocks/Carousels/ProductCarousel";
-import {Container} from "../../blocks/Containers/Container";
-import {Benefits} from "./Benefits";
+import { ProductCarousel } from "../../blocks/Carousels/ProductCarousel";
+import { Container } from "../../blocks/Containers/Container";
+import { VHHead } from "../../blocks/Head/VHHead";
+import { Benefits } from "./Benefits";
 
 import "./home.scss";
 
 export const HomePage = (props: Partial<HomeProps>) => {
-  const {productsList} = props;
-  const {md, lg} = useBreakpoint();
-  const {t} = useTranslation();
+  const { productsList } = props;
+  const { md, lg } = useBreakpoint();
+  const { t } = useTranslation();
   const [dataForSlide, setDataForSlide] = useState<ProductsForSlideType>(
     {} as ProductsForSlideType
   );
@@ -37,17 +38,18 @@ export const HomePage = (props: Partial<HomeProps>) => {
     console.log("Continue Run");
     const productsListByCat = (): ProductListByCatInfo =>
       orderProductsByCat(productsList || []);
-    const {features, productsByCat} = filterProductsForSlide(
+    const { features, productsByCat } = filterProductsForSlide(
       productsListByCat()
     );
-    setDataForSlide({features, productsByCat});
+    setDataForSlide({ features, productsByCat });
   }, [productsList]);
 
-  const {features: featuresData = [], productsByCat: productsByCatData = {}} =
+  const { features: featuresData = [], productsByCat: productsByCatData = {} } =
     dataForSlide;
 
   return (
     <>
+      <VHHead title={t(`menu.${[PageKeys.home]}`)} />
       <Benefits />
       <Container className="features-products">
         <h2 className="features-products__title">
@@ -69,7 +71,7 @@ export const HomePage = (props: Partial<HomeProps>) => {
         />
       </Container>
       {(Object.keys(productsByCatData) || []).map((catKey: string) => {
-        const {catName, catSlug, products} = productsByCatData[catKey];
+        const { catName, catSlug, products } = productsByCatData[catKey];
 
         return (
           <Container className="cat-products" key={catKey}>

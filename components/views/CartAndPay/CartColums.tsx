@@ -2,8 +2,9 @@ import {Col, Row} from "antd";
 import React from "react";
 import {TableColumn} from "../../../models/Common";
 import {ProductInCart} from "../../../models/Product";
-import {ProductBtns} from "../../blocks/ProductItem/ProductBtns";
-import {ProductPrice} from "../../blocks/ProductItem/ProductPrice";
+import {ProductBtns} from "../ProductItem/ProductBtns";
+import {ProductPrice} from "../ProductItem/ProductPrice";
+import {CartQuantityUpdate} from "./CartQuantityUpdate";
 
 const ProductCol = ({cartItem}: {cartItem: ProductInCart}) => {
   const {quantity, ...product} = cartItem;
@@ -33,13 +34,14 @@ const ProductCol = ({cartItem}: {cartItem: ProductInCart}) => {
             className="cart-cell__detail__btn"
             md={{span: 0}}
             sm={{span: 24}}
+            xs={{span: 24}}
           >
             <ProductPrice className="cart-cell__detail" product={product} />
+            <CartQuantityUpdate product={cartItem} />
             <ProductBtns
-              defaultCount={quantity}
-              className="cart-cell__detail"
               product={product}
               btns={["remove"]}
+              className="cart-cell__detail"
             />
           </Col>
         </Row>
@@ -74,15 +76,8 @@ export const cartColumnsDesktop: TableColumn[] = [
     title: "Số lượng",
     dataIndex: "quantity",
     key: "quantity",
-    render: (text: string, cartItem: ProductInCart) => {
-      const {quantity, ...product} = cartItem;
-      return (
-        <ProductBtns
-          defaultCount={quantity}
-          className="cart-cell__detail"
-          product={product}
-        />
-      );
-    },
+    render: (text: string, cartItem: ProductInCart) => (
+      <CartQuantityUpdate product={cartItem} />
+    ),
   },
 ];

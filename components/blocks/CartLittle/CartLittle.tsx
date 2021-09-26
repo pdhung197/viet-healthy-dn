@@ -5,10 +5,11 @@ import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 
 import "./cart-litte.scss";
 import {CartDropMenu} from "./CartDropMenu";
-import Link from "next/link";
 import {ProductInCart} from "../../../models/Product";
 import {UserContext} from "../../../contexts/userContext/userContext";
 import {useContext} from "react";
+import {useRouter} from "next/router";
+import {calculateCartPrice} from "../../../helpers/productsFnc";
 
 type CartLittleProps = {
   isMobile: boolean;
@@ -16,14 +17,9 @@ type CartLittleProps = {
 
 export const CartLittle = ({isMobile}: CartLittleProps) => {
   const {carts} = useContext(UserContext);
+  const router = useRouter();
 
-  const totalPrice = (carts || []).reduce(
-    (total: number, cartItem: ProductInCart) => {
-      const itemPrice = (cartItem.price as unknown as number) * 1;
-      return total + itemPrice * cartItem.quantity;
-    },
-    0
-  );
+  const totalPrice = calculateCartPrice(carts);
 
   const {t, currentLang} = useTranslation();
   const screens = useBreakpoint();
@@ -42,11 +38,7 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
         isMobile || !carts || !carts.length ? (
           <></>
         ) : (
-          <CartDropMenu
-            carts={carts}
-            totalPrice={Math.floor(totalPrice)}
-            addOrRemoveCart={() => {}}
-          />
+          <CartDropMenu carts={carts} totalPrice={Math.floor(totalPrice)} />
         )
       }
       placement="bottomRight"
@@ -54,6 +46,7 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
       <Button
         className="cart-btn"
         shape="round"
+        onClick={() => router.push("/cart?step=cart")}
         icon={
           isSmallestScreen ? (
             <></>
@@ -66,19 +59,17 @@ export const CartLittle = ({isMobile}: CartLittleProps) => {
         }
         size="large"
       >
-        <Link href="/cart">
-          <div className="cart-btn-content">
-            {!isSmallestScreen && (
-              <p className="cart-btn-content__title">
-                {t("common.route.cart").toUpperCase()}
-              </p>
-            )}
-            <p className="cart-btn-content__price">
-              {Math.floor(totalPrice).toLocaleString(currentLang)}{" "}
-              <span>VNĐ</span>
+        <div className="cart-btn-content">
+          {!isSmallestScreen && (
+            <p className="cart-btn-content__title">
+              {t("common.route.cart").toUpperCase()}
             </p>
-          </div>
-        </Link>
+          )}
+          <p className="cart-btn-content__price">
+            {Math.floor(totalPrice).toLocaleString(currentLang)}{" "}
+            <span>VNĐ</span>
+          </p>
+        </div>
       </Button>
     </Dropdown>
   );

@@ -1,6 +1,6 @@
 import {Col, Row} from "antd";
 import {ProductInfo} from "../../../models/Product";
-import {ProductItem} from "../../blocks/ProductItem/ProductItem";
+import {ProductItem} from "../ProductItem/ProductItem";
 
 export const ProductsList = ({data}: {data: ProductInfo[]}) => {
   return (

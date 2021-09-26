@@ -49,7 +49,25 @@ export const useCart = () => {
     }
   };
 
-  const removeFromCart = (product: Partial<ProductInfo>) => {
+  const removeFromCart = (product?: Partial<ProductInfo>) => {
+    if (!product) {
+      try {
+        updateCartToContextAndLocalStorage([]);
+
+        return openNotificationWithIcon({
+          notifiType: "success",
+          message: t("notifications.carts.removeSuccessTitle"),
+          description: t("notifications.carts.removeSuccessAll"),
+        });
+      } catch {
+        return openNotificationWithIcon({
+          notifiType: "error",
+          message: t("notifications.carts.removeFailTitle"),
+          description: t("notifications.carts.removeFailAll"),
+        });
+      }
+    }
+
     const productExistsInCartIndex = carts.findIndex(
       (prd: ProductInCart) => prd.id === product.id
     );
@@ -80,17 +98,29 @@ export const useCart = () => {
     }
   };
 
-  const updateProductToCart = (
-    productWithQuantity: ProductInCart,
-    type: "add" | "remove"
-  ) => {};
+  const updateProductInCart = (productWithQuantity: ProductInCart) => {
+    try {
+      const {id} = productWithQuantity;
+      const productExistsInCartIndex = carts.findIndex(
+        (prd: ProductInCart) => prd.id === id
+      );
 
-  const getCart = () => {};
+      if (productExistsInCartIndex < 0) return;
 
-  const updateCartToContext = () => {};
+      return updateCartToContextAndLocalStorage([
+        ...carts.slice(0, productExistsInCartIndex),
+        {
+          ...carts[productExistsInCartIndex],
+          quantity: productWithQuantity.quantity,
+        },
+        ...carts.slice(productExistsInCartIndex + 1),
+      ]);
+    } catch (error) {}
+  };
 
   return {
     addToCart,
     removeFromCart,
+    updateProductInCart,
   };
 };

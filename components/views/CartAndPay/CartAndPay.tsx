@@ -1,6 +1,7 @@
 import {Steps} from "antd";
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
-import React, {ReactNode, useState} from "react";
+import {useRouter} from "next/router";
+import React, {ReactNode, useEffect, useState} from "react";
 import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
 import {Container} from "../../blocks/Containers/Container";
 
@@ -42,8 +43,12 @@ const stepDatas: StepData[] = [
   },
 ];
 
-export const CartAndPay = ({step = "cart"}: CartAndPayProps) => {
+export const CartAndPay = () => {
   const {t} = useTranslation();
+  const router = useRouter();
+  const {
+    query: {step = "cart"},
+  } = router;
   const [current, setCurrent] = useState(
     stepDatas.find((stepData: StepData) => stepData.step === step)?.index || 0
   );
@@ -52,8 +57,21 @@ export const CartAndPay = ({step = "cart"}: CartAndPayProps) => {
   const isMobile = !screens.md;
 
   const onChange = (currentValue: number) => {
-    setCurrent(currentValue);
+    return router.push(
+      `/cart?step=${stepDatas[currentValue].step}`,
+      undefined,
+      {shallow: true}
+    );
   };
+
+  useEffect(() => {
+    const nextCurrent =
+      stepDatas.find((stepData: StepData) => stepData.step === step)?.index ||
+      0;
+    if (nextCurrent !== current) {
+      setCurrent(nextCurrent);
+    }
+  }, [step]);
 
   return (
     <Container>
@@ -74,7 +92,7 @@ export const CartAndPay = ({step = "cart"}: CartAndPayProps) => {
 
           return (
             <Step
-              // disabled={status === "wait"}
+              disabled={status === "wait"}
               key={stepData.step}
               status={status}
               title={t(`pageData.cart.steps.${stepData.step}.title`)}
@@ -82,12 +100,7 @@ export const CartAndPay = ({step = "cart"}: CartAndPayProps) => {
           );
         })}
       </Steps>
-      <div className="steps-content">
-        <h2 className="steps-content__title">
-          {t(`pageData.cart.steps.${stepDatas[current].step}.describe`)}
-        </h2>
-        {stepDatas[current].component()}
-      </div>
+      <div className="steps-content">{stepDatas[current].component()}</div>
     </Container>
   );
 };

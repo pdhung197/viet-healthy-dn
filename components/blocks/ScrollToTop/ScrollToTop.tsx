@@ -1,3 +1,4 @@
+import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import {debounce} from "../../../helpers/common";
 import {ScrollIcon} from "./ScrollIcon";
@@ -6,6 +7,7 @@ import "./ScrollToTop.scss";
 
 export const ScrollToTop = () => {
   const [isShow, setIsShow] = useState(false);
+  const {pathname = ""} = useRouter();
 
   const handleScrollToTop = () => {
     if (typeof window !== "undefined" && window) {
@@ -42,7 +44,9 @@ export const ScrollToTop = () => {
   return (
     <button
       onClick={handleScrollToTop}
-      className={`scroll-top ${isShow ? "" : "hidden"}`}
+      className={`scroll-top ${isShow ? "" : "hidden"} ${
+        pathname.split("/")[1]
+      }`}
     >
       <ScrollIcon />
     </button>

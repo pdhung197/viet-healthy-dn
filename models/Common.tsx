@@ -31,3 +31,10 @@ export interface TableColumn {
   align?: "left" | "right" | "center";
   render?: (text: string, record: any) => JSX.Element;
 }
+
+export type SelectData = {
+  value: string;
+  label: string;
+  disabled?: boolean;
+  fullLabel?: string;
+};

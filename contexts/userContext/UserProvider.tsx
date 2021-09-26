@@ -9,7 +9,6 @@ import {fetchCategoryList} from "../../services/apis/categoryApis";
 import {UserContext} from "./userContext";
 
 export const UserProvider = ({children}: CommonProps) => {
-  const {t} = useTranslation();
   const [productsList, setProducts] = useState<any[]>([]);
   const [carts, setCarts] = useState<any[]>([]);
   const [categories, setCategories] = useState<CategoryInfo[]>([]);

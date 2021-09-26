@@ -32,4 +32,8 @@ export const common = {
     quickLink: "Quick links",
     fanPage: "Fanpage",
   },
+  validation: {
+    isRequired: "Please enter {{fieldName}}!",
+  },
+  waiting: "Please wait!",
 };

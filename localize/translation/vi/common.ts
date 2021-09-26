@@ -39,4 +39,8 @@ export const common = {
     quickLink: "Liên kết nhanh",
     fanPage: "Fanpage",
   },
+  validation: {
+    isRequired: "Vui lòng nhập {{fieldName}}!",
+  },
+  waiting: "Vui lòng đợi!",
 };

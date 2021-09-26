@@ -1,4 +1,4 @@
-import {PageKeys} from "../../../models/PageProps";
+import { PageKeys } from "../../../models/PageProps";
 
 export const menu = {
   [PageKeys.home]: "Home",
@@ -16,5 +16,5 @@ export const menu = {
   "healthy-drink": "Healthy drink",
   "tour-thai-doc": "Detox Tour",
   "kien-thuc": "Book",
-  khac: "Other",
+  zkhac: "Other",
 };

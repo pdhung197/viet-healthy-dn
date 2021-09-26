@@ -70,20 +70,27 @@ export const Header = () => {
               icon={<InlineIcon src="/images/icons/zalo.png" alt="Zalo" />}
               href="http://zalo.me/0938711074"
             >
-              Zalo: VietHealthy Đà Nẵng - Đại lý chính thức
+              Zalo: VietHealthy Đà Nẵng
             </HeaderLink>
-            <Seperator />
+            {/* <Seperator />
             <HeaderLink
               type="link"
               icon={<PhoneFilled />}
               href="tel:0938711074"
             >
               0938 711 074
-            </HeaderLink>
+            </HeaderLink> */}
           </Col>
           <Col sm={{ span: 24 }} md={{ span: 12 }}>
             <RightGroup>
-              <LoginBtn icon={<UserOutlined />}>Login</LoginBtn>
+              <HeaderLink
+                type="link"
+                icon={<PhoneFilled />}
+                href="tel:0938711074"
+              >
+                0938 711 074
+              </HeaderLink>
+              {/* <LoginBtn icon={<UserOutlined />}>Login</LoginBtn> */}
             </RightGroup>
           </Col>
         </Row>

@@ -1,4 +1,4 @@
-import {ProductInCart} from "./../models/Product";
+import { ProductInCart } from "./../models/Product";
 import {
   ProductInfo,
   ProductListByCatInfo,
@@ -14,9 +14,9 @@ export const orderProductsByCat = (
 ): ProductListByCatInfo => {
   const productList: ProductListByCatInfo = products.reduce(
     (productsByCat: ProductListByCatInfo, product: ProductInfo) => {
-      const {categories} = product;
+      const { categories } = product;
       (categories || []).forEach((category) => {
-        const {id, name, slug} = category;
+        const { id, name, slug } = category;
         if (slug === "uncategorized") {
           return;
         }
@@ -33,7 +33,12 @@ export const orderProductsByCat = (
         productsByCat[slug].products.push(product);
       });
 
-      return productsByCat;
+      return Object.keys(productsByCat)
+        .sort()
+        .reduce((obj: ProductListByCatInfo, key: string) => {
+          obj[key] = productsByCat[key];
+          return obj;
+        }, {});
     },
     {}
   );
@@ -48,7 +53,7 @@ export const filterProductsForSlide = (
   const productsByCat: ProductListByCatInfo = {};
 
   (Object.keys(productsListByCat) || []).map((catKey: string) => {
-    const {products} = productsListByCat[catKey];
+    const { products } = productsListByCat[catKey];
     const featureProducts = products.filter(
       (product: ProductInfo) => product.featured
     );

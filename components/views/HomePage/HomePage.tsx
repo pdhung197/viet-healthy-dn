@@ -31,11 +31,9 @@ export const HomePage = (props: Partial<HomeProps>) => {
   const carouselRows = md ? 1 : 2;
 
   useEffect(() => {
-    console.log("Run");
     if (dataForSlide && Object.keys(dataForSlide).length) {
       return;
     }
-    console.log("Continue Run");
     const productsListByCat = (): ProductListByCatInfo =>
       orderProductsByCat(productsList || []);
     const { features, productsByCat } = filterProductsForSlide(
@@ -49,7 +47,7 @@ export const HomePage = (props: Partial<HomeProps>) => {
 
   return (
     <>
-      <VHHead title={t(`menu.${[PageKeys.home]}`)} />
+      <VHHead />
       <Benefits />
       <Container className="features-products">
         <h2 className="features-products__title">

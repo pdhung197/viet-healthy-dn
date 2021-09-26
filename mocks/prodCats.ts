@@ -57,7 +57,7 @@ export const prodCats: ProdCatType[] = [
   },
   {
     id: 7,
-    key: "khac",
+    key: "zkhac",
     label: {
       en: "Other",
       vi: "Khác",

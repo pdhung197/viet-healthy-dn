@@ -80,6 +80,7 @@ export const pageData = {
       finish: "Thank you for shopping at Viet Healthy Danang.",
       callback:
         "Viet Healthy Danang staff will contact to confirm the order as soon as possible.",
+      yourOrder: "Your order number is",
       phone:
         "Any questions, please call <a href='tel:0938711074'>0938 711 074</a> or Zalo <a target='_blank' href='http://zalo.me/0938711074'>VietHealthy Đà Nẵng - Đại lý chính thức</a>",
     },

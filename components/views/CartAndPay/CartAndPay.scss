@@ -448,9 +448,20 @@
   h3 {
     font-size: 2rem;
     width: 70%;
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
     margin-bottom: 2rem;
+
+    + p {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: $black;
+
+      span {
+        color: $danger-color;
+        font-size: 2rem;
+      }
+    }
   }
 
   p {

@@ -62,7 +62,7 @@ export interface CustomerForm {
   provinces: SelectData[];
   districts: SelectData[];
   wards: SelectData[];
-  onFormSubmit: () => Promise<boolean>;
+  onFormSubmit: () => Promise<any>;
   isLoading: boolean;
 }
 
@@ -199,7 +199,6 @@ export const useCustomer = (): CustomerForm => {
   };
 
   const addNewCustomer = (newCustomer: CustomerCreateInfo) => {
-    console.log({ newCustomer });
     return createNewCustomer(newCustomer);
   };
 
@@ -373,11 +372,11 @@ export const useCustomer = (): CustomerForm => {
             },
           ],
         };
-        console.log({ newOrder });
         NProgress.start();
         return submitNewOrder(newOrder);
       })
       .then((data) => {
+        const { number } = data;
         updateCartToContextAndLocalStorage([]);
         setCustomer({
           name: "",
@@ -391,13 +390,13 @@ export const useCustomer = (): CustomerForm => {
         });
         NProgress.done();
         setIsLoading(false);
-        return true;
+        return number;
       })
       .catch((errorInfo) => {
         console.log({ errorInfo });
         NProgress.done();
         setIsLoading(false);
-        return false;
+        return null;
       });
   };
 

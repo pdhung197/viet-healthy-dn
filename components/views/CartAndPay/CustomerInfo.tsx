@@ -1,11 +1,11 @@
-import {Form, Input} from "antd";
+import { Form, Input } from "antd";
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 import React from "react";
-import {CustomerForm} from "../../../hooks/useCustomer/useCustomer";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {InputSelect} from "../../blocks/Forms/InputSelect";
+import { CustomerForm } from "../../../hooks/useCustomer/useCustomer";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
+import { InputSelect } from "../../blocks/Forms/InputSelect";
 
-const {TextArea} = Input;
+const { TextArea } = Input;
 
 interface CustomerInfoProps extends CustomerForm {}
 
@@ -18,16 +18,16 @@ export const CustomerInfo = ({
   districts,
   wards,
 }: CustomerInfoProps) => {
-  const {md} = useBreakpoint();
-  const {t} = useTranslation();
-  console.log({customer});
+  const { md } = useBreakpoint();
+  const { t } = useTranslation();
+
   return (
     <Form
       className="customer-form"
       form={form}
       name="customer-info"
-      labelCol={{span: md ? 8 : 24}}
-      wrapperCol={{span: 16}}
+      labelCol={{ span: md ? 8 : 24 }}
+      wrapperCol={{ span: 16 }}
       initialValues={customer}
       labelAlign="left"
       size="large"

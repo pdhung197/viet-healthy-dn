@@ -41,12 +41,12 @@ export const pageData = {
   cart: {
     steps: {
       cart: {
-        title: "Đơn hàng",
+        title: "Chi tiết đơn hàng",
         describe: "Thông tin đơn hàng",
       },
       payment: {
-        title: "Thông tin thanh toán",
-        describe: "Thông tin thanh toán",
+        title: "Thông tin giao hàng",
+        describe: "Thông tin giao hàng",
         customerInfo: "Thông tin khách hàng",
         paymentMethod: "Hình thức thanh toán",
       },
@@ -107,6 +107,7 @@ export const pageData = {
     },
     finishedForm: {
       finish: "Cám ơn quý khách đã mua hàng tại Việt Healthy Đà Nẵng.",
+      yourOrder: "Mã đơn hàng của quý khách là",
       callback:
         "Nhân viên Việt Healthy Đà Nẵng sẽ liên lạc để xác nhận đơn hàng trong thời gian sớm nhất.",
       phone:

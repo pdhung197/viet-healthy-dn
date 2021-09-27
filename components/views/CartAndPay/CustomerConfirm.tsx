@@ -21,9 +21,11 @@ export const CustomerConfirm = () => {
   const { t } = useTranslation();
 
   const handleSubmitOrder = async () => {
-    const submitSuccess = await customerForm.onFormSubmit();
-    if (submitSuccess) {
-      router.push("/cart?step=finish", undefined, { shallow: true });
+    const orderNumber = await customerForm.onFormSubmit();
+    if (orderNumber) {
+      router.push(`/cart?step=finish&order=${orderNumber}`, undefined, {
+        shallow: true,
+      });
     }
   };
 

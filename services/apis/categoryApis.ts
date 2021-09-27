@@ -1,10 +1,12 @@
-import {axiosClient} from "./../../utils/axiosClient";
-import {CategoryInfo, CategoryParams} from "./../../models/Category";
+import { axiosClient } from "./../../utils/axiosClient";
+import { CategoryInfo, CategoryParams } from "./../../models/Category";
 
 export const categoryApiUrl = "/products/categories";
 
 export const fetchCategoryList = async (
-  params: CategoryParams = {}
+  params: CategoryParams = {
+    per_page: 100,
+  }
 ): Promise<CategoryInfo[]> => {
   const categoryList = await axiosClient({
     url: categoryApiUrl,

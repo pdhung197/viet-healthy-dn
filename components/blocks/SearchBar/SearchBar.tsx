@@ -1,15 +1,15 @@
-import {Input} from "antd";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
+import { Input } from "antd";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
 
 import "./searchbar.scss";
 
-const {Search} = Input;
+const { Search } = Input;
 
 export const SearchBar = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const onSearch = (value: string) => {
-    console.log({value});
+    console.log({ value });
   };
 
   return (
@@ -19,6 +19,7 @@ export const SearchBar = () => {
       allowClear
       enterButton={t("common.form.searchBtn")}
       onSearch={onSearch}
+      disabled={true}
     />
   );
 };

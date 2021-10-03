@@ -9,7 +9,7 @@ type BrandProps = {
   mode?: "vertical" | "horizontal";
 };
 
-export const Brand = ({mode = "horizontal"}: BrandProps) => {
+export const Brand = ({ mode = "horizontal" }: BrandProps) => {
   return (
     <div className="menu-logo">
       <LogoLink href="/">
@@ -17,8 +17,8 @@ export const Brand = ({mode = "horizontal"}: BrandProps) => {
           <img
             src={
               mode === "horizontal"
-                ? "/images/logo313x200.png"
-                : "/images/logoVHY02_200.png"
+                ? "/images/logo313.png"
+                : "/images/logo313.png"
             }
             alt="Logo"
           />

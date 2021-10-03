@@ -1,3 +1,4 @@
+import { ViewModes } from "./../../../models/Common";
 import { CartColumnKey } from "../../../models/Cart";
 import { BenefitKeys } from "../../../models/PageProps";
 
@@ -10,6 +11,11 @@ export const pageData = {
     price: "Giá",
     quantity: "Số lượng",
     relates: "Sản phẩm liên quan",
+    showMode: "Hiển thị",
+    viewMode: {
+      [ViewModes.grid]: "dạng lưới",
+      [ViewModes.list]: "danh sách",
+    },
   },
   homePage: {
     benefits: {

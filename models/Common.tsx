@@ -1,5 +1,5 @@
-import {ColumnTitle} from "antd/lib/table/interface";
-import {ReactNode} from "react";
+import { ColumnTitle } from "antd/lib/table/interface";
+import { ReactNode } from "react";
 
 export type CommonProps = {
   children: ReactNode;
@@ -38,3 +38,8 @@ export type SelectData = {
   disabled?: boolean;
   fullLabel?: string;
 };
+
+export enum ViewModes {
+  grid = "grid",
+  list = "list",
+}

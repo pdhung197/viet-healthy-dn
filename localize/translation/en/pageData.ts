@@ -1,4 +1,5 @@
 import { CartColumnKey } from "../../../models/Cart";
+import { ViewModes } from "../../../models/Common";
 
 export const pageData = {
   product: {
@@ -9,6 +10,11 @@ export const pageData = {
     price: "Price",
     quantity: "Quantity",
     relates: "Relate products",
+    showMode: "Show as",
+    viewMode: {
+      [ViewModes.grid]: "grid",
+      [ViewModes.list]: "list",
+    },
   },
   cart: {
     steps: {

@@ -37,20 +37,16 @@ export const SearchBar = () => {
     );
 
   return (
-    <div className="search-group">
-      <Dropdown overlay={menu} placement="bottomLeft" trigger={["click"]}>
-        <Search
-          className="search-group__searchbar"
-          placeholder={t("common.form.search")}
-          allowClear
-          enterButton={t("common.form.searchBtn")}
-          onSearch={onSearch}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            onChange(event.target.value)
-          }
-          disabled={true}
-        />
-      </Dropdown>
-    </div>
+    <Search
+      className="search-group__searchbar"
+      placeholder={t("common.form.search")}
+      allowClear
+      enterButton={t("common.form.searchBtn")}
+      onSearch={onSearch}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        onChange(event.target.value)
+      }
+      disabled={true}
+    />
   );
 };

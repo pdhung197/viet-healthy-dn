@@ -48,6 +48,7 @@ export const SearchBar = () => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             onChange(event.target.value)
           }
+          disabled={true}
         />
       </Dropdown>
     </div>

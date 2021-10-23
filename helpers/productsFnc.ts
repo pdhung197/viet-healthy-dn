@@ -76,3 +76,20 @@ export const calculateCartPrice = (carts: ProductInCart[]) =>
     const itemPrice = (cartItem.price as unknown as number) * 1;
     return total + itemPrice * cartItem.quantity;
   }, 0);
+
+export const checkIfProductImgExists = (src: string) => {
+  const img = new Image();
+  img.src = src;
+
+  if (img.complete) {
+    return true;
+  } else {
+    img.onload = () => {
+      return true;
+    };
+
+    img.onerror = () => {
+      return false;
+    };
+  }
+};

@@ -219,6 +219,23 @@
   }
 }
 
+.viewmode-list {
+  /* .ant-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  } */
+  /* .product-card {
+    &__describ {
+      display: flex;
+      flex-direction: row;
+
+      h4 {
+        display: inline;
+      }
+    }
+  } */
+}
+
 @media screen and (min-width: $sm) {
   .product-card {
     &__prod-btns {

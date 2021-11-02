@@ -1,6 +1,6 @@
 import React from "react";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {ProductInfo} from "../../../models/Product";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
+import { ProductInfo } from "../../../models/Product";
 
 type ProductPriceProps = {
   product: ProductInfo;
@@ -11,22 +11,32 @@ export const ProductPrice = ({
   product,
   className = "product-card",
 }: ProductPriceProps) => {
-  const {sale_price, regular_price, price} = product;
-  const {currentLang} = useTranslation();
+  const { sale_price, regular_price, price, status } = product;
+  const { currentLang, t } = useTranslation();
 
   return (
     <h5 className={`${className}__price`}>
-      {sale_price && (
-        <del>
-          {((regular_price as unknown as number) / 1 || 0).toLocaleString(
-            currentLang
+      {status === "private" ? (
+        <span className={`${className}__price--private`}>
+          <del>{t("common.orderOnline")}</del>
+        </span>
+      ) : (
+        <>
+          {sale_price && (
+            <del>
+              {((regular_price as unknown as number) / 1 || 0).toLocaleString(
+                currentLang
+              )}
+            </del>
           )}
-        </del>
+          <span>
+            {((price as unknown as number) / 1 || 0).toLocaleString(
+              currentLang
+            )}{" "}
+            <sup>VNĐ</sup>
+          </span>
+        </>
       )}
-      <span>
-        {((price as unknown as number) / 1 || 0).toLocaleString(currentLang)}{" "}
-        <sup>VNĐ</sup>
-      </span>
     </h5>
   );
 };

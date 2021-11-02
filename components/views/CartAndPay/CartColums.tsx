@@ -1,40 +1,34 @@
-import {Col, Row} from "antd";
+import { Col, Row } from "antd";
 import React from "react";
-import {TableColumn} from "../../../models/Common";
-import {ProductInCart} from "../../../models/Product";
-import {ProductBtns} from "../ProductItem/ProductBtns";
-import {ProductPrice} from "../ProductItem/ProductPrice";
-import {CartQuantityUpdate} from "./CartQuantityUpdate";
+import { getProductImage } from "../../../helpers/productsFnc";
+import { TableColumn } from "../../../models/Common";
+import { ProductInCart } from "../../../models/Product";
+import { ProductBtns } from "../ProductItem/ProductBtns";
+import { ProductPrice } from "../ProductItem/ProductPrice";
+import { CartQuantityUpdate } from "./CartQuantityUpdate";
 
-const ProductCol = ({cartItem}: {cartItem: ProductInCart}) => {
-  const {quantity, ...product} = cartItem;
-  const {name, images} = product;
+const ProductCol = ({ cartItem }: { cartItem: ProductInCart }) => {
+  const { quantity, ...product } = cartItem;
+  const { name, images } = product;
 
   return (
     <div className="cart-cell__product">
       <div className="cart-cell__product-img">
         <img
-          src={
-            !images ||
-            !images.length ||
-            !images[0] ||
-            images[0].src.includes("woocommerce-placeholder")
-              ? `${process.env.NEXT_PUBLIC_PAGE_URL}wp-content/uploads/2021/05/LogoTransThumb.png`
-              : images[0].src
-          }
+          src={getProductImage(product).replace("300x300", "200x200")}
           alt={name}
         />
       </div>
       <div className="cart-cell__detail">
         <Row>
-          <Col xs={{span: 24}} className="cart-cell__detail__name">
+          <Col xs={{ span: 24 }} className="cart-cell__detail__name">
             <h2>{name}</h2>
           </Col>
           <Col
             className="cart-cell__detail__btn"
-            md={{span: 0}}
-            sm={{span: 24}}
-            xs={{span: 24}}
+            md={{ span: 0 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
           >
             <ProductPrice className="cart-cell__detail" product={product} />
             <CartQuantityUpdate product={cartItem} />
@@ -68,7 +62,7 @@ export const cartColumnsDesktop: TableColumn[] = [
     dataIndex: "price",
     key: "price",
     render: (text: string, cartItem: ProductInCart) => {
-      const {quantity, ...product} = cartItem;
+      const { quantity, ...product } = cartItem;
       return <ProductPrice className="cart-cell__detail" product={product} />;
     },
   },

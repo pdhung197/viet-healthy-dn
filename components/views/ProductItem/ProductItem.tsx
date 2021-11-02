@@ -7,7 +7,10 @@ import "./product-item.scss";
 import React, { useEffect, useState } from "react";
 import { ProductLink } from "./ProductLink";
 import { ProductPrice } from "./ProductPrice";
-import { checkIfProductImgExists } from "../../../helpers/productsFnc";
+import {
+  checkIfProductImgExists,
+  getProductImage,
+} from "../../../helpers/productsFnc";
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 
 type ProductItemProps = {
@@ -20,21 +23,10 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 
   const isSmallestScreen = screens.xs && !screens.sm;
 
-  let imgSrc = `${process.env.NEXT_PUBLIC_PAGE_URL}wp-content/uploads/2021/05/LogoTransThumb.png`;
+  let imgSrc = getProductImage(product);
 
-  if (
-    !(
-      !images ||
-      !images.length ||
-      !images[0] ||
-      images[0].src.includes("woocommerce-placeholder")
-    )
-  ) {
-    const imgSrcs = images[0].src.split(".");
-
-    imgSrc = `${imgSrcs.slice(0, imgSrcs.length - 1).join(".")}-${
-      isSmallestScreen ? "200x200" : "300x300"
-    }.${imgSrcs[imgSrcs.length - 1]}`;
+  if (isSmallestScreen) {
+    imgSrc = imgSrc.replace("300x300", "200x200");
   }
 
   return (

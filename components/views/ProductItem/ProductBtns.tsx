@@ -1,10 +1,10 @@
-import {ReloadOutlined} from "@ant-design/icons";
+import { ReloadOutlined } from "@ant-design/icons";
 import React from "react";
-import {FaCartPlus} from "react-icons/fa";
-import {MdAttachMoney} from "react-icons/md";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {BtnType, ProductInfo} from "../../../models/Product";
-import {ProductRemoveCart} from "./ProductRemoveCart";
+import { FaCartPlus } from "react-icons/fa";
+import { MdAttachMoney } from "react-icons/md";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
+import { BtnType, ProductInfo } from "../../../models/Product";
+import { ProductRemoveCart } from "./ProductRemoveCart";
 
 type ProductBtnsProps = {
   className?: string;
@@ -23,7 +23,7 @@ export const ProductBtns = ({
   handleDirectToPayment = () => {},
   product,
 }: ProductBtnsProps) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className={`${className}__prod-btns--payment-btn`}>

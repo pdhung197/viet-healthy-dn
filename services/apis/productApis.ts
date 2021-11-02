@@ -1,5 +1,5 @@
-import {axiosClient} from "../../utils/axiosClient";
-import {ProductInfo, ProductParams} from "../../models/Product";
+import { axiosClient } from "../../utils/axiosClient";
+import { ProductInfo, ProductParams } from "../../models/Product";
 
 export const productApiUrl = {
   products: "/products",

@@ -43,4 +43,6 @@ export const common = {
     isRequired: "Vui lòng nhập {{fieldName}}!",
   },
   waiting: "Vui lòng đợi!",
+  call: "Gọi",
+  orderOnline: "Đặt online",
 };

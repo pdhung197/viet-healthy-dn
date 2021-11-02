@@ -89,7 +89,9 @@ export const HomePage = (props: Partial<HomeProps>) => {
               rows={carouselRows}
             />
             <Link href={`/products#${catSlug}`}>
-              <span className="cat-products__link">Xem thêm {">>"}</span>
+              <span className="cat-products__link">
+                {t("pageData.homePage.seeMore")} {">>"}
+              </span>
             </Link>
           </Container>
         );

@@ -14,7 +14,7 @@ export const orderProductsByCat = (
 ): ProductListByCatInfo => {
   const productList: ProductListByCatInfo = products.reduce(
     (productsByCat: ProductListByCatInfo, product: ProductInfo) => {
-      const { categories } = product;
+      const { categories, status } = product;
       (categories || []).forEach((category) => {
         const { id, name, slug } = category;
         if (slug === "uncategorized") {
@@ -33,17 +33,17 @@ export const orderProductsByCat = (
         productsByCat[slug].products.push(product);
       });
 
-      return Object.keys(productsByCat)
-        .sort()
-        .reduce((obj: ProductListByCatInfo, key: string) => {
-          obj[key] = productsByCat[key];
-          return obj;
-        }, {});
+      return productsByCat;
     },
     {}
   );
 
-  return productList;
+  return Object.keys(productList)
+    .sort()
+    .reduce((obj: ProductListByCatInfo, key: string) => {
+      obj[key] = productList[key];
+      return obj;
+    }, {});
 };
 
 export const filterProductsForSlide = (
@@ -61,7 +61,7 @@ export const filterProductsForSlide = (
 
     productsByCat[catKey] = {
       ...productsListByCat[catKey],
-      products: products.slice(0, 8),
+      products: products.slice(0, 12),
     };
   });
 
@@ -92,4 +92,27 @@ export const checkIfProductImgExists = (src: string) => {
       return false;
     };
   }
+};
+
+export const getProductImage = (product: ProductInfo): string => {
+  const { id, images, name } = product;
+
+  let imgSrc = `${process.env.NEXT_PUBLIC_PAGE_URL}wp-content/uploads/2021/05/LogoTransThumb.png`;
+
+  if (
+    !(
+      !images ||
+      !images.length ||
+      !images[0] ||
+      images[0].src.includes("woocommerce-placeholder")
+    )
+  ) {
+    const imgSrcs = images[0].src.split(".");
+
+    imgSrc = `${imgSrcs.slice(0, imgSrcs.length - 1).join(".")}-300x300.${
+      imgSrcs[imgSrcs.length - 1]
+    }`;
+  }
+
+  return imgSrc;
 };

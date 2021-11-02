@@ -1,11 +1,11 @@
-import {useContext, useEffect} from "react";
-import {HomePage} from "../components/views/HomePage/HomePage";
-import {UserContext} from "../contexts/userContext/userContext";
-import {HomeProps} from "../models/PageProps";
-import {fetchCategoryList} from "../services/apis/categoryApis";
-import {fetchAllProducts} from "../services/apis/productApis";
+import { useContext, useEffect } from "react";
+import { HomePage } from "../components/views/HomePage/HomePage";
+import { UserContext } from "../contexts/userContext/userContext";
+import { HomeProps } from "../models/PageProps";
+import { fetchCategoryList } from "../services/apis/categoryApis";
+import { fetchAllProducts } from "../services/apis/productApis";
 
-const Home = ({productsList, categoryList}: HomeProps) => {
+const Home = ({ productsList, categoryList }: HomeProps) => {
   const {
     productsList: contextProductList,
     storeProductsData,
@@ -41,10 +41,13 @@ const Home = ({productsList, categoryList}: HomeProps) => {
 };
 
 export async function getStaticProps() {
-  const productsList = await fetchAllProducts();
+  const productsList = await fetchAllProducts({
+    orderby: "title",
+    order: "asc",
+  });
   const categoryList = await fetchCategoryList();
 
-  return {props: {productsList, categoryList}};
+  return { props: { productsList, categoryList } };
 }
 
 export default Home;

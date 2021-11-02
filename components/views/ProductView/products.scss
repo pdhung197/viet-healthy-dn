@@ -147,7 +147,8 @@
       }
 
       &--add-to-cart,
-      &--pay {
+      &--pay,
+      &--call-me {
         width: 100%;
         border-radius: 999px;
         background-color: $white;
@@ -173,6 +174,23 @@
           width: 2rem;
           margin-right: 5px;
           margin-bottom: -3px;
+        }
+      }
+
+      &--call-me {
+        background-color: $danger-color;
+        color: $white;
+        transition: 0.3s;
+        border-color: $danger-color;
+        text-transform: none;
+        display: block;
+        margin-bottom: 2rem;
+        text-align: center;
+
+        &:hover {
+          background-color: $white;
+          color: $danger-color;
+          transition: 0.3s;
         }
       }
 
@@ -202,6 +220,13 @@
         font-size: 2.6rem;
         font-weight: 600;
         color: $primary-color;
+      }
+
+      &--private {
+        del {
+          font-weight: 700;
+          color: $danger-color;
+        }
       }
     }
 

@@ -83,6 +83,12 @@
       font-size: 1.4em;
       font-weight: 600;
     }
+
+    &--private {
+      font-weight: 700;
+      color: $danger-color;
+      text-transform: uppercase;
+    }
   }
 
   &__prod-btns {
@@ -101,6 +107,9 @@
       > span {
         display: none;
       }
+    }
+
+    &--call {
     }
 
     &--sub,
@@ -199,6 +208,30 @@
         color: $white;
       }
     }
+
+    &--call-me {
+      border-radius: 99.9rem;
+      height: 3.2rem;
+      border: 1px solid $danger-color;
+      outline: none !important;
+      background-color: $white;
+      color: $danger-color;
+      padding: 0 1.2rem;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 1rem;
+
+      &:hover {
+        background-color: $danger-color;
+        color: $white;
+      }
+    }
   }
 
   &:hover {
@@ -258,6 +291,10 @@
       }
 
       &--add-to-cart {
+        margin-top: unset;
+      }
+
+      &--call-me {
         margin-top: unset;
       }
     }

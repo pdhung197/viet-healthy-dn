@@ -1,15 +1,15 @@
-import {ReloadOutlined} from "@ant-design/icons";
-import {useRouter} from "next/router";
-import React, {useState} from "react";
-import {FaCartPlus} from "react-icons/fa";
-import {HiMinusSm, HiPlus} from "react-icons/hi";
-import {MdAttachMoney, MdDeleteForever} from "react-icons/md";
-import {useCart} from "../../../hooks/useCart/useCart";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {BtnType, ProductInfo} from "../../../models/Product";
-import {ProductBtns} from "./ProductBtns";
-import {ProductQuantity} from "./ProductQuantity";
-import {ProductRemoveCart} from "./ProductRemoveCart";
+import { ReloadOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { FaCartPlus } from "react-icons/fa";
+import { HiMinusSm, HiPlus } from "react-icons/hi";
+import { MdAttachMoney, MdDeleteForever } from "react-icons/md";
+import { useCart } from "../../../hooks/useCart/useCart";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
+import { BtnType, ProductInfo } from "../../../models/Product";
+import { ProductBtns } from "./ProductBtns";
+import { ProductQuantity } from "./ProductQuantity";
+import { ProductRemoveCart } from "./ProductRemoveCart";
 
 type AddRemoveCartProps = {
   product: ProductInfo;
@@ -24,9 +24,9 @@ export const ProductActionsGroup = ({
   defaultCount = 1,
   btns = [],
 }: AddRemoveCartProps) => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const router = useRouter();
-  const {addToCart} = useCart();
+  const { addToCart } = useCart();
 
   const [countToCart, setCountToCart] = useState(defaultCount);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -62,6 +62,18 @@ export const ProductActionsGroup = ({
     handleAddToCart();
     router.push("/payment");
   };
+
+  if (product.status === "private") {
+    return (
+      <div className={`${className}__prod-btns`}>
+        <a href="tel:0934763123" className={`${className}__prod-btns--call-me`}>
+          <span>
+            {t("common.call")} {t("common.footer.hotline2")}
+          </span>
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className={`${className}__prod-btns`}>

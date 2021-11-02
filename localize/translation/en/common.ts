@@ -36,4 +36,6 @@ export const common = {
     isRequired: "Please enter {{fieldName}}!",
   },
   waiting: "Please wait!",
+  call: "Call",
+  orderOnline: "Online order",
 };

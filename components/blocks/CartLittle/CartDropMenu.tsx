@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import {useCart} from "../../../hooks/useCart/useCart";
-import {useTranslation} from "../../../hooks/useTranslation/useTranslation";
-import {ProductInCart} from "../../../models/Product";
-import {ProductLink} from "../../views/ProductItem/ProductLink";
+import { getProductImage } from "../../../helpers/productsFnc";
+import { useCart } from "../../../hooks/useCart/useCart";
+import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
+import { ProductInCart } from "../../../models/Product";
+import { ProductLink } from "../../views/ProductItem/ProductLink";
 
 type CartDropProps = {
   totalPrice: number;
@@ -16,8 +17,8 @@ export const CartDropMenu = ({
   carts,
   showRemoveBtn = true,
 }: CartDropProps) => {
-  const {t, currentLang} = useTranslation();
-  const {removeFromCart} = useCart();
+  const { t, currentLang } = useTranslation();
+  const { removeFromCart } = useCart();
 
   if (!carts || !carts.length) return null;
 
@@ -25,8 +26,8 @@ export const CartDropMenu = ({
     <div className="cart-dropdown">
       <div className="cart-dropdown__list">
         {(carts || []).map((cartItem: ProductInCart) => {
-          const {quantity, ...product} = cartItem;
-          const {name, id, images, price} = product;
+          const { quantity, ...product } = cartItem;
+          const { name, id, images, price } = product;
 
           if (!quantity) return null;
 
@@ -37,14 +38,10 @@ export const CartDropMenu = ({
                   <div className="cart-dropdown__item-img-wrapper">
                     <div className="cart-dropdown__item-img">
                       <img
-                        src={
-                          !images ||
-                          !images.length ||
-                          !images[0] ||
-                          images[0].src.includes("woocommerce-placeholder")
-                            ? `${process.env.NEXT_PUBLIC_PAGE_URL}wp-content/uploads/2021/05/LogoTransThumb.png`
-                            : images[0].src
-                        }
+                        src={getProductImage(product).replace(
+                          "300x300",
+                          "200x200"
+                        )}
                       />
                     </div>
                   </div>

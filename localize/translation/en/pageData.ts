@@ -7,6 +7,7 @@ export const pageData = {
     preOrderAvai: "Pre-order Opens",
     addToCart: "Add",
     pay: "Payment",
+    payNow: "Buy now",
     price: "Price",
     quantity: "Quantity",
     relates: "Relate products",

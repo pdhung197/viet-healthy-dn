@@ -51,7 +51,7 @@ export const ProductBtns = ({
           disabled={isProccesing}
         >
           {isProccesing ? <ReloadOutlined spin={true} /> : <MdAttachMoney />}
-          <span>{t("pageData.product.pay")}</span>
+          <span>{t("pageData.product.payNow")}</span>
         </button>
       ) : null}
 

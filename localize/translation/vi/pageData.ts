@@ -8,6 +8,7 @@ export const pageData = {
     preOrderAvai: "Có thể đặt trước",
     addToCart: "Thêm",
     pay: "Thanh toán",
+    payNow: "Mua ngay",
     price: "Giá",
     quantity: "Số lượng",
     relates: "Sản phẩm liên quan",

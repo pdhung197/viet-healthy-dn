@@ -14,10 +14,7 @@ const ProductCol = ({ cartItem }: { cartItem: ProductInCart }) => {
   return (
     <div className="cart-cell__product">
       <div className="cart-cell__product-img">
-        <img
-          src={getProductImage(product).replace("300x300", "200x200")}
-          alt={name}
-        />
+        <img src={getProductImage(product)} alt={name} />
       </div>
       <div className="cart-cell__detail">
         <Row>

@@ -22,14 +22,14 @@
     &--main-img {
       position: relative;
       width: 100%;
-      padding-top: calc(100% * 5.5 / 5);
+      padding-top: calc(100% * 5.5 / 7);
 
       img {
         width: unset !important;
-        min-width: 100% !important;
+        min-width: 70% !important;
         height: unset !important;
         min-height: unset !important;
-        max-width: 100% !important;
+        max-width: 70% !important;
         object-fit: cover;
         transition: 0.3s;
       }

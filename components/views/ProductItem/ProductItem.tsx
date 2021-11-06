@@ -11,7 +11,6 @@ import {
   checkIfProductImgExists,
   getProductImage,
 } from "../../../helpers/productsFnc";
-import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 
 type ProductItemProps = {
   product: ProductInfo;
@@ -19,15 +18,8 @@ type ProductItemProps = {
 
 export const ProductItem = ({ product }: ProductItemProps) => {
   const { id, images, name } = product;
-  const screens = useBreakpoint();
-
-  const isSmallestScreen = screens.xs && !screens.sm;
 
   let imgSrc = getProductImage(product);
-
-  if (isSmallestScreen) {
-    imgSrc = imgSrc.replace("300x300", "200x200");
-  }
 
   return (
     <div id={`product${id}`} className="product-card">

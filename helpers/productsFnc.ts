@@ -109,7 +109,7 @@ export const getProductImage = (product: ProductInfo): string => {
   ) {
     const imgSrcs = images[0].src.split(".");
 
-    imgSrc = `${imgSrcs.slice(0, imgSrcs.length - 1).join(".")}-300x300.${
+    imgSrc = `${imgSrcs.slice(0, imgSrcs.length - 1).join(".")}-200x200.${
       imgSrcs[imgSrcs.length - 1]
     }`;
   }

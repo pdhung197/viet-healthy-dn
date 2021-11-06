@@ -37,12 +37,7 @@ export const CartDropMenu = ({
                 <a className="cart-dropdown__item-body">
                   <div className="cart-dropdown__item-img-wrapper">
                     <div className="cart-dropdown__item-img">
-                      <img
-                        src={getProductImage(product).replace(
-                          "300x300",
-                          "200x200"
-                        )}
-                      />
+                      <img src={getProductImage(product)} />
                     </div>
                   </div>
                   <div className="cart-dropdown__item-content">

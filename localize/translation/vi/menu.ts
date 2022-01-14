@@ -10,6 +10,7 @@ export const menu = {
   [PageKeys.share]: "Chia sẻ",
   cats: "Danh mục sản phẩm",
   allCats: "Tất cả sản phẩm",
+  doidiem: "Đổi điểm",
   "suc-khoe": "Sức khỏe",
   "gia-dung": "Gia Dụng",
   "thuc-pham": "Thực phẩm",

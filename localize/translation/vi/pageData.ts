@@ -121,4 +121,9 @@ export const pageData = {
         "Mọi thắc mắc, vui lòng gọi <a href='tel:0938711074'>0938 711 074</a> hoặc Zalo <a target='_blank' href='http://zalo.me/0938711074'>VietHealthy Đà Nẵng - Đại lý chính thức</a>",
     },
   },
+  doidiem: {
+    title: "Chương trình đổi điểm",
+    search: "Kiểm tra",
+    searchPlaceholder: "Nhập vào số điện thoại",
+  },
 };

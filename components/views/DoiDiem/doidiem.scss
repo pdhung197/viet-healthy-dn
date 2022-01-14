@@ -1,0 +1,90 @@
+@import "./../../../assets/styles/variables.scss";
+
+.score {
+  min-width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  &__instruction {
+    h3 {
+      color: $primary-color;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+      font-style: italic;
+      color: $danger-color;
+      margin-bottom: 5rem;
+    }
+  }
+
+  &__search {
+    &__input {
+      margin-bottom: 1rem;
+    }
+
+    &__btn {
+      padding: 8px 24px;
+      height: unset;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+
+  &__result {
+    margin-top: 2rem;
+    padding: 3rem 2rem;
+    box-sizing: border-box;
+
+    &.found {
+      border: 2px solid $primary-color;
+      border-radius: 8px;
+    }
+
+    &__loading {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    p,
+    &__radios span {
+      font-size: 1.6rem;
+      color: $black;
+
+      &.ant-radio-checked.ant-radio-disabled {
+        & + span {
+          font-weight: 600;
+        }
+      }
+    }
+
+    &__say-hi {
+      span {
+        color: $primary-color;
+        font-weight: 600;
+      }
+
+      strong {
+        font-size: 2rem;
+        color: $danger-color;
+      }
+    }
+
+    .ant-radio-group {
+      .ant-radio-wrapper {
+        span {
+          &:nth-of-type(2) {
+            white-space: pre-wrap;
+          }
+        }
+      }
+    }
+
+    &__submit {
+      margin-top: 2rem;
+      text-align: right;
+    }
+  }
+}

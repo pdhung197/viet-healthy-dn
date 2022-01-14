@@ -10,6 +10,7 @@ export const menu = {
   [PageKeys.share]: "Sharing",
   cats: "Categories list",
   allCats: "All",
+  doidiem: "Change score",
   "suc-khoe": "For Health",
   "gia-dung": "Household Article",
   "thuc-pham": "Foodstuffs",

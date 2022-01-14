@@ -76,3 +76,15 @@ export type AreaData = {
 export type AreasData = {
   [key in string]: AreaData;
 };
+
+export interface CustomerScoreData {
+  index: string;
+  name: string;
+  phone: string;
+  location?: string;
+  totalBuy: string;
+  totalOrder: string;
+  lastOrder: string;
+  totalScore: string;
+  coupon: string;
+}

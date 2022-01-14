@@ -1,5 +1,5 @@
-import {CategoryInfo} from "./Category";
-import {ProductBase, ProductInfo, ProductListByCatInfo} from "./Product";
+import { CategoryInfo } from "./Category";
+import { ProductBase, ProductInfo, ProductListByCatInfo } from "./Product";
 
 export enum PageKeys {
   home = "home",
@@ -9,6 +9,7 @@ export enum PageKeys {
   about = "about",
   terms = "terms",
   contact = "contact",
+  doidiem = "doidiem",
 }
 
 export type CatProdListProps = {

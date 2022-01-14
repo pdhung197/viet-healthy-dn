@@ -1,4 +1,9 @@
 @import "./../../../assets/styles/variables.scss";
+
+.search-group__dropdown {
+  padding: 0;
+}
+
 .search-group__searchbar {
   &.ant-input-search .ant-input-group {
     > span {

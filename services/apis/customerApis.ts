@@ -1,5 +1,5 @@
-import {CustomerCreateInfo, CustomerInfo} from "./../../models/Customer";
-import {axiosClient} from "../../utils/axiosClient";
+import { CustomerCreateInfo, CustomerInfo } from "./../../models/Customer";
+import { axiosClient } from "../../utils/axiosClient";
 
 const customersApiUrl = {
   customers: "/customers",
@@ -25,7 +25,7 @@ export const getCustomerByPhone = async (
   const customers: CustomerInfo[] = await axiosClient({
     url,
     params: {
-      email: phoneAsEmail,
+      search: phoneAsEmail,
     },
   });
 
@@ -33,5 +33,13 @@ export const getCustomerByPhone = async (
     return null;
   }
 
-  return customers[0];
+  const matchCustomer = customers.find(
+    (customer: CustomerInfo) => customer.username === phoneAsEmail
+  );
+
+  if (!matchCustomer) {
+    return null;
+  }
+
+  return matchCustomer;
 };

@@ -92,4 +92,9 @@ export const pageData = {
         "Any questions, please call <a href='tel:0938711074'>0938 711 074</a> or Zalo <a target='_blank' href='http://zalo.me/0938711074'>VietHealthy Đà Nẵng - Đại lý chính thức</a>",
     },
   },
+  doidiem: {
+    title: "Change score for coupon",
+    search: "Check score",
+    searchPlaceholder: "Please enter your phone number",
+  },
 };

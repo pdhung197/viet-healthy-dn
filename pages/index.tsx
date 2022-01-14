@@ -17,7 +17,7 @@ const Home = ({ productsList, categoryList }: HomeProps) => {
       storeCategoryList(categoryList);
     }
 
-    const fetchProducts = async () => {
+    /* const fetchProducts = async () => {
       const data = await fetchAllProducts();
       if (data && data.length) {
         storeProductsData(data);
@@ -26,7 +26,7 @@ const Home = ({ productsList, categoryList }: HomeProps) => {
 
     if (!contextProductList || !contextProductList.length) {
       fetchProducts();
-    }
+    } */
   }, []);
 
   return (

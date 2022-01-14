@@ -42,7 +42,7 @@ module.exports = {
           javascriptEnabled: true,
           modifyVars: themeVariables, // make your antd custom effective
         },
-        webpack: (config, {isServer}) => {
+        webpack: (config, { isServer }) => {
           if (isServer) {
             const antStyles = /antd\/.*?\/style.*?/;
             const origExternals = [...config.externals];
@@ -63,6 +63,15 @@ module.exports = {
               use: "null-loader",
             });
           }
+          config.node = {
+            // Some libraries import Node modules but don't use them in the browser.
+            // Tell Webpack to provide empty mocks for them so importing them works.
+            ...config.node,
+            fs: "empty",
+            child_process: "empty",
+            net: "empty",
+            tls: "empty",
+          };
           return config;
         },
       })

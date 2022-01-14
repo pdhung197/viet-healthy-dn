@@ -75,12 +75,33 @@ export const MainMenu = ({ mode = "horizontal" }: MainMenuProps) => {
           label={t(`menu.${PageKeys.share}`)}
         />
       </Item>
-      <Item key={PageKeys.terms} disabled={true}>
-        <MenuItemContent
-          path={`/${PageKeys.terms}`}
-          label={t(`menu.${PageKeys.terms}`)}
-        />
-      </Item>
+      <SubMenu
+        key={PageKeys.terms}
+        title={
+          mode === "horizontal" ? (
+            <MenuItemContent
+              path="/terms"
+              label={t(`menu.${PageKeys.terms}`)}
+            />
+          ) : (
+            <span>{t(`menu.${PageKeys.terms}`)}</span>
+          )
+        }
+        className={
+          selectedKey.startsWith(PageKeys.doidiem)
+            ? `ant-menu-item-selected`
+            : ""
+        }
+      >
+        <Item>
+          <MenuItemContent
+            shallow={true}
+            path={`/${PageKeys.doidiem}`}
+            label={t("menu.doidiem")}
+            className="ant-menu-custom-link menu-item-content submenu-item-content"
+          />
+        </Item>
+      </SubMenu>
       <Item key={PageKeys.about} disabled={true}>
         <MenuItemContent
           path={`/${PageKeys.about}`}

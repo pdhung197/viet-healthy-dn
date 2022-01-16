@@ -46,6 +46,13 @@
     &__loading {
       text-align: center;
       margin-bottom: 2rem;
+
+      p {
+        color: $primary-color !important;
+        text-transform: uppercase;
+        margin-top: 1rem;
+        font-weight: 600;
+      }
     }
 
     p,
@@ -85,6 +92,32 @@
     &__submit {
       margin-top: 2rem;
       text-align: right;
+    }
+
+    &__finish {
+      p {
+        margin-top: 2rem;
+        font-size: 1.8rem;
+        color: $danger-color;
+
+        a {
+          color: $primary-color;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+.score__modal {
+  .ant-modal-body {
+    .ant-modal-confirm-content {
+      p {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: $primary-color;
+      }
     }
   }
 }

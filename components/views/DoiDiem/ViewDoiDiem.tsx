@@ -7,6 +7,7 @@ import { CustomerScoreData } from "../../../models/Customer";
 import { ExclamationCircleOutlined, LoadingOutlined } from "@ant-design/icons";
 import { GoogleSpreadsheet, GoogleSpreadsheetRow } from "google-spreadsheet";
 import { RadioChangeEvent } from "antd/lib/radio";
+import Link from "next/link";
 
 const { confirm } = Modal;
 
@@ -24,7 +25,7 @@ const getPercentageCoupon = (score: number) => {
 };
 const getCoupontDecide = (coupon: string, score: number) => {
   if (coupon === "DIRECT") {
-    return `giảm ${score}.000 đồng vào 01 đơn hàng kế tiếp.`;
+    return `giảm ${score}.000 đồng vào 01 đơn hàng kế tiếp phát sinh trước ngày 26/01/2022`;
   }
 
   const { expiredDate } = getPercentageCoupon(score);
@@ -83,6 +84,7 @@ export const ViewDoiDiem = () => {
   const handleClickSubmit = () => {
     confirm({
       icon: <ExclamationCircleOutlined />,
+      className: "score__modal",
       content: (
         <p>
           Anh chị chắc chắn chọn phương án đổi {totalScore} để{" "}
@@ -181,6 +183,7 @@ export const ViewDoiDiem = () => {
           {isSearching && (
             <div className="score__result__loading">
               <Spin indicator={antIcon} />
+              <p>Vui lòng đợi</p>
             </div>
           )}
           {userInfo.index && (
@@ -205,7 +208,8 @@ export const ViewDoiDiem = () => {
               >
                 <Space direction="vertical">
                   <Radio value={directCoupon}>
-                    Giảm {totalScore}.000 đồng vào 01 đơn hàng kế tiếp.
+                    Giảm {totalScore}.000 đồng vào 01 đơn hàng kế tiếp phát sinh
+                    trước 25/01/2022.
                   </Radio>
                   <Radio value={couponCode}>
                     Giảm 5% cho tất cả các đơn hàng từ 15/01/2022 đến{" "}
@@ -215,7 +219,7 @@ export const ViewDoiDiem = () => {
                 </Space>
               </Radio.Group>
 
-              {!coupon && (
+              {!coupon ? (
                 <div className="score__result__submit">
                   <Button
                     className="score__search__btn"
@@ -226,6 +230,16 @@ export const ViewDoiDiem = () => {
                   >
                     Xác nhận
                   </Button>
+                </div>
+              ) : (
+                <div className="score__result__finish">
+                  <p>
+                    Hãy truy cập vào{" "}
+                    <Link href="/products">
+                      <a>Sản phẩm</a>
+                    </Link>{" "}
+                    để đặt hàng và nhận những ưu đãi đã quy đổi.
+                  </p>
                 </div>
               )}
             </>

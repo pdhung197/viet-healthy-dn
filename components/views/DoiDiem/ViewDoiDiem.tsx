@@ -12,6 +12,7 @@ import Link from "next/link";
 const { confirm } = Modal;
 
 const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
+const antIconSmall = <LoadingOutlined style={{ fontSize: 18 }} spin />;
 const directCoupon = "DIRECT";
 const getPercentageCoupon = (score: number) => {
   const date = new Date("2022/01/15");
@@ -36,7 +37,7 @@ const getCoupontDecide = (coupon: string, score: number) => {
   ${expiredDate.getFullYear()}`;
 };
 
-export const ViewDoiDiem = () => {
+export const ViewDoiDiem = ({ current }: { current: string }) => {
   const { t } = useTranslation();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isSearching, setIsSearching] = useState(false);
@@ -150,6 +151,9 @@ export const ViewDoiDiem = () => {
   const { name, totalScore, coupon } = userInfo;
   const { couponCode, expiredDate } = getPercentageCoupon(parseInt(totalScore));
 
+  const isOverDate =
+    new Date(current).getMonth() > 1 || new Date(current).getDate() > 25;
+
   return (
     <>
       <VHHead title="Chương trình đổi điểm" />
@@ -175,9 +179,35 @@ export const ViewDoiDiem = () => {
             className="score__search__btn"
             onClick={handleSearchCustomer}
             type="primary"
+            disabled={isOverDate}
           >
             {t("pageData.doidiem.search")}
           </Button>
+
+          {isOverDate && (
+            <>
+              <p className="score__over">
+                Chương trình đổi điểm năm 2021 của Đại lý Việt Healthy tại Đà
+                Nẵng đã kết thúc!
+              </p>
+              <p className="score__over">
+                Hệ thống sẽ tự động chuyển đến{" "}
+                <Link href="/products">
+                  <a>Danh sách sản phẩm</a>
+                </Link>{" "}
+                <Spin indicator={antIconSmall} />
+              </p>
+              <div className="score__result__finish">
+                <p>
+                  Quý khách vui lòng truy cập vào{" "}
+                  <Link href="/products">
+                    <a>Sản phẩm</a>
+                  </Link>{" "}
+                  để đặt hàng và tích lũy điểm cho năm 2022. Xin cám ơn.
+                </p>
+              </div>
+            </>
+          )}
         </div>
         <div className={`score__result ${userInfo.phone ? "found" : ""}`}>
           {isSearching && (
@@ -203,7 +233,7 @@ export const ViewDoiDiem = () => {
               <Radio.Group
                 onChange={handleSelectCoupon}
                 value={selectedCoupon}
-                disabled={!!coupon}
+                disabled={!!coupon || isOverDate}
                 className="score__result__radios"
               >
                 <Space direction="vertical">
@@ -219,7 +249,7 @@ export const ViewDoiDiem = () => {
                 </Space>
               </Radio.Group>
 
-              {!coupon ? (
+              {!coupon && !isOverDate ? (
                 <div className="score__result__submit">
                   <Button
                     className="score__search__btn"

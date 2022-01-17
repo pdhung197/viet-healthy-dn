@@ -33,6 +33,13 @@
     }
   }
 
+  &__over {
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    color: $danger-color;
+    font-weight: 600;
+  }
+
   &__result {
     margin-top: 2rem;
     padding: 3rem 2rem;

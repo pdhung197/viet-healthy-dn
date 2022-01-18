@@ -162,7 +162,10 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
           <h3>{t("pageData.doidiem.title")}</h3>
           <p>
             Chương trình đổi điểm Tri ân khách hàng Đại lý VietHealthy tại Đà
-            Nẵng.
+            Nẵng.{" "}
+            <strong>
+              Chương trình không áp dụng đối với Cộng tác viên và Đại lý.
+            </strong>
           </p>
         </div>
         <div className="score__search">

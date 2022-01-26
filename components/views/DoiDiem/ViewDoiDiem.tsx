@@ -182,7 +182,7 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
             className="score__search__btn"
             onClick={handleSearchCustomer}
             type="primary"
-            disabled={isOverDate}
+            disabled={!phoneNumber}
           >
             {t("pageData.doidiem.search")}
           </Button>
@@ -192,13 +192,6 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
               <p className="score__over">
                 Chương trình đổi điểm năm 2021 của Đại lý Việt Healthy tại Đà
                 Nẵng đã kết thúc!
-              </p>
-              <p className="score__over">
-                Hệ thống sẽ tự động chuyển đến{" "}
-                <Link href="/products">
-                  <a>Danh sách sản phẩm</a>
-                </Link>{" "}
-                <Spin indicator={antIconSmall} />
               </p>
               <div className="score__result__finish">
                 <p>
@@ -230,6 +223,8 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
                 <p className="score__result__question">
                   Anh/chị đã chọn hình thức đổi điểm:
                 </p>
+              ) : isOverDate ? (
+                <p>Các hình thức đổi điểm đang được áp dụng:</p>
               ) : (
                 <p>Anh/chị vui lòng chọn hình thức đổi điểm:</p>
               )}

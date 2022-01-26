@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { Container } from "../../components/blocks/Containers/Container";
 import { ViewDoiDiem } from "../../components/views/DoiDiem/ViewDoiDiem";
 
@@ -7,13 +6,6 @@ type DoiDiemProps = {
 };
 
 const DoiDiem = ({ current }: DoiDiemProps) => {
-  const router = useRouter();
-  const isOverDate =
-    new Date(current).getMonth() > 1 || new Date(current).getDate() > 25;
-  if (isOverDate) {
-    router.push("/products");
-  }
-
   return (
     <Container>
       <ViewDoiDiem current={current} />

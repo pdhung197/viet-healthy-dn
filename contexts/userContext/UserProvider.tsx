@@ -1,14 +1,14 @@
-import {useEffect, useState} from "react";
-import {openNotificationWithIcon} from "../../components/blocks/Notification/Notification";
-import {useTranslation} from "../../hooks/useTranslation/useTranslation";
-import {CartItem, CartsStore} from "../../models/Cart";
-import {CategoryInfo} from "../../models/Category";
-import {CommonProps} from "../../models/Common";
-import {ProductBase, ProductInCart, ProductInfo} from "../../models/Product";
-import {fetchCategoryList} from "../../services/apis/categoryApis";
-import {UserContext} from "./userContext";
+import { useEffect, useState } from "react";
+import { openNotificationWithIcon } from "../../components/blocks/Notification/Notification";
+import { useTranslation } from "../../hooks/useTranslation/useTranslation";
+import { CartItem, CartsStore } from "../../models/Cart";
+import { CategoryInfo } from "../../models/Category";
+import { CommonProps } from "../../models/Common";
+import { ProductBase, ProductInCart, ProductInfo } from "../../models/Product";
+import { fetchCategoryList } from "../../services/apis/categoryApis";
+import { UserContext } from "./userContext";
 
-export const UserProvider = ({children}: CommonProps) => {
+export const UserProvider = ({ children }: CommonProps) => {
   const [productsList, setProducts] = useState<any[]>([]);
   const [carts, setCarts] = useState<any[]>([]);
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
@@ -53,9 +53,11 @@ export const UserProvider = ({children}: CommonProps) => {
   const storeProductsData = (products: ProductInfo[]) => {
     setProducts(products);
   };
+
   const storeCategoryList = (categoryList: CategoryInfo[]) => {
     setCategories(categoryList);
   };
+
   const storeProductDetail = (product: ProductInfo) => {
     if (!product.id) {
       return;

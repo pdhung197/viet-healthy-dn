@@ -116,7 +116,7 @@ export const pageData = {
       finish: "Cám ơn quý khách đã mua hàng tại Việt Healthy Đà Nẵng.",
       yourOrder: "Mã đơn hàng của quý khách là",
       callback:
-        "Nhân viên Việt Healthy Đà Nẵng sẽ liên lạc để xác nhận đơn hàng trong thời gian sớm nhất.",
+        "Nhân viên Việt Healthy Đà Nẵng sẽ liên lạc để xác nhận đơn hàng, thông báo phí ship (nếu có) trong thời gian sớm nhất.",
       phone:
         "Mọi thắc mắc, vui lòng gọi <a href='tel:0938711074'>0938 711 074</a> hoặc Zalo <a target='_blank' href='http://zalo.me/0938711074'>VietHealthy Đà Nẵng - Đại lý chính thức</a>",
     },

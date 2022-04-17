@@ -15,7 +15,9 @@ export const FinishForm = () => {
         <p>
           {t("pageData.cart.finishedForm.yourOrder")}: <span>#{order}</span>
         </p>
-        <p>{t("pageData.cart.finishedForm.callback")}</p>
+        <p className="finished-form__callback">
+          {t("pageData.cart.finishedForm.callback")}
+        </p>
         <p
           dangerouslySetInnerHTML={{
             __html: t("pageData.cart.finishedForm.phone"),

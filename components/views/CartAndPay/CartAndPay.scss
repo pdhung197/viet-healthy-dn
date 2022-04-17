@@ -468,6 +468,12 @@
     font-size: 1.6rem;
     padding: 0 2rem;
   }
+
+  &__callback {
+    max-width: 600px;
+    margin: 3rem auto;
+    font-weight: 600;
+  }
 }
 
 @media screen and (min-width: $md) {

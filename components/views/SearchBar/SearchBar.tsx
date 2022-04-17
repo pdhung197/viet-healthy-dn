@@ -1,16 +1,18 @@
+import React, { useContext } from "react";
+import Link from "next/link";
+import { UserContext } from "../../../contexts/userContext/userContext";
 import { Dropdown, Input, Menu } from "antd";
 import { useTranslation } from "../../../hooks/useTranslation/useTranslation";
 import { SearchItemType, useSearch } from "./useSearch";
 
 import "./searchbar.scss";
-import React from "react";
-import Link from "next/link";
 
 const { Search } = Input;
 
 export const SearchBar = () => {
   const { t } = useTranslation();
   const { onSearch, onChange, searchList } = useSearch();
+  const { productsList } = useContext(UserContext);
 
   const getMenu = () => (
     <Menu className="search-group__dropdown">
@@ -39,14 +41,15 @@ export const SearchBar = () => {
           className="search-group__searchbar"
           placeholder={t("common.form.search")}
           allowClear
+          disabled={!productsList?.length}
           enterButton={t("common.form.searchBtn")}
-          onSearch={onSearch}
+          onSearch={(search: string) => onSearch(search, productsList)}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            onChange(event.target.value)
+            onChange(event.target.value, productsList)
           }
           onAbort={() => {
             console.log("Abort");
-            onChange("");
+            onChange("", []);
           }}
         />
       </Dropdown>

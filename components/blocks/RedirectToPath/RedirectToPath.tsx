@@ -9,7 +9,7 @@ type RedirectToPathProps = {
 export const RedirectToPath = ({ path, timing }: RedirectToPathProps) => {
   const [percentage, setPercentage] = useState(0);
   const step = 100 / timing;
-  console.log({ step });
+
   useEffect(() => {
     const intervalPercentage = setInterval(() => {
       if (percentage < 100) {

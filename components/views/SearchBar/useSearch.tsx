@@ -1,5 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
-import { UserContext } from "../../../contexts/userContext/userContext";
+import React, { useCallback, useState } from "react";
 import { debounce } from "../../../helpers/common";
 import { ProductInfo } from "../../../models/Product";
 
@@ -13,10 +12,9 @@ export const useSearch = () => {
   const [searchList, setSearchList] = useState<SearchItemType[]>(
     [] as SearchItemType[]
   );
-  const { productsList } = useContext(UserContext);
 
   const debounceSearch = useCallback(
-    debounce((searchString: string) => {
+    debounce((searchString: string, productsList: ProductInfo[]) => {
       if (!searchString || searchString === "") {
         return setSearchList([] as SearchItemType[]);
       }
@@ -58,13 +56,14 @@ export const useSearch = () => {
     []
   );
 
-  const onSearch = (value: string) => {
-    debounceSearch(value);
+  const onSearch = (value: string, productsList: ProductInfo[]) => {
+    debounceSearch(value, productsList);
   };
 
-  const onChange = (searchString: string) => {
-    debounceSearch(searchString);
+  const onChange = (searchString: string, productsList: ProductInfo[]) => {
+    debounceSearch(searchString, productsList);
   };
+
   return {
     searchList,
     onSearch,

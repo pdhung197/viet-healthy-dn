@@ -1,22 +1,22 @@
-import {useRouter} from "next/router";
-import React, {useContext, useEffect} from "react";
-import {ProductDetail} from "../../components/views/ProductView/ProductDetail";
-import {ProductsView} from "../../components/views/ProductView/ProductsView";
-import {UserContext} from "../../contexts/userContext/userContext";
-import {orderProductsByCat} from "../../helpers/productsFnc";
-import {ProductsProps} from "../../models/PageProps";
-import {ProductInfo, ProductListByCatInfo} from "../../models/Product";
-import {fetchCategoryList} from "../../services/apis/categoryApis";
-import {fetchAllProducts} from "../../services/apis/productApis";
+import { useRouter } from "next/router";
+import React, { useContext, useEffect } from "react";
+import { ProductDetail } from "../../components/views/ProductView/ProductDetail";
+import { ProductsView } from "../../components/views/ProductView/ProductsView";
+import { UserContext } from "../../contexts/userContext/userContext";
+import { orderProductsByCat } from "../../helpers/productsFnc";
+import { ProductsProps } from "../../models/PageProps";
+import { ProductInfo, ProductListByCatInfo } from "../../models/Product";
+import { fetchCategoryList } from "../../services/apis/categoryApis";
+import { fetchAllProducts } from "../../services/apis/productApis";
 
-const Products = ({productsList, categoryList}: ProductsProps) => {
+const Products = ({ productsList, categoryList }: ProductsProps) => {
   const {
     productsList: contextProductList,
     storeProductsData,
     storeCategoryList,
   } = useContext(UserContext);
-  const {query} = useRouter();
-  const {pid} = query;
+  const { query } = useRouter();
+  const { pid } = query;
 
   const pageProductsList =
     contextProductList && contextProductList.length
@@ -34,9 +34,7 @@ const Products = ({productsList, categoryList}: ProductsProps) => {
       }
     };
 
-    if (!contextProductList || !contextProductList.length) {
-      fetchProducts();
-    }
+    fetchProducts();
   }, []);
 
   const productsListByCat = (): ProductListByCatInfo =>
@@ -59,7 +57,7 @@ export async function getStaticProps() {
   const productsList = await fetchAllProducts();
   const categoryList = await fetchCategoryList();
 
-  return {props: {productsList, categoryList}};
+  return { props: { productsList, categoryList } };
 }
 
 export default Products;

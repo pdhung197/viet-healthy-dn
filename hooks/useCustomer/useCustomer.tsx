@@ -22,7 +22,7 @@ import {
   createNewCustomer,
   getCustomerByPhone,
 } from "../../services/apis/customerApis";
-import { debounce } from "../../helpers/common";
+import { sendMailOrder } from "../../services/apis/mailApi";
 
 const getWardData = (wardNumber: string) =>
   import(`./../../localize/local-data/wards/${wardNumber}.json`).then(
@@ -389,6 +389,7 @@ export const useCustomer = (): CustomerForm => {
           note: "",
         });
         NProgress.done();
+        sendMailOrder(number, data);
         setIsLoading(false);
         return number;
       })

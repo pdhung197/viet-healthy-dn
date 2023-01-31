@@ -87,4 +87,5 @@ export interface CustomerScoreData {
   lastOrder: string;
   totalScore: string;
   coupon: string;
+  customerType: string;
 }

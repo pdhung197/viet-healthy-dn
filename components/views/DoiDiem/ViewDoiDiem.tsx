@@ -15,7 +15,7 @@ const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
 const antIconSmall = <LoadingOutlined style={{ fontSize: 18 }} spin />;
 const directCoupon = "DIRECT";
 const getPercentageCoupon = (score: number) => {
-  const date = new Date("2022/01/15");
+  const date = new Date("2023/02/02");
   const coefficient =
     Math.floor(score / 50) + 1 > 6 ? 6 : Math.floor(score / 50) + 1;
 
@@ -26,12 +26,12 @@ const getPercentageCoupon = (score: number) => {
 };
 const getCoupontDecide = (coupon: string, score: number) => {
   if (coupon === "DIRECT") {
-    return `giảm ${score}.000 đồng vào 01 đơn hàng kế tiếp phát sinh trước ngày 26/01/2022`;
+    return `giảm ${score}.000 đồng vào 01 đơn hàng kế tiếp phát sinh trước ngày 12/02/2023`;
   }
 
   const { expiredDate } = getPercentageCoupon(score);
 
-  return `giảm 5% cho tất cả các đơn hàng từ 15/01/2022 đến ${expiredDate.getDate()}/${
+  return `giảm 5% cho tất cả các đơn hàng từ 02/02/2023 đến ${expiredDate.getDate()}/${
     expiredDate.getMonth() + 1
   }/
   ${expiredDate.getFullYear()}`;
@@ -134,6 +134,7 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
         lastOrder: customerRow["LastOrder"],
         totalScore: customerRow["TotalScore"],
         coupon: customerRow["Coupon"],
+        customerType: customerRow["Type"],
       };
 
       setUserInfo(foundUserInfo);
@@ -148,11 +149,12 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
     handleGetCustomer();
   };
 
-  const { name, totalScore, coupon } = userInfo;
+  const { name, totalScore, coupon, customerType } = userInfo;
   const { couponCode, expiredDate } = getPercentageCoupon(parseInt(totalScore));
 
   const isOverDate =
-    new Date(current).getMonth() > 1 || new Date(current).getDate() > 25;
+    new Date(current).getFullYear() > 2023 ||
+    (new Date(current).getMonth() > 2 && new Date(current).getDate() > 12);
 
   return (
     <>
@@ -190,7 +192,7 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
           {isOverDate && (
             <>
               <p className="score__over">
-                Chương trình đổi điểm năm 2021 của Đại lý Việt Healthy tại Đà
+                Chương trình đổi điểm năm 2022 của Đại lý Việt Healthy tại Đà
                 Nẵng đã kết thúc!
               </p>
               <div className="score__result__finish">
@@ -199,7 +201,7 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
                   <Link href="/products">
                     <a>Sản phẩm</a>
                   </Link>{" "}
-                  để đặt hàng và tích lũy điểm cho năm 2022. Xin cám ơn.
+                  để đặt hàng và tích lũy điểm cho năm 2023. Xin cám ơn.
                 </p>
               </div>
             </>
@@ -215,58 +217,85 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
           {userInfo.index && (
             <>
               <p className="score__result__say-hi">
-                Xin chào <span>{name}</span>, số điểm tích lũy của anh/chị trong
-                năm 2021 (tính đến ngày 15/1/2022) là{" "}
-                <strong>{totalScore}</strong> điểm.
+                Xin chào <span>{name.toUpperCase()}</span>
+                {customerType === "KHACH" && (
+                  <>
+                    , số điểm tích lũy của anh/chị trong năm 2022 (tính đến ngày
+                    02/02/2023) là <strong>{totalScore}</strong> điểm.
+                  </>
+                )}
               </p>
-              {!!coupon ? (
-                <p className="score__result__question">
-                  Anh/chị đã chọn hình thức đổi điểm:
+              {customerType !== "KHACH" && (
+                <p className="score__result__say-hi">
+                  Cám ơn anh/chị đã đồng hành cùng VietHealhy Đà Nẵng, chương
+                  trình không áp dụng cho Đại lý và CTV
                 </p>
-              ) : isOverDate ? (
-                <p>Các hình thức đổi điểm đang được áp dụng:</p>
-              ) : (
-                <p>Anh/chị vui lòng chọn hình thức đổi điểm:</p>
               )}
-              <Radio.Group
-                onChange={handleSelectCoupon}
-                value={selectedCoupon}
-                disabled={!!coupon || isOverDate}
-                className="score__result__radios"
-              >
-                <Space direction="vertical">
-                  <Radio value={directCoupon}>
-                    Giảm {totalScore}.000 đồng vào 01 đơn hàng kế tiếp phát sinh
-                    trước 25/01/2022.
-                  </Radio>
-                  <Radio value={couponCode}>
-                    Giảm 5% cho tất cả các đơn hàng từ 15/01/2022 đến{" "}
-                    {expiredDate.getDate()}/{expiredDate.getMonth() + 1}/
-                    {expiredDate.getFullYear()}
-                  </Radio>
-                </Space>
-              </Radio.Group>
-
-              {!coupon && !isOverDate ? (
-                <div className="score__result__submit">
-                  <Button
-                    className="score__search__btn"
-                    onClick={handleClickSubmit}
-                    type="primary"
-                    danger
-                    disabled={!userInfo.phone || !selectedCoupon || !!coupon}
+              {customerType === "KHACH" && parseInt(totalScore) > 0 && (
+                <>
+                  {!!coupon ? (
+                    <p className="score__result__question">
+                      Anh/chị đã chọn hình thức đổi điểm:
+                    </p>
+                  ) : isOverDate ? (
+                    <p>Các hình thức đổi điểm đang được áp dụng:</p>
+                  ) : (
+                    <p>Anh/chị vui lòng chọn hình thức đổi điểm:</p>
+                  )}
+                  <Radio.Group
+                    onChange={handleSelectCoupon}
+                    value={selectedCoupon}
+                    disabled={!!coupon || isOverDate}
+                    className="score__result__radios"
                   >
-                    Xác nhận
-                  </Button>
-                </div>
-              ) : (
+                    <Space direction="vertical">
+                      <Radio value={directCoupon}>
+                        Giảm {totalScore}.000 đồng vào 01 đơn hàng kế tiếp phát
+                        sinh từ ngày 02/02/2023 đến 12/02/2023.
+                      </Radio>
+                      <Radio value={couponCode}>
+                        Giảm 5% cho tất cả các đơn hàng từ 02/02/2023 đến{" "}
+                        {expiredDate.getDate()}/{expiredDate.getMonth() + 1}/
+                        {expiredDate.getFullYear()}
+                      </Radio>
+                    </Space>
+                  </Radio.Group>
+
+                  {!coupon && !isOverDate ? (
+                    <div className="score__result__submit">
+                      <Button
+                        className="score__search__btn"
+                        onClick={handleClickSubmit}
+                        type="primary"
+                        danger
+                        disabled={
+                          !userInfo.phone || !selectedCoupon || !!coupon
+                        }
+                      >
+                        Xác nhận
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="score__result__finish">
+                      <p>
+                        Hãy truy cập vào{" "}
+                        <Link href="/products">
+                          <a>Sản phẩm</a>
+                        </Link>{" "}
+                        để đặt hàng và nhận những ưu đãi đã quy đổi.
+                      </p>
+                    </div>
+                  )}
+                </>
+              )}
+              {customerType === "KHACH" && parseInt(totalScore) <= 0 && (
                 <div className="score__result__finish">
                   <p>
                     Hãy truy cập vào{" "}
                     <Link href="/products">
                       <a>Sản phẩm</a>
                     </Link>{" "}
-                    để đặt hàng và nhận những ưu đãi đã quy đổi.
+                    để đặt hàng và tích lũy điểm cho năm 2023 nhé!!
                   </p>
                 </div>
               )}

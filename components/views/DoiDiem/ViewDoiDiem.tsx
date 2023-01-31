@@ -31,10 +31,11 @@ const getCoupontDecide = (coupon: string, score: number) => {
 
   const { expiredDate } = getPercentageCoupon(score);
 
-  return `giảm 5% cho tất cả các đơn hàng từ 02/02/2023 đến ${expiredDate.getDate()}/${
+  return `giảm 5% cho tất cả các đơn hàng từ 02/02/2023 đến ${
+    expiredDate.getDate() < 10 ? "0" : ""
+  }${expiredDate.getDate()}/${expiredDate.getMonth() < 9 ? "0" : ""}${
     expiredDate.getMonth() + 1
-  }/
-  ${expiredDate.getFullYear()}`;
+  }/${expiredDate.getFullYear()}`;
 };
 
 export const ViewDoiDiem = ({ current }: { current: string }) => {
@@ -255,8 +256,10 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
                       </Radio>
                       <Radio value={couponCode}>
                         Giảm 5% cho tất cả các đơn hàng từ 02/02/2023 đến{" "}
-                        {expiredDate.getDate()}/{expiredDate.getMonth() + 1}/
-                        {expiredDate.getFullYear()}
+                        {expiredDate.getDate() < 10 && "0"}
+                        {expiredDate.getDate()}/
+                        {expiredDate.getMonth() < 9 && "0"}
+                        {expiredDate.getMonth() + 1}/{expiredDate.getFullYear()}
                       </Radio>
                     </Space>
                   </Radio.Group>

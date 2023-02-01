@@ -16,16 +16,28 @@
       font-size: 1.6rem;
       font-style: italic;
       color: $danger-color;
-      margin-bottom: 5rem;
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      li {
+        font-size: 1.4rem;
+        color: $info-color;
+        font-weight: 600;
+      }
     }
   }
 
   &__search {
+    margin-top: 3rem;
+
     &__input {
       margin-bottom: 1rem;
     }
 
     &__btn {
+      margin-top: 16px;
       padding: 8px 24px;
       height: unset;
       text-transform: uppercase;

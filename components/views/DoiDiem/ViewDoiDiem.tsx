@@ -10,6 +10,7 @@ import { RadioChangeEvent } from "antd/lib/radio";
 import Link from "next/link";
 
 const { confirm } = Modal;
+const endDate = new Date("2023-02-13");
 
 const antIcon = <LoadingOutlined style={{ fontSize: 48 }} spin />;
 const antIconSmall = <LoadingOutlined style={{ fontSize: 18 }} spin />;
@@ -89,7 +90,7 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
       className: "score__modal",
       content: (
         <p>
-          Anh chị chắc chắn chọn phương án đổi {totalScore} để{" "}
+          Anh chị chắc chắn chọn phương án đổi {totalScore} điểm để{" "}
           {getCoupontDecide(selectedCoupon, parseInt(totalScore))}?
         </p>
       ),
@@ -153,9 +154,7 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
   const { name, totalScore, coupon, customerType } = userInfo;
   const { couponCode, expiredDate } = getPercentageCoupon(parseInt(totalScore));
 
-  const isOverDate =
-    new Date(current).getFullYear() > 2023 ||
-    (new Date(current).getMonth() > 2 && new Date(current).getDate() > 12);
+  const isOverDate = new Date(current).getTime() > endDate.getTime();
 
   return (
     <>
@@ -165,11 +164,18 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
           <h3>{t("pageData.doidiem.title")}</h3>
           <p>
             Chương trình đổi điểm Tri ân khách hàng Đại lý VietHealthy tại Đà
-            Nẵng.{" "}
-            <strong>
-              Chương trình không áp dụng đối với Cộng tác viên và Đại lý.
-            </strong>
+            Nẵng.
           </p>
+          <p>
+            <strong>*** XIN LƯU Ý ***</strong>
+          </p>
+          <ul>
+            <li>Chương trình không áp dụng đối với Cộng tác viên và Đại lý.</li>
+            <li>
+              Quý khách sẽ có thể đổi điểm đến hết ngày 12/02/2023. Sau thời
+              gian trên, chương trình sẽ kết thúc.
+            </li>
+          </ul>
         </div>
         <div className="score__search">
           <Input

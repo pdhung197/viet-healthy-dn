@@ -163,8 +163,8 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
         <div className="score__instruction">
           <h3>{t("pageData.doidiem.title")}</h3>
           <p>
-            Chương trình đổi điểm Tri ân khách hàng Đại lý VietHealthy tại Đà
-            Nẵng.
+            Chương trình đổi điểm Tri ân khách hàng của Đại lý VietHealthy tại
+            Đà Nẵng.
           </p>
           <p>
             <strong>*** XIN LƯU Ý ***</strong>
@@ -178,23 +178,27 @@ export const ViewDoiDiem = ({ current }: { current: string }) => {
           </ul>
         </div>
         <div className="score__search">
-          <Input
-            placeholder={t("pageData.doidiem.searchPlaceholder")}
-            value={phoneNumber}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPhoneNumber(e.target.value)
-            }
-            size="large"
-            className="score__search__input"
-          />
-          <Button
-            className="score__search__btn"
-            onClick={handleSearchCustomer}
-            type="primary"
-            disabled={!phoneNumber}
-          >
-            {t("pageData.doidiem.search")}
-          </Button>
+          {!isOverDate && (
+            <>
+              <Input
+                placeholder={t("pageData.doidiem.searchPlaceholder")}
+                value={phoneNumber}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPhoneNumber(e.target.value)
+                }
+                size="large"
+                className="score__search__input"
+              />
+              <Button
+                className="score__search__btn"
+                onClick={handleSearchCustomer}
+                type="primary"
+                disabled={!phoneNumber}
+              >
+                {t("pageData.doidiem.search")}
+              </Button>
+            </>
+          )}
 
           {isOverDate && (
             <>

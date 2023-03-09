@@ -37,5 +37,5 @@ export const common = {
   },
   waiting: "Please wait!",
   call: "Call",
-  orderOnline: "Online order",
+  orderOnline: "Contact",
 };

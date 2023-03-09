@@ -44,5 +44,5 @@ export const common = {
   },
   waiting: "Vui lòng đợi!",
   call: "Gọi",
-  orderOnline: "Đặt online",
+  orderOnline: "Liên hệ",
 };

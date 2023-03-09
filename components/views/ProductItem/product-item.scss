@@ -70,15 +70,6 @@
       padding: 0 0.5rem;
     }
 
-    del {
-      opacity: 0.7;
-      font-size: 1.05em;
-
-      + span {
-        color: $danger-color;
-      }
-    }
-
     span {
       font-size: 1.4em;
       font-weight: 600;
@@ -88,6 +79,8 @@
       font-weight: 700;
       color: $danger-color;
       text-transform: uppercase;
+      opacity: 0.7;
+      font-size: 1.05em;
     }
   }
 

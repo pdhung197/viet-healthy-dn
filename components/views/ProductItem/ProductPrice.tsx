@@ -18,7 +18,7 @@ export const ProductPrice = ({
     <h5 className={`${className}__price`}>
       {status === "private" ? (
         <span className={`${className}__price--private`}>
-          <del>{t("common.orderOnline")}</del>
+          {t("common.orderOnline")}
         </span>
       ) : (
         <>
